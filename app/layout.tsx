@@ -7,7 +7,7 @@ import NavBar from "./NavBar/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "UL Aerosoc HiPR",
+  title: "ULAS HiPR",
   description: "Building rockets using advanced rocketry",
 };
 

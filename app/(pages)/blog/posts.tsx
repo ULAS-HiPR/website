@@ -10,13 +10,11 @@ import Link from "next/link";
 import { promises as fs } from "fs";
 import { Button } from "@/components/ui/button";
 import Markdown from "react-markdown";
-import path from "path";
-import getConfig from "next/config";
 import { Post, getSortedPostsData } from "@/lib/posts";
 
 function BlogPost({ post }: { post: Post }) {
   return (
-    <Card key={post.filename} className="my-4">
+    <Card className="my-4">
       <CardHeader>
         <CardTitle className="pb-4">
           {post.title} - {post.date.toDateString()}
@@ -44,7 +42,7 @@ export default async function Posts() {
   return (
     <div className="p-4">
       {posts.map((post) => (
-        <BlogPost post={post} />
+        <BlogPost key={post.filename} post={post} />
       ))}
     </div>
   );
