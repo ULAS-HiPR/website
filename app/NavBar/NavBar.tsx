@@ -7,7 +7,7 @@ export default function NavBar() {
     <div className="w-full flex">
       <div className="p-8 w-1/5 font-medium text-lg flex items-center">
         <Link className="flex" href={"/"}>
-          UL Aerosoc HiPR
+          ULAS HiPR
           <RocketIcon className="ml-3 text-lg" />
         </Link>
       </div>
