@@ -2,6 +2,7 @@
 import HomeProjects from "./projects";
 import { useEffect, useRef, useState } from "react";
 import MoonAnimation from "@/app/3d/moon";
+import Sponsors from "./sponsors";
 
 export default function Home() {
   // const [animationActive, setAnimationActive] = useState(true);
@@ -27,6 +28,7 @@ export default function Home() {
           </h1>
         </div>
         <HomeProjects />
+        <Sponsors />
       </div>
     </>
   );

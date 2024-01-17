@@ -11,7 +11,7 @@ function Moon(props: any) {
   });
   const { scene } = useGLTF("/moon.glb");
   return (
-    <mesh rotation={[rotationValue, (Math.PI / 2) * rotationValue, 0]}>
+    <mesh rotation={[-rotationValue, (Math.PI / 2) * rotationValue, 0]}>
       <primitive object={scene} {...props} />
     </mesh>
   );
@@ -24,11 +24,11 @@ export default function MoonAnimation({
 }) {
   return (
     <div className="absolute w-full h-full ">
-      <Canvas camera={{ position: [0, 0, -1000], fov: 10 }}>
+      <Canvas camera={{ position: [0, 0, -200], fov: 10 }}>
         <ambientLight intensity={1} />
         <Moon
           position={[-0.1, -1.3, 0]}
-          scale={0.17 - 0.17 * (scrollDistance / 800)}
+          scale={0.3 - 0.3 * (scrollDistance / 800)}
         />
         <Environment preset="forest" />
         <OrbitControls
