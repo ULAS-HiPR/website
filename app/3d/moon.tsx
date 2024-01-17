@@ -2,14 +2,14 @@
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useState } from "react";
+import { LegacyRef, useEffect, useRef, useState } from "react";
 
-function Earth(props: any) {
+function Moon(props: any) {
   const [rotationValue, setRotationValue] = useState(0);
   useFrame(() => {
     setRotationValue(rotationValue + 0.001);
   });
-  const { scene } = useGLTF("/earth.glb");
+  const { scene } = useGLTF("/moon.glb");
   return (
     <mesh rotation={[rotationValue, (Math.PI / 2) * rotationValue, 0]}>
       <primitive object={scene} {...props} />
@@ -17,12 +17,19 @@ function Earth(props: any) {
   );
 }
 
-export default function EarthAnimation() {
+export default function MoonAnimation({
+  scrollDistance,
+}: {
+  scrollDistance: number;
+}) {
   return (
-    <div className="absolute w-full h-[700px] ">
+    <div className="absolute w-full h-full ">
       <Canvas camera={{ position: [0, 0, -1000], fov: 10 }}>
         <ambientLight intensity={1} />
-        <Earth position={[-0.1, -1.3, 0]} scale={0.15} />
+        <Moon
+          position={[-0.1, -1.3, 0]}
+          scale={0.17 - 0.17 * (scrollDistance / 800)}
+        />
         <Environment preset="forest" />
         <OrbitControls
           minPolarAngle={Math.PI / 2.5}

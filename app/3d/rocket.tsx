@@ -1,3 +1,4 @@
+"use client";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 
