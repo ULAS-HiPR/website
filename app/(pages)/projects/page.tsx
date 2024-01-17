@@ -14,7 +14,7 @@ function ProjectCard({
   image: string;
 }) {
   return (
-    <div className="my-10 p-6 w-full h-[300px] border-white rounded-lg">
+    <div className="my-4 w-full h-[300px] border-white rounded-lg">
       <div className="grid grid-cols-4 gap-8">
         {leftOrRight === "left" ? (
           <div className="flex justify-center col-span1 h-[260px]">
@@ -48,38 +48,41 @@ function ProjectCard({
 
 export default function Projects() {
   return (
-    <div>
-      <h1 className="text-5xl ml-4 font-bold">Our Projects</h1>
-      <ProjectCard
-        name="Mach-24"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
-        leftOrRight="right"
-        image="/mach-24.webp"
-      />
-      <ProjectCard
-        name="TVC"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
-        leftOrRight="left"
-        image="tvc.webp"
-      />
-      <ProjectCard
-        name="Sionna"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
-        leftOrRight="right"
-        image="sionna.jpeg"
-      />
-      <ProjectCard
-        name="Sionna 2"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
-        leftOrRight="left"
-        image="sionna2.jpeg"
-      />
-      <ProjectCard
-        name="Hybrid Motor"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
-        leftOrRight="right"
-        image="/hybrid-motor.jpeg"
-      />
-    </div>
+    <>
+      <h1 className="text-4xl font-bold">Our Projects</h1>
+      {/* <h1 className="text-5xl font-bold">Our Projects</h1> */}
+      <div className="p-4">
+        <ProjectCard
+          name="Mach-24"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          leftOrRight="right"
+          image="/mach-24.webp"
+        />
+        <ProjectCard
+          name="TVC"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          leftOrRight="left"
+          image="tvc.webp"
+        />
+        <ProjectCard
+          name="Sionna"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          leftOrRight="right"
+          image="sionna.jpeg"
+        />
+        <ProjectCard
+          name="Sionna 2"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          leftOrRight="left"
+          image="sionna2.jpeg"
+        />
+        <ProjectCard
+          name="Hybrid Motor"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          leftOrRight="right"
+          image="/hybrid-motor.jpeg"
+        />
+      </div>
+    </>
   );
 }

@@ -2,7 +2,7 @@ import Profile from "./profile";
 
 export default function AboutUs() {
   return (
-    <div className="p-4">
+    <div>
       <h1 className="text-4xl font-bold pb-8">Meet the Team</h1>
       <div className="grid grid-cols-4 gap-12">
         <Profile
