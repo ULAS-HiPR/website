@@ -15,7 +15,7 @@ export default function Sponsors() {
           />
         </a>
         <a
-          href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.npr.org%2F2022%2F08%2F08%2F1116341629%2Fmatt-berry&psig=AOvVaw3ij6aPUqjZyTx1myq3CwIb&ust=1705591651170000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCNiwrpXe5IMDFQAAAAAdAAAAABAE"
+          href="https://upload.wikimedia.org/wikipedia/commons/7/72/Matt_Berry_Headshot.jpg"
           target="_blank"
         >
           <img
@@ -32,7 +32,9 @@ export default function Sponsors() {
           />
         </a>
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-4xl font-bold mb-4">Become a sponsor!</h1>
+          <h1 className="text-4xl font-bold mb-4 p-4 text-center">
+            Become a sponsor and get your name on the moon!
+          </h1>
           <a href="mailto:22346279@studentmail.ul.ie">
             <Button className="text-lg font-bold" variant={"outline"}>
               Get in touch

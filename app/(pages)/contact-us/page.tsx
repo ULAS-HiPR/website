@@ -1,3 +1,7 @@
 export default function ContactUs() {
-  return <div>Contact us</div>;
+  return (
+    <div className="p-4">
+      <h1 className="text-4xl font-bold pb-8 text-center">Get in Touch!</h1>
+    </div>
+  );
 }

@@ -14,10 +14,15 @@ import { Post, getSortedPostsData } from "@/lib/posts";
 
 function BlogPost({ post }: { post: Post }) {
   return (
-    <Card className="my-4">
+    <Card>
       <CardHeader>
         <CardTitle className="pb-4">
-          {post.title} - {post.date.toDateString()}
+          {post.date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}{" "}
+          - {post.title}
         </CardTitle>
         <CardDescription>
           <div className="line-clamp-3">
@@ -25,7 +30,8 @@ function BlogPost({ post }: { post: Post }) {
           </div>
         </CardDescription>
       </CardHeader>
-      <CardFooter className="flex justify-end align-end">
+      <CardFooter className="flex justify-between align-end">
+        <p className="font-bold">{post.author}</p>
         <Link href={""}>
           <Button>Read</Button>
         </Link>
@@ -40,7 +46,7 @@ export default async function Posts() {
   if (!posts) return null;
 
   return (
-    <div className="p-4">
+    <div className="grid grid-cols-2 gap-8">
       {posts.map((post) => (
         <BlogPost key={post.filename} post={post} />
       ))}
