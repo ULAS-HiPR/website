@@ -11,6 +11,8 @@ import { promises as fs } from "fs";
 import { Button } from "@/components/ui/button";
 import Markdown from "react-markdown";
 import { Post, getSortedPostsData } from "@/lib/posts";
+import { marked } from "marked";
+import { ReactFragment, ReactNode } from "react";
 
 function BlogPost({ post }: { post: Post }) {
   return (
@@ -24,15 +26,13 @@ function BlogPost({ post }: { post: Post }) {
           })}{" "}
           - {post.title}
         </CardTitle>
-        <CardDescription>
-          <div className="line-clamp-3">
-            <Markdown>{post.content}</Markdown>
-          </div>
-        </CardDescription>
+        <div className="line-clamp-3 text-gray-300">
+          <div dangerouslySetInnerHTML={{ __html: marked(post.content) }} />
+        </div>
       </CardHeader>
       <CardFooter className="flex justify-between align-end">
         <p className="font-bold">{post.author}</p>
-        <Link href={""}>
+        <Link href={`/blog/${post.filename}`}>
           <Button>Read</Button>
         </Link>
       </CardFooter>
@@ -42,6 +42,8 @@ function BlogPost({ post }: { post: Post }) {
 
 export default async function Posts() {
   const posts = await getSortedPostsData();
+
+  console.log(posts);
 
   if (!posts) return null;
 

@@ -45,3 +45,30 @@ export function getSortedPostsData() {
   // Sort posts by date
   return allPostsData.sort((a, b) => b.date.getTime() - a.date.getTime());
 }
+
+export function getPost(fileName: string) {
+  const fileNames = fs.readdirSync(postsDirectory);
+  const mdFileNames = fileNames.filter(
+    (filename) => filename.slice(-3) === ".md"
+  );
+  const filePath = mdFileNames.find((name) => name.slice(0, -3) === fileName);
+
+  if (!filePath) return;
+
+  const fullFilePath = path.join(postsDirectory, filePath);
+  const fileContents = fs.readFileSync(fullFilePath, "utf8");
+
+  const matterResult = matter(fileContents);
+
+  const dateString = matterResult.data["date"];
+  const [year, month, day] = dateString.split("-");
+  const date = new Date(year, month - 1, day);
+
+  return {
+    fileName,
+    title: matterResult.data["title"],
+    author: matterResult.data["author"],
+    content: matterResult.content,
+    date: date,
+  };
+}
