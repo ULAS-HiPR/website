@@ -12,9 +12,16 @@ import { Button } from "@/components/ui/button";
 import Markdown from "react-markdown";
 import { Post, getSortedPostsData } from "@/lib/posts";
 import { marked } from "marked";
-import { ReactFragment, ReactNode } from "react";
 
 function BlogPost({ post }: { post: Post }) {
+  const renderer = new marked.Renderer();
+
+  // Prevent images from being shown in the preview.
+  renderer.image = (href, title, text) => {
+    return "";
+  };
+
+  marked.setOptions({ renderer });
   return (
     <Card>
       <CardHeader>
@@ -26,8 +33,11 @@ function BlogPost({ post }: { post: Post }) {
           })}{" "}
           - {post.title}
         </CardTitle>
-        <div className="line-clamp-3 text-gray-300">
-          <div dangerouslySetInnerHTML={{ __html: marked(post.content) }} />
+        <div className="line-clamp-4 text-gray-300">
+          <div
+            style={{}}
+            dangerouslySetInnerHTML={{ __html: marked(post.content, {}) }}
+          />
         </div>
       </CardHeader>
       <CardFooter className="flex justify-between align-end">

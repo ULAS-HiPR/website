@@ -24,7 +24,7 @@ export default function MoonAnimation({
 }) {
   return (
     <div className="absolute w-full h-full ">
-      <Canvas camera={{ position: [0, 0, -200], fov: 10 }}>
+      <Canvas camera={{ position: [0, -30, -200], fov: 10 }}>
         <ambientLight intensity={1} />
         <Moon
           position={[-0.1, -1.3, 0]}
