@@ -73,35 +73,35 @@ export default function Projects() {
       <div className="">
         <ProjectCard
           name="Mach-24"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          description="The Mach-X Rocketry & CanSat Competition, hosted by Discover Space UK, Exotopic Ltd, Machrihanish Airbase Community Company, and UKSEDS, challenges university students to design, build, and launch rockets and CanSats. With remote technical support, participants gain practical skills in mechanical and electronics engineering, teamwork, and insight into careers in the UK Space Sector."
           leftOrRight="right"
           image="/mach-24.webp"
           id="mach24"
         />
         <ProjectCard
           name="TVC"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          description="Thrust-vector control is a technology used in aerospace engineering to adjust the direction and stability of a vehicle during flight. It involves altering the angle of a rocket’s engines or exhaust nozzles, enabling precise control over the vehicle’s movement and enhancing maneuverability."
           leftOrRight="left"
           image="tvc.webp"
           id="tvc"
         />
         <ProjectCard
           name="Sionna"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          description="Sionna, named after the Celtic goddess of inspiration, creativity, and innovation, is the groundbreaking and pioneering rocket that we are currently in the process of meticulously designing, developing, and refining as part of our ambitious and visionary aerospace engineering project."
           leftOrRight="right"
           image="sionna.jpeg"
           id="sionna"
         />
         <ProjectCard
           name="Sionna 2"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          description="Sionna 2 is the successor to our Sionna rocket, designed to take our high-performance model rocketry team to new heights of achievement. With enhanced performance and precision, Sionna 2 showcases our team’s commitment to pushing the boundaries of model rocketry excellence."
           leftOrRight="left"
           image="sionna2.jpeg"
           id="sionna2"
         />
         <ProjectCard
           name="Hybrid Motor"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiatnulla pariatur."
+          description="A hybrid motor combines elements of solid and liquid rocket motors. It uses a solid fuel grain ignited separately and a liquid oxidizer injected into the combustion chamber to generate thrust. This allows for precise thrust control and improved safety, but will involve significant engineering resources to accomplish."
           leftOrRight="right"
           image="/hybrid-motor.jpeg"
           id="hybridmotor"

@@ -24,7 +24,7 @@ export default function Home() {
             ULAS HiPR
           </h1>
           <h1 className="text-2xl font-light pt-2 select-none drop-shadow-md">
-            Rocketry something something
+            Competitive High-Powered Rocketry
           </h1>
         </div>
         <HomeProjects />
