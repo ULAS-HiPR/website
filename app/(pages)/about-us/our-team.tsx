@@ -24,11 +24,27 @@ export default function TheTeam() {
     <>
       <h1 className="text-4xl font-bold pb-8">Meet the Team</h1>
       <div className="grid grid-cols-4 gap-12">
+      <Profile
+          name={"Daire O'Sullivan"}
+          photo={"/person-placeholder.png"}
+          role={"Rocktery Officer"}
+        />
+         <Profile
+          name={"Jay Looney"}
+          photo={"/person-placeholder.png"}
+          role={"Health & Safety Officer"}
+        />
         <Profile
           name={"Dervla Gargan"}
-          photo={"/dervla.jpeg"}
-          role={"CEO + Chief Notionist"}
+          photo={"/person-placeholder.png"}
+          role={"Project Manager"}
         />
+        <Profile
+          name={"Darragh O'Shea"}
+          photo={"/person-placeholder.png"}
+          role={"Sponsorship Officer"}
+        />
+        {/*
         <Profile
           name={"Plane 1"}
           photo={
@@ -36,11 +52,13 @@ export default function TheTeam() {
           }
           role={"Boeing 737"}
         />
+        */}
         <Profile
           name={"Adam Byrne"}
           photo={"/adam.jpeg"}
-          role={"Definitely not looking for a weapons contract ;)"}
+          role={"AI Officer"}
         />
+        {/*
         <Profile
           name={"Plane 2"}
           photo={
@@ -48,10 +66,11 @@ export default function TheTeam() {
           }
           role={"Airbus A320 Neo"}
         />
+        */}
         <Profile
           name={"Conor Callanan"}
           photo={"/conor.jpeg"}
-          role={"Website guy"}
+          role={"Website Developer"}
         />
       </div>
     </>

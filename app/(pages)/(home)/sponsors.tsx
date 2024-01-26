@@ -7,6 +7,14 @@ export default function Sponsors() {
     <div className="pb-8 px-8">
       <h1 className="text-4xl font-bold pb-6">Our Sponsors</h1>
       <div className="grid grid-cols-2 gap-8">
+      <a href="" target="_blank">
+          <img
+            className="w-full rounded-lg object-cover h-[350px]"
+            src={"/sponsor-placeholder.png"}
+            alt={"Sponsor Placeholder"}
+          />
+        </a>
+        {/*
         <a href="https://www.analog.com/en/index.html" target="_blank">
           <img
             className="w-full rounded-lg object-cover h-[350px]"
@@ -14,7 +22,7 @@ export default function Sponsors() {
             alt={"Analog Devices Logo"}
           />
         </a>
-        {/* <a
+         <a
           href="https://upload.wikimedia.org/wikipedia/commons/7/72/Matt_Berry_Headshot.jpg"
           target="_blank"
         >
