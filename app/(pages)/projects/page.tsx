@@ -59,7 +59,6 @@ export default function Projects() {
     params.delete("id");
     if (id) {
       const div = document.getElementById(id);
-      console.log(id);
       div?.scrollIntoView({
         behavior: "smooth",
         block: "center",

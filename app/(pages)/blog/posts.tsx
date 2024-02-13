@@ -53,8 +53,6 @@ function BlogPost({ post }: { post: Post }) {
 export default async function Posts() {
   const posts = await getSortedPostsData();
 
-  console.log(posts);
-
   if (!posts) return null;
 
   return (

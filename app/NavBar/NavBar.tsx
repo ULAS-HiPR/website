@@ -15,8 +15,6 @@ export default function NavBar() {
         <ListItem text={"Home"} path={"/"}></ListItem>
         <ListItem text={"Projects"} path={"/projects"}></ListItem>
         <ListItem text={"Blog"} path={"/blog"}></ListItem>
-        {/* Gallery might be added later */}
-        {/* <ListItem text={"Gallery"} path={"/gallery"}></ListItem> */}
         <ListItem text={"About Us"} path={"/about-us"}></ListItem>
         <ListItem text={"Contact Us"} path={"/contact-us"}></ListItem>
       </div>
