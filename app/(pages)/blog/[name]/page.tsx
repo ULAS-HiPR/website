@@ -9,7 +9,7 @@ export default async function BlogPage({
 }) {
   const post = getPost(params.name);
   return (
-    <div className="px-20 py-4">
+    <div className="sm:px-20 px-8 py-4">
       <h1 className="text-4xl font-bold my-2">
         {post?.title} {post?.author ? "- " + post?.author : ""}
       </h1>
@@ -27,11 +27,24 @@ export default async function BlogPage({
         components={{
           img(props) {
             const { src } = props;
-            return <img src={src} className="h-[400px] rounded-lg my-4"></img>;
+            return (
+              <img
+                src={src}
+                className="h-[400px] w-full object-cover rounded-lg"
+              ></img>
+            );
           },
-          th(props) {
+          tr(props) {
             const { children } = props;
-            return <th className="py-4 pr-8">{children}</th>;
+            return <tr className="grid sm:grid-cols-2 gap-8">{children}</tr>;
+          },
+          table(props) {
+            const { children } = props;
+            return <table className="w-full">{children}</table>;
+          },
+          p(props) {
+            const { children } = props;
+            return <p className="text-lg">{children}</p>;
           },
         }}
       >

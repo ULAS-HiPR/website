@@ -23,13 +23,13 @@ export default function TheTeam() {
   return (
     <>
       <h1 className="text-4xl font-bold pb-8">Meet the Team</h1>
-      <div className="grid grid-cols-4 gap-12">
-      <Profile
+      <div className="grid sm:grid-cols-4 gap-12">
+        <Profile
           name={"Daire O'Sullivan"}
           photo={"/person-placeholder.png"}
           role={"Rocktery Officer"}
         />
-         <Profile
+        <Profile
           name={"Jay Looney"}
           photo={"/person-placeholder.png"}
           role={"Health & Safety Officer"}
@@ -53,11 +53,7 @@ export default function TheTeam() {
           role={"Boeing 737"}
         />
         */}
-        <Profile
-          name={"Adam Byrne"}
-          photo={"/adam.jpeg"}
-          role={"AI Officer"}
-        />
+        <Profile name={"Adam Byrne"} photo={"/adam.jpeg"} role={"AI Officer"} />
         {/*
         <Profile
           name={"Plane 2"}

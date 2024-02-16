@@ -20,19 +20,24 @@ function ProjectCard({
   id: string;
 }) {
   return (
-    <div id={id} className="my-4 w-full h-[300px] border-white rounded-lg">
-      <div className="grid grid-cols-4 gap-8">
+    <div
+      id={id}
+      className="my-4 w-full pt-4 pb-10 sm:pb-0 sm:h-[300px] border-white rounded-lg "
+    >
+      <div className="grid sm:grid-cols-4 gap-8">
         {leftOrRight === "left" ? (
-          <div className="flex justify-center col-span1 h-[260px]">
-            <img className="rounded-lg" src={image} />
+          <div className="hidden sm:block flex justify-center sm:col-span1 h-[260px]">
+            <img className=" rounded-lg" src={image} />
           </div>
         ) : null}
-        <div className="flex flex-col col-span-3 justify-center align-center">
+        <div className="flex flex-col sm:col-span-3 justify-center align-center">
           <h1 className="text-3xl pb-2 font-bold">{name}</h1>
           <p className="text-xl font-medium">{description}</p>
           <div
             className={
-              leftOrRight === "left" ? "flex justify-end align-end" : ""
+              leftOrRight === "left"
+                ? "flex justify-left sm:justify-end align-end"
+                : ""
             }
           >
             <Link href={"/model"}>
@@ -43,7 +48,7 @@ function ProjectCard({
           </div>
         </div>
         {leftOrRight === "right" ? (
-          <div className="flex justify-center col-span1 h-[260px]">
+          <div className="hidden sm:block flex justify-center sm:col-span1 h-[260px]">
             <img className="rounded-lg" src={image} />
           </div>
         ) : null}

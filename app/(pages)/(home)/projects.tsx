@@ -36,9 +36,9 @@ export function ProjectItem({
 
 export default function HomeProjects() {
   return (
-    <div className="h-[840px] px-8">
+    <div className="sm:h-[840px] px-8">
       <h1 className="text-4xl font-bold pb-6">Our Projects</h1>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid sm:grid-cols-3 gap-8">
         <ProjectItem
           title={"Mach-24"}
           description={

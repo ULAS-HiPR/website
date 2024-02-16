@@ -1,7 +1,7 @@
 "use client";
-import HomeProjects from "./projects";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import MoonAnimation from "@/app/3d/moon";
+import HomeProjects from "./projects";
 import Sponsors from "./sponsors";
 
 export default function Home() {
@@ -16,8 +16,6 @@ export default function Home() {
   return (
     <>
       <div className="relative h-[670px]">
-        {/* <EarthAnimation /> */}
-        {/* <RocketAnimation /> */}
         <MoonAnimation scrollDistance={scrollDistance} />
         <div className="relative z-10 flex flex-col items-center justify-center h-[760px] text-white">
           <h1 className="text-6xl font-bold select-none drop-shadow-md">
@@ -27,7 +25,9 @@ export default function Home() {
             Competitive High-Powered Rocketry
           </h1>
         </div>
-        <HomeProjects />
+      </div>
+      <HomeProjects />
+      <div className="pt-12">
         <Sponsors />
       </div>
     </>

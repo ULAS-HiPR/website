@@ -56,7 +56,7 @@ export default async function Posts() {
   if (!posts) return null;
 
   return (
-    <div className="grid grid-cols-2 gap-8">
+    <div className="grid sm:grid-cols-2 gap-8">
       {posts.map((post) => (
         <BlogPost key={post.filename} post={post} />
       ))}

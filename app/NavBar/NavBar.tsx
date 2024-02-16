@@ -1,8 +1,15 @@
-import { RocketIcon } from "lucide-react";
+"use client";
+import { Bike, Menu, RocketIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { DrawerTrigger } from "@/components/ui/drawer";
 
-export default function NavBar() {
+export default async function NavBar() {
+  function isMobile() {
+    const regex =
+      /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent);
+  }
   return (
     <div className="w-full flex">
       <div className="p-8 w-1/5 font-medium text-lg flex items-center">

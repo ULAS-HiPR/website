@@ -28,7 +28,7 @@ export default function MoonAnimation({
         <ambientLight intensity={1} />
         <Moon
           position={[-0.1, -1.3, 0]}
-          scale={0.3 - 0.3 * (scrollDistance / 800)}
+          scale={0.25 - 0.25 * (scrollDistance / 800)}
         />
         <Environment preset="forest" />
         <OrbitControls
