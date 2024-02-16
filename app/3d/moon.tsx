@@ -23,7 +23,7 @@ export default function MoonAnimation({
   scrollDistance: number;
 }) {
   return (
-    <div className="absolute w-full h-full ">
+    <div className="invisible sm:visible absolute w-full h-full ">
       <Canvas camera={{ position: [0, -30, -200], fov: 10 }}>
         <ambientLight intensity={1} />
         <Moon

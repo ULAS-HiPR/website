@@ -5,7 +5,6 @@ import HomeProjects from "./projects";
 import Sponsors from "./sponsors";
 
 export default function Home() {
-  // const [animationActive, setAnimationActive] = useState(true);
   const [scrollDistance, setScrollDistance] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", (e: Event) => {
@@ -21,7 +20,7 @@ export default function Home() {
           <h1 className="text-6xl font-bold select-none drop-shadow-md">
             ULAS HiPR
           </h1>
-          <h1 className="text-2xl font-light pt-2 select-none drop-shadow-md">
+          <h1 className="text-2xl font-light pt-2 text-center select-none drop-shadow-md">
             Competitive High-Powered Rocketry
           </h1>
         </div>

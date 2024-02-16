@@ -72,7 +72,7 @@ export default function Projects() {
     }
   }, []);
   return (
-    <div className="px-12 pb-8">
+    <div className="sm:px-12 px-8 pb-8">
       <h1 className="text-4xl font-bold">Our Projects</h1>
       <div className="">
         <ProjectCard
