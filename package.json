@@ -30,7 +30,8 @@
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.160.0",
-    "vaul": "^0.9.0"
+    "vaul": "^0.9.0",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

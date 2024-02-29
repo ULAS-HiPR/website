@@ -22,11 +22,11 @@ function ProjectCard({
   return (
     <div
       id={id}
-      className="my-4 w-full pt-4 pb-10 sm:pb-0 sm:h-[300px] border-white rounded-lg "
+      className="my-4 w-full pt-4 pb-10 sm:pb-0 sm:pt-0 h-[300px] border-white rounded-lg"
     >
       <div className="grid sm:grid-cols-4 gap-8">
         {leftOrRight === "left" ? (
-          <div className="hidden sm:block flex justify-center sm:col-span1 h-[260px]">
+          <div className="hidden  sm:flex justify-center sm:col-span1 h-[260px]">
             <img className=" rounded-lg" src={image} />
           </div>
         ) : null}
@@ -48,7 +48,7 @@ function ProjectCard({
           </div>
         </div>
         {leftOrRight === "right" ? (
-          <div className="hidden sm:block flex justify-center sm:col-span1 h-[260px]">
+          <div className="hidden  sm:flex justify-center sm:col-span1 h-[260px]">
             <img className="rounded-lg" src={image} />
           </div>
         ) : null}
@@ -72,7 +72,7 @@ export default function Projects() {
     }
   }, []);
   return (
-    <div className="sm:px-12 px-8 pb-8">
+    <div className="sm:px-20 px-8 pb-8">
       <h1 className="text-4xl font-bold">Our Projects</h1>
       <div className="">
         <ProjectCard
