@@ -14,7 +14,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <div className="relative h-[670px]">
+      <div className="relative h-[670px] mb-20">
         <MoonAnimation scrollDistance={scrollDistance} />
         <div className="relative z-10 flex flex-col items-center justify-center h-[760px] text-white">
           <h1 className="text-6xl font-bold select-none drop-shadow-md">
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </div>
       <HomeProjects />
-      <div className="pt-12">
+      <div className="pt-4">
         <Sponsors />
       </div>
     </>

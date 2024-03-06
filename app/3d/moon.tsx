@@ -22,9 +22,15 @@ export default function MoonAnimation({
 }: {
   scrollDistance: number;
 }) {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    let newWidth = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    setWidth(newWidth);
+  });
+
   return (
-    <div className="invisible sm:visible absolute w-full h-full ">
-      <Canvas camera={{ position: [0, -30, -200], fov: 10 }}>
+    <div className="absolute w-full h-full ">
+      <Canvas camera={{ position: [0, -30, -200], fov: width > 600 ? 9 : 15 }}>
         <ambientLight intensity={1} />
         <Moon
           position={[-0.1, -1.3, 0]}
