@@ -11,7 +11,7 @@ export default function ContactUs() {
   return (
     <>
       <Helmet>
-        <script src="https://s.pageclip.co/v1/pageclip.js" />
+        <script src="https://s.pageclip.co/v1/pageclip.js" async />
       </Helmet>
       <div className="px-8 flex flex-col w-full items-center justify-center">
         <h1 className="w-full text-center text-4xl font-bold pb-8">
@@ -86,8 +86,6 @@ export default function ContactUs() {
                 formData,
                 // @ts-ignore eslint-disable-next-line
                 function (error, response) {
-                  console.log(error);
-                  console.log(response);
                   if (response) {
                     router.push("/contact-us/success");
                   }

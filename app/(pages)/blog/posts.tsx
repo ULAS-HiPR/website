@@ -16,8 +16,6 @@ import { marked } from "marked";
 function BlogPost({ post }: { post: Post }) {
   const renderer = new marked.Renderer();
 
-  console.log(post.content);
-
   const pattern = /\]\(.*?(.*?)\)/;
 
   const matches = post.content.match(pattern);
