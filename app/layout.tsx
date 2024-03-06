@@ -6,7 +6,7 @@ import React from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ULAS HiPR",
+  title: "ULAS HiPR  |  Ireland's first competitive rocketry team",
   description: "Building rockets using advanced rocketry",
 };
 
