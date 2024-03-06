@@ -22,21 +22,21 @@ function ProjectCard({
   return (
     <div
       id={id}
-      className="my-4 w-full pt-4 pb-10 sm:pb-0 sm:pt-0 h-[300px] border-white rounded-lg"
+      className="my-8 w-full pt-4 pb-10 lg:pb-0 lg:pt-0 border-white rounded-lg"
     >
-      <div className="grid sm:grid-cols-4 gap-8">
+      <div className="grid lg:grid-cols-4 gap-8">
         {leftOrRight === "left" ? (
-          <div className="hidden  sm:flex justify-center sm:col-span1 h-[260px]">
+          <div className="hidden  lg:flex justify-center lg:col-span1 h-[260px]">
             <img className=" rounded-lg" src={image} />
           </div>
         ) : null}
-        <div className="flex flex-col sm:col-span-3 justify-center align-center">
+        <div className="flex flex-col lg:col-span-3 justify-center align-center">
           <h1 className="text-3xl pb-2 font-bold">{name}</h1>
           <p className="text-xl font-medium">{description}</p>
           <div
             className={
               leftOrRight === "left"
-                ? "flex justify-left sm:justify-end align-end"
+                ? "flex justify-left lg:justify-end align-end"
                 : ""
             }
           >
@@ -48,7 +48,7 @@ function ProjectCard({
           </div>
         </div>
         {leftOrRight === "right" ? (
-          <div className="hidden  sm:flex justify-center sm:col-span1 h-[260px]">
+          <div className="hidden  lg:flex justify-center lg:col-span1 h-[260px]">
             <img className="rounded-lg" src={image} />
           </div>
         ) : null}
@@ -72,7 +72,7 @@ export default function Projects() {
     }
   }, []);
   return (
-    <div className="sm:px-20 px-8 pb-8">
+    <div className="lg:px-20 px-8 pb-8">
       <h1 className="text-4xl font-bold">Our Projects</h1>
       <div className="">
         <ProjectCard

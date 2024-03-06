@@ -2,7 +2,7 @@
 import { Bike, Menu, RocketIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { DrawerTrigger } from "@/components/ui/drawer";
+import Image from "next/image";
 
 export default async function NavBar() {
   function isMobile() {
@@ -11,11 +11,14 @@ export default async function NavBar() {
     return regex.test(navigator.userAgent);
   }
   return (
-    <div className="w-full flex">
+    <div className="w-full h-[120px] flex items-center">
       <div className="p-8 w-1/5 font-medium text-lg flex items-center">
         <Link className="flex" href={"/"}>
-          ULAS HiPR
-          <RocketIcon className="ml-3 text-lg" />
+          <img
+            className="object-scale-down h-[50px]"
+            src={"logo.png"}
+            alt={"ULAS HiPR Logo"}
+          />
         </Link>
       </div>
       <div className="p-8 w-4/5 justify-end flex font-medium text-lg">

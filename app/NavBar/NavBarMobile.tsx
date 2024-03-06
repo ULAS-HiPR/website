@@ -8,8 +8,11 @@ export default function NavBarMobile() {
     <div className="w-full h-[100px] px-8 flex justify-between align-center items-center">
       <div className="flex items-center gap-2">
         <Link className="flex" href={"/"}>
-          <h1 className="text-2xl font-medium">ULAS HiPR</h1>
-          <RocketIcon className="ml-3 text-lg" />
+          <img
+            className="object-scale-down h-[35px]"
+            src={"logo.png"}
+            alt={"ULAS HiPR Logo"}
+          />
         </Link>
       </div>
       <DrawerTrigger>

@@ -16,6 +16,16 @@ import { marked } from "marked";
 function BlogPost({ post }: { post: Post }) {
   const renderer = new marked.Renderer();
 
+  console.log(post.content);
+
+  const pattern = /\]\(.*?(.*?)\)/;
+
+  const matches = post.content.match(pattern);
+
+  const imagePath = matches
+    ? matches[0].replace("(", "").replace(")", "").replace("]", "")
+    : "";
+
   // Prevent images from being shown in the preview.
   renderer.image = (href, title, text) => {
     return "";
@@ -23,8 +33,12 @@ function BlogPost({ post }: { post: Post }) {
 
   marked.setOptions({ renderer });
   return (
-    <Card>
+    <Card className="flex flex-col justify-between">
       <CardHeader>
+        <img
+          src={imagePath}
+          className="mb-6 bt-4 h-[300px] object-cover rounded-lg"
+        ></img>
         <CardTitle className="pb-4">
           {post.date.toLocaleDateString("en-GB", {
             day: "2-digit",
@@ -39,13 +53,10 @@ function BlogPost({ post }: { post: Post }) {
             dangerouslySetInnerHTML={{ __html: marked(post.content, {}) }}
           />
         </div>
-      </CardHeader>
-      <CardFooter className="flex justify-between align-end">
-        <p className="font-bold">{post.author}</p>
-        <Link href={`/blog/${post.filename}`}>
-          <Button>Read</Button>
+        <Link className="w-full font-bold pt-2" href={`/blog/${post.filename}`}>
+          Read more
         </Link>
-      </CardFooter>
+      </CardHeader>
     </Card>
   );
 }
