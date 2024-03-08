@@ -103,13 +103,6 @@ export default function Projects() {
           image="sionna2.jpeg"
           id="sionna2"
         />
-        <ProjectCard
-          name="Hybrid Motor"
-          description="A hybrid motor combines elements of solid and liquid rocket motors. It uses a solid fuel grain ignited separately and a liquid oxidizer injected into the combustion chamber to generate thrust. This allows for precise thrust control and improved safety, but will involve significant engineering resources to accomplish."
-          leftOrRight="right"
-          image="/hybrid-motor.jpeg"
-          id="hybridmotor"
-        />
       </div>
     </div>
   );
