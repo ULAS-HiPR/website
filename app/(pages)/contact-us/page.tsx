@@ -59,6 +59,24 @@ export default function ContactUs() {
             />
           </div>
           <div className="w-full mb-4">
+            <label className="block text-lg font-bold mb-2" htmlFor="subject">
+              Subject
+            </label>
+            <input
+              className="caret-black font-medium text-black shadow appearance-none border rounded w-full py-3 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) =>
+                setFormData((previous) => ({
+                  ...previous,
+                  subject: e.target.value,
+                }))
+              }
+              id="subject"
+              name="subject"
+              type="text"
+              placeholder="Subject"
+            />
+          </div>
+          <div className="w-full mb-4">
             <label className="block text-lg font-bold mb-2" htmlFor="username">
               Message
             </label>
