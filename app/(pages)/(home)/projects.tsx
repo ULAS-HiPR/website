@@ -19,7 +19,7 @@ export function ProjectItem({
   path: string;
 }) {
   return (
-    <Card className="w-full h-full">
+    <Card className="w-full h-full border-2">
       <CardHeader>
         <CardTitle className="pb-4">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

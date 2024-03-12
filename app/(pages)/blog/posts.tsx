@@ -31,7 +31,7 @@ function BlogPost({ post }: { post: Post }) {
 
   marked.setOptions({ renderer });
   return (
-    <Card className="flex flex-col justify-between">
+    <Card className="flex flex-col justify-between border-2">
       <CardHeader>
         <img
           src={imagePath}
