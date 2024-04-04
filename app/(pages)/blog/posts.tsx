@@ -1,17 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { promises as fs } from "fs";
-import { Button } from "@/components/ui/button";
-import Markdown from "react-markdown";
 import { Post, getSortedPostsData } from "@/lib/posts";
 import { marked } from "marked";
+import { getBlogs } from "@/lib/getPosts";
 
 function BlogPost({ post }: { post: Post }) {
   const renderer = new marked.Renderer();
@@ -60,7 +51,8 @@ function BlogPost({ post }: { post: Post }) {
 }
 
 export default async function Posts() {
-  const posts = await getSortedPostsData();
+  // const posts = await getSortedPostsData();
+  const posts = await getBlogs();
 
   if (!posts) return null;
 

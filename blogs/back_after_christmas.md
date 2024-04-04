@@ -10,4 +10,3 @@ Stay tuned for exciting news on the projects that we'll be working on this year.
 
 | ![](/back_after_christmas/1.jpeg) | ![](/back_after_christmas/2.jpeg) | 
 | :----------------------------------------: | :----------------------------------------: |
-|                                            |                                            |
