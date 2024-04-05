@@ -1,6 +1,3 @@
-import ADILogo from "../../../public/ADI_Logo__Blue_Transparent.png";
-import ULEngLogo from "../../../public/ul_eng.png";
-
 import { Button } from "@/components/ui/button";
 
 export default function Sponsorship() {
@@ -16,14 +13,14 @@ export default function Sponsorship() {
                     <a href="https://www.analog.com/en/index.html" target="_blank">
                         <img
                             className="max-w-4xl sm:max-w-sm md:max-w-2xl rounded-lg object-contain"
-                            src={ADILogo.src}
+                            src={"/ADI_Logo__Blue_Transparent.png"}
                             alt="Analog Devices Logo"
                         />
                     </a>
                     <a href="https://www.ul.ie/engineering/" target="_blank">
                         <img
                             className="h-auto max-w-xl rounded-lg"
-                            src={ULEngLogo.src}
+                            src={"/ul_eng.png"}
                             alt="UL School of Engineering Logo"
                         />
                     </a>

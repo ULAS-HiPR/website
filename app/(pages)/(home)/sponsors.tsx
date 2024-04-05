@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ADILogo from "../../../public/ADI_Logo__Blue_Transparent.png";
 import { ProjectItem } from "./projects";
 import { Button } from "@/components/ui/button";
 
@@ -11,7 +10,7 @@ export default function Sponsors() {
         <a href="" target="_blank">
           <img
             className="w-full rounded-lg object-cover h-[350px]"
-            src= {ADILogo.src}
+            src= {"/ADI_Logo__Blue_Transparent.png"}
             alt={"Sponsor Placeholder"}
           />
         </a>
