@@ -1,5 +1,5 @@
 "use client";
-import { Bike, Menu, RocketIcon } from "lucide-react";
+import { Bike, List, Menu, RocketIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -25,8 +25,9 @@ export default async function NavBar() {
         <ListItem text={"Home"} path={"/"}></ListItem>
         <ListItem text={"Projects"} path={"/projects"}></ListItem>
         <ListItem text={"Blog"} path={"/blog"}></ListItem>
-        <ListItem text={"About Us"} path={"/about-us"}></ListItem>
+        {/* <ListItem text={"About Us"} path={"/about-us"}></ListItem> */}
         <ListItem text={"Contact Us"} path={"/contact-us"}></ListItem>
+        <ListItem text={"Sponsorship"} path={"/sponsorship"}></ListItem>
       </div>
     </div>
   );

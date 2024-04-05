@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 
 import { Camera, LayoutDashboard, LocateFixed, LogOut } from "lucide-react";
 import Link from "next/link";
+import { Drawer } from "vaul";
 
 export default function NavBarMobileDialog() {
   return (
@@ -16,9 +17,11 @@ export default function NavBarMobileDialog() {
           <Separator />
           <DrawerItem path={"/blog"} label={"Blog"} />
           <Separator />
-          <DrawerItem path={"/about-us"} label={"About Us"} />
-          <Separator />
+          {/* <DrawerItem path={"/about-us"} label={"About Us"} />
+          <Separator /> */}
           <DrawerItem path={"/contact-us"} label={"Contact Us"} />
+          <Separator />
+          <DrawerItem path={"/sponsorship"} label={"Sponsorship"} />
         </div>
       </DrawerContent>
     </>
