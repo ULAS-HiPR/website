@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 
 export default function Sponsors() {
   return (
-    <div className="pb-8 px-8">
+    <div className="pb-8 pt-10 px-8">
       <h1 className="text-4xl font-bold pb-6">Our Sponsors</h1>
       <div className="grid sm:grid-cols-2 gap-8">
         <a href="" target="_blank">
           <img
             className="w-full rounded-lg object-cover h-[350px]"
-            src={"/sponsor-placeholder.png"}
+            src= {"/ADI_Logo__Blue_Transparent.png"}
             alt={"Sponsor Placeholder"}
           />
         </a>
