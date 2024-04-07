@@ -9,8 +9,8 @@ export default function Sponsors() {
       <div className="grid sm:grid-cols-2 gap-8">
         <a href="" target="_blank">
           <img
-            className="w-full rounded-lg object-cover h-[350px]"
-            src= {"/ADI_Logo__Blue_Transparent.png"}
+            className="w-full scale-95 rounded-lg object-cover p-4 bg-white "
+            src= {"/ADI_Logo_Blue.jpg"}
             alt={"Sponsor Placeholder"}
           />
         </a>

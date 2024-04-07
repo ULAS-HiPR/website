@@ -8,19 +8,19 @@ export default function Sponsorship() {
                 <div className="text-4xl font-bold text-center my-8">
                     Gold Sponsorship
                 </div>
-                <div className="flex flex-wrap justify-center items-center gap-4 px-4">
+                <div className="flex flex-wrap justify-center items-center gap-7 px-4">
                     {/* Images adjusted for responsive design */}
                     <a href="https://www.analog.com/en/index.html" target="_blank">
                         <img
-                            className="max-w-4xl sm:max-w-sm md:max-w-2xl rounded-lg object-contain"
-                            src={"/ADI_Logo__Blue_Transparent.png"}
+                            className="max-w-4xl sm:max-w-sm md:max-w-2xl prounded-lg object-contain bg-white p-4 m-4"
+                            src={"/ADI_Logo_Blue.jpg"}
                             alt="Analog Devices Logo"
                         />
                     </a>
                     <a href="https://www.ul.ie/engineering/" target="_blank">
                         <img
-                            className="h-auto max-w-xl rounded-lg"
-                            src={"/ul_eng.png"}
+                            className="scale-110 max-w-4xl sm:max-w-sm md:max-w-2xl prounded-lg object-contain bg-white p-4 m-4"
+                            src={"/UL_school_of_engineering.jpeg"}
                             alt="UL School of Engineering Logo"
                         />
                     </a>
