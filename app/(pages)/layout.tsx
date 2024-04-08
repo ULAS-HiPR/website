@@ -12,7 +12,7 @@ export default function PagesLayout({
   return (
     <div>
       <Drawer>
-        <div className="hidden sm:block">
+        <div className="hidden  sm:block">
           <NavBar />
         </div>
         <div className="sm:hidden">
