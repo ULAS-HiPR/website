@@ -33,7 +33,7 @@ export default function Sponsorship() {
                     Intrested in becoming a sponsor?
                 </div>
                 <div className="flex justify-center pb-20">
-                    <a href="mailto:ulas-hipr@gmail.com">
+                    <a href="mailto:info@ulas-hipr.ie">
                         <Button className="text-lg font-bold ailign-center text-center items-center" variant={"outline"} >
                             Get in touch
                         </Button>
