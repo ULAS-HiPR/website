@@ -49,7 +49,7 @@ export default function HomeProjects() {
         <ProjectItem
           title={"TVC"}
           description={
-            "Thrust-vector control is a technology used in aerospace engineering to adjust the direction and stability of a vehicle during flight. It involves altering the angle of a rocket’s engines or exhaust nozzles, enabling precise control over the vehicle’s movement and enhancing maneuverability."
+            "TVC is our first research project for use in future designs. The teams goal is to advance depth of technological knowledge and provide new technologies for future high powered rockets. The ability to manipulate the direction of thrust from a motor to control the attitude or angular velocity of the rocket is a big step in creating more advanced rocket concepts and increasing the capabilities of ULAS HiPr."
           }
           path={"/projects?id=tvc"}
         />
@@ -63,7 +63,7 @@ export default function HomeProjects() {
         <ProjectItem
           title={"Sionna 2"}
           description={
-            "Sionna 2 is the successor to our Sionna rocket, designed to take our high-performance model rocketry team to new heights of achievement. With enhanced performance and precision, Sionna 2 showcases our team’s commitment to pushing the boundaries of model rocketry excellence."
+            "SPEIR is a high powered rocket designed by a team of first years in order to help them learn the basics of high powered rocketry and to allow them to progress to more advanced projects during their subsequent years in HiPR. SPEIR is heavily based on the design of our first rocket, Sionna, but with the aim to add an on board camera module which can provide us with footage from the rocket’s perspective in flight."
           }
           path={"/projects?id=sionna2"}
         />

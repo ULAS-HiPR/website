@@ -18,7 +18,7 @@ export default function Sponsors() {
           <h1 className="text-4xl font-bold mb-4 p-4 text-center">
             Become a sponsor and get your name on the moon!
           </h1>
-          <a href="mailto:22346279@studentmail.ul.ie">
+          <a href="mailto:info@ulas-hipr.ie">
             <Button className="text-lg font-bold" variant={"outline"}>
               Get in touch
             </Button>
