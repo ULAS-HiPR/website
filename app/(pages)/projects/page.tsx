@@ -19,7 +19,7 @@ function ProjectCard({
   image: string;
   id: string;
 }) {
-  const imageClass = id === 'tvc' ? 'rounded-lg scale-125 ' : 'rounded-lg';
+  const imageClass = id === "tvc" ? "rounded-lg scale-125 " : "rounded-lg";
   return (
     <div
       id={id}
@@ -87,10 +87,10 @@ export default function Projects() {
           name="TVC"
           description="TVC is our first research project for use in future designs. The teams goal is to advance depth of technological knowledge and provide new technologies for future high powered rockets. The ability to manipulate the direction of thrust from a motor to control the attitude or angular velocity of the rocket is a big step in creating more advanced rocket concepts and increasing the capabilities of ULAS HiPr."
           leftOrRight="left"
-          image="TVC_CAD.png"
+          image="tvc.png"
           id="tvc"
         />
-        <ProjectCard 
+        <ProjectCard
           name="Sionna"
           description="Sionna, named after the Celtic goddess of inspiration, creativity, and innovation, is the groundbreaking and pioneering rocket that we are currently in the process of meticulously designing, developing, and refining as part of our ambitious and visionary aerospace engineering project."
           leftOrRight="right"
@@ -98,10 +98,10 @@ export default function Projects() {
           id="sionna"
         />
         <Link href={"/model"}>
-              <Button className="w-[200px] my-2 font-bold text-lg">
-                View model
-              </Button>
-            </Link>
+          <Button className="w-[200px] my-2 font-bold text-lg">
+            View model
+          </Button>
+        </Link>
         <ProjectCard
           name="Sionna 2"
           description="SPEIR is a high powered rocket designed by a team of first years in order to help them learn the basics of high powered rocketry and to allow them to progress to more advanced projects during their subsequent years in HiPR. SPEIR is heavily based on the design of our first rocket, Sionna, but with the aim to add an on board camera module which can provide us with footage from the rocket’s perspective in flight."
