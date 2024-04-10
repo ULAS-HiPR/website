@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ProjectItem } from "./projects";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Sponsors() {
   return (
@@ -10,7 +11,7 @@ export default function Sponsors() {
         <a href="" target="_blank">
           <img
             className="w-full scale-95 rounded-lg object-cover p-4 bg-white "
-            src= {"/ADI_Logo_Blue.jpg"}
+            src={"/ADI_Logo_Blue.jpg"}
             alt={"Sponsor Placeholder"}
           />
         </a>
@@ -18,11 +19,11 @@ export default function Sponsors() {
           <h1 className="text-4xl font-bold mb-4 p-4 text-center">
             Become a sponsor and get your name on the moon!
           </h1>
-          <a href="mailto:info@ulas-hipr.ie">
+          <Link href="/contact-us">
             <Button className="text-lg font-bold" variant={"outline"}>
               Get in touch
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

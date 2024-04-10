@@ -36,7 +36,7 @@ export default async function NavBar() {
 function ListItem({ text, path }: { text: string; path: string }) {
   return (
     <Link href={path}>
-      <div className=" px-4 py-2 ml-4 rounded-md transition-colors duration-150 ease-in-out hover:bg-white hover:text-black">
+      <div className=" px-4 py-2 ml-4 rounded-md transition-colors duration-200 hover:scale-105 hover:font-medium hover:bg-white hover:text-black">
         {text}
       </div>
     </Link>
