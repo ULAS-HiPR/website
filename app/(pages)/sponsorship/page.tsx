@@ -12,14 +12,14 @@ export default function Sponsorship() {
                     {/* Images adjusted for responsive design */}
                     <a href="https://www.analog.com/en/index.html" target="_blank">
                         <img
-                            className="max-w-4xl sm:max-w-sm md:max-w-2xl prounded-lg object-contain bg-white p-4 m-4"
+                            className=" sm:max-w-sm md:max-w-2xl prounded-lg object-contain bg-white p-4 m-4"
                             src={"/ADI_Logo_Blue.jpg"}
                             alt="Analog Devices Logo"
                         />
                     </a>
                     <a href="https://www.ul.ie/engineering/" target="_blank">
                         <img
-                            className="scale-110 max-w-4xl sm:max-w-sm md:max-w-2xl prounded-lg object-contain bg-white p-4 m-4"
+                            className=" sm:max-w-sm md:max-w-2xl md:scale-110 prounded-lg object-contain bg-white p-4 m-4"
                             src={"/UL_school_of_engineering.jpeg"}
                             alt="UL School of Engineering Logo"
                         />
