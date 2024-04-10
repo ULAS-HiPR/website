@@ -21,7 +21,7 @@ export default async function NavBar() {
           />
         </Link>
       </div>
-      <div className="p-8 w-4/5 justify-end flex font-medium text-lg">
+      <div className="p-8 w-4/5 gap-6 justify-end flex font-medium text-lg">
         <ListItem text={"Home"} path={"/"}></ListItem>
         <ListItem text={"Projects"} path={"/projects"}></ListItem>
         <ListItem text={"Blog"} path={"/blog"}></ListItem>
@@ -36,7 +36,7 @@ export default async function NavBar() {
 function ListItem({ text, path }: { text: string; path: string }) {
   return (
     <Link href={path}>
-      <div className=" px-4 py-2 ml-4 rounded-md transition-colors duration-200 hover:scale-105 hover:font-medium hover:bg-white hover:text-black">
+      <div className=" px-4 py-2 rounded-md duration-200 hover:scale-105 hover:font-medium hover:bg-white hover:text-black">
         {text}
       </div>
     </Link>
