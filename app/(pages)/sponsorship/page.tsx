@@ -9,22 +9,22 @@ export default function Sponsorship() {
         <div className="text-4xl font-bold text-center mt-4 mb-8">
           Gold Sponsorship
         </div>
-        <div className="md:h-[200px] grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {/* Images adjusted for responsive design */}
           <a
-            className="rounded-lg flex flex-col justify-center p-4 h-full w-full bg-white"
+            className="rounded-lg flex flex-col justify-center p-4 h-full w-full"
             href="https://www.analog.com/en/index.html"
             target="_blank"
           >
             <img
-              className="rounded-lg object-scale-down"
-              src={"/ADI_Logo_Blue.jpg"}
+              className="object-scale-down"
+              src={"/ADI-AWP.png"}
               alt="Analog Devices Logo"
             />
           </a>
           <a
             className="rounded-lg flex flex-col justify-center p-4 h-full w-full bg-white"
-            href="https://www.ul.ie/engineering/"
+            href="https://www.ul.ie/scieng"
             target="_blank"
           >
             <img
