@@ -2,8 +2,6 @@
 import RocketAnimation from "@/app/3d/rocket";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import router, { useRouter } from "next/router";
 import { useEffect } from "react";
 
 function ProjectCard({
@@ -12,12 +10,14 @@ function ProjectCard({
   description,
   image,
   id,
+  modelName,
 }: {
   leftOrRight: "left" | "right";
   name: string;
   description: string;
   image: string;
   id: string;
+  modelName?: string;
 }) {
   const imageClass = id === "tvc" ? "rounded-lg scale-125 " : "rounded-lg";
   return (
@@ -37,15 +37,17 @@ function ProjectCard({
           <div
             className={
               leftOrRight === "left"
-                ? "flex justify-left lg:justify-end align-end"
-                : ""
+                ? "flex justify-right"
+                : "flex justify-left"
             }
           >
-            <Link href={"/model"}>
-              {/* <Button className="w-[200px] mt-6 font-bold text-lg">
-                View model
-              </Button> */}
-            </Link>
+            {modelName ? (
+              <Link href={`/model/${modelName}`}>
+                <Button className="text-lg font-medium mt-2">View model</Button>
+              </Link>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         {leftOrRight === "right" ? (
@@ -80,12 +82,13 @@ export default function Projects() {
           name="Mach-24"
           description="The Mach-X Rocketry & CanSat Competition, hosted by Discover Space UK, Exotopic Ltd, Machrihanish Airbase Community Company, and UKSEDS, challenges university students to design, build, and launch rockets and CanSats. With remote technical support, participants gain practical skills in mechanical and electronics engineering, teamwork, and insight into careers in the UK Space Sector."
           leftOrRight="right"
-          image="/mach-24.webp"
+          image="/mach-24-payload-ass.png"
           id="mach24"
+          modelName="mach24-payload"
         />
         <ProjectCard
           name="TVC"
-          description="TVC is our first research project for use in future designs. The teams goal is to advance depth of technological knowledge and provide new technologies for future high powered rockets. The ability to manipulate the direction of thrust from a motor to control the attitude or angular velocity of the rocket is a big step in creating more advanced rocket concepts and increasing the capabilities of ULAS HiPr."
+          description="TVC is our first research project for use in future designs. The teams goal is to advance depth of technological knowledge and provide new technologies for future high powered rockets. The ability to manipulate the direction of thrust from a motor to control the attitude or angular velocity of the rocket is a big step in creating more advanced rocket concepts and increasing the capabilities of ULAS HiPR."
           leftOrRight="left"
           image="tvc.png"
           id="tvc"
@@ -96,12 +99,9 @@ export default function Projects() {
           leftOrRight="right"
           image="sionna.jpg"
           id="sionna"
+          modelName="rocket"
         />
-        <Link href={"/model"}>
-          <Button className="w-[200px] my-2 font-bold text-lg">
-            View model
-          </Button>
-        </Link>
+
         <ProjectCard
           name="Sionna 2"
           description="SPEIR is a high powered rocket designed by a team of first years in order to help them learn the basics of high powered rocketry and to allow them to progress to more advanced projects during their subsequent years in HiPR. SPEIR is heavily based on the design of our first rocket, Sionna, but with the aim to add an on board camera module which can provide us with footage from the rocket’s perspective in flight."

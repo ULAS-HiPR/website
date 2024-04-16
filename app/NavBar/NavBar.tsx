@@ -5,11 +5,6 @@ import React from "react";
 import Image from "next/image";
 
 export default async function NavBar() {
-  function isMobile() {
-    const regex =
-      /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    return regex.test(navigator.userAgent);
-  }
   return (
     <div className="w-full h-[120px] flex items-center">
       <div className="p-8 w-1/5 font-medium text-lg flex items-center">
