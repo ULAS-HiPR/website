@@ -8,30 +8,27 @@ import {
   TransformControls,
 } from "@react-three/drei";
 import { useState } from "react";
+import THREE from "three";
 
-function Sionna(props: any) {
-  const [rotationValue, setRotationValue] = useState(0);
-  useFrame(() => {
-    setRotationValue(rotationValue + 0.01);
-  });
-  const { scene } = useGLTF("/rocket.glb");
+function Mach24Payload(props: any) {
+  const { scene } = useGLTF("/mach24-payload.glb");
   return (
     <mesh
-      position={[0, 0, -0.5]}
-      rotation={[Math.PI / 2, 1 * rotationValue, 0]}
-      scale={0.8}
+      position={[0.05, 0, 0.1]}
+      rotation={[(Math.PI / 2) * 0.7, 0.2, 0]}
+      scale={5}
     >
       <primitive object={scene} />
     </mesh>
   );
 }
 
-export default function SionnaAnimation() {
+export default function Mach24PayloadAnimation() {
   return (
-    <div className=" h-[700px] ">
+    <div className="h-[700px] -mx-12 ">
       <Canvas camera={{ position: [0, -8, 0], fov: 10 }}>
         <ambientLight intensity={2} />
-        <Sionna />
+        <Mach24Payload />
         <Environment preset="studio" />
         <OrbitControls makeDefault />
       </Canvas>
