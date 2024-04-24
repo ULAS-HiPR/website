@@ -31,11 +31,11 @@ function BlogPost({ post }: { post: Post }) {
 
   marked.setOptions({ renderer });
   return (
-    <Card className="flex flex-col justify-between">
+    <Card className="mx-10 flex flex-col justify-between">
       <CardHeader>
         <img
           src={imagePath}
-          className="mb-6 bt-4 h-[300px] object-cover rounded-lg"
+          className="mx-auto h-[300px] w-[700px] object-cover rounded-lg"
         ></img>
         <CardTitle className="pb-4">
           {post.date.toLocaleDateString("en-GB", {

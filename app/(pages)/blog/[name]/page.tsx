@@ -30,7 +30,7 @@ export default async function BlogPage({
             return (
               <img
                 src={src}
-                className="h-[400px] w-full object-cover rounded-lg"
+                className="h-[600px] w-full object-cover rounded-lg"
               ></img>
             );
           },
