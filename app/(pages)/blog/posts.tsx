@@ -51,8 +51,10 @@ function BlogPost({ post }: { post: Post }) {
             dangerouslySetInnerHTML={{ __html: marked(post.content, {}) }}
           />
         </div>
-        <Link className="w-full font-bold pt-2" href={`/blog/${post.filename}`}>
+        <Link  href={`/blog/${post.filename}`}>
+          <Button className="bg-white text-background" >
           Read more
+          </Button>
         </Link>
       </CardHeader>
     </Card>
