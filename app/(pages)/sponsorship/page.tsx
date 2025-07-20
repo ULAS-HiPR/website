@@ -22,17 +22,6 @@ export default function Sponsorship() {
               alt="Analog Devices Logo"
             />
           </a>
-          <a
-            className="rounded-lg flex flex-col justify-center p-3 h-full bg-white"
-            href="https://www.atlanticaviation.ie/"
-            target="_blank"
-          >
-            <img
-              className="object-scale-down"
-              src={"/aag.jpeg"}
-              alt="Atlantic Aviation Logo"
-            />
-          </a>
         </div>
         <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
