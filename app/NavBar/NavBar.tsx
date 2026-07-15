@@ -1,39 +1,46 @@
-"use client";
-import { Bike, List, Menu, RocketIcon } from "lucide-react";
-import Link from "next/link";
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default async function NavBar() {
+const links = [
+  { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact-us" },
+  { label: "Sponsorship", href: "/sponsorship" },
+];
+
+export default function NavBar() {
   return (
-    <div className="w-full h-[120px] flex items-center">
-      <div className="p-8 w-1/5 font-medium text-lg flex items-center">
-        <Link className="flex" href={"/"}>
-          <img
-            className="object-scale-down h-[50px]"
-            src={"logo.png"}
-            alt={"ULAS HiPR Logo"}
+    <header className="relative z-50 h-[106px] bg-black text-white">
+      <div className="mx-auto flex h-full max-w-[1180px] items-center justify-between px-8 lg:px-12">
+        <Link href="/" aria-label="ULAS HiPR home" className="flex items-center gap-4">
+          <Image
+            src="/logo.png"
+            alt="ULAS HiPR"
+            width={190}
+            height={61}
+            priority
+            className="h-12 w-auto object-contain"
           />
         </Link>
-      </div>
-      <div className="p-8 w-4/5 gap-6 justify-end flex font-medium text-lg">
-        <ListItem text={"Home"} path={"/"}></ListItem>
-        <ListItem text={"Projects"} path={"/projects"}></ListItem>
-        <ListItem text={"Blog"} path={"/blog"}></ListItem>
-        {/* <ListItem text={"About Us"} path={"/about-us"}></ListItem> */}
-        <ListItem text={"Contact Us"} path={"/contact-us"}></ListItem>
-        <ListItem text={"Sponsorship"} path={"/sponsorship"}></ListItem>
-      </div>
-    </div>
-  );
-}
 
-function ListItem({ text, path }: { text: string; path: string }) {
-  return (
-    <Link href={path}>
-      <div className=" px-4 py-2 rounded-md duration-200 hover:scale-105 hover:font-medium hover:bg-white hover:text-black">
-        {text}
+        <nav aria-label="Main navigation" className="flex items-center gap-7 xl:gap-9">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-xs font-medium uppercase tracking-[0.08em] text-white/80 transition-colors hover:text-white"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact-us"
+            className="text-xs font-medium uppercase tracking-[0.08em] text-white/80 transition-colors hover:text-white"
+          >
+            Join us
+          </Link>
+        </nav>
       </div>
-    </Link>
+    </header>
   );
 }

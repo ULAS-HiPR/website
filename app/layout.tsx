@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import React from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ULAS HiPR  |  Ireland's first competitive rocketry team",
-  description: "Building rockets using advanced rocketry",
+  title: "ULAS HiPR | Ireland's first competitive high-powered rocketry team",
+  description:
+    "University of Limerick students designing, building and flying competitive high-powered rockets.",
 };
 
 export default function RootLayout({
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+      <body className={montserrat.className}>{children}</body>
     </html>
   );
 }

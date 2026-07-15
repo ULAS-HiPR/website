@@ -40,7 +40,23 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    overflow-x: hidden;
+  }
+}
+
+::selection {
+  background: #f15a4f;
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
