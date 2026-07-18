@@ -1,7 +1,6 @@
-import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer } from "@/components/ui/drawer";
 import NavBar from "../NavBar/NavBar";
 import NavBarMobile from "../NavBar/NavBarMobile";
-import { Button } from "@/components/ui/button";
 import NavBarMobileDialog from "../NavBar/NavBarMobileDialog";
 
 export default function PagesLayout({
@@ -12,10 +11,10 @@ export default function PagesLayout({
   return (
     <div>
       <Drawer>
-        <div className="hidden  sm:block">
+        <div className="hidden min-[760px]:block">
           <NavBar />
         </div>
-        <div className="sm:hidden">
+        <div className="min-[760px]:hidden">
           <NavBarMobile />
         </div>
         <div>{children}</div>

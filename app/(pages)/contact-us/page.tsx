@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Script from "next/script";
 import { ArrowRight } from "lucide-react";
 import { FormEvent, useState } from "react";
@@ -68,42 +67,34 @@ export default function ContactUs() {
   }
 
   const fieldClass =
-    "mt-2 w-full border border-black/20 bg-white px-4 py-3.5 text-base text-black outline-none transition-colors placeholder:text-black/35 focus:border-black";
+    "mt-2 w-full border border-white/20 bg-black px-4 py-3.5 text-base text-white outline-none transition-colors placeholder:text-white/30 focus:border-white";
 
   return (
-    <main className="bg-white text-black">
+    <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <Script src="https://s.pageclip.co/v1/pageclip.js" strategy="afterInteractive" />
 
-      <section className="relative min-h-[430px] overflow-hidden bg-[#020208] text-white">
-        <Image
-          src="/mach25/IMG_0265_Original.jpg"
-          alt="HiPR students standing with Macha"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[72%_38%] opacity-35"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#020208_0%,rgba(2,2,8,0.94)_46%,rgba(2,2,8,0.28)_78%,rgba(2,2,8,0.45)_100%)]" />
-
-        <div className="relative mx-auto flex min-h-[430px] max-w-[1180px] flex-col justify-center px-6 py-20 sm:px-10 lg:px-12">
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
-            Contact HiPR
-          </p>
-          <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-tight sm:text-6xl">
-            Start a conversation.
-          </h1>
-          <p className="mt-7 max-w-xl text-lg leading-8 text-white/72">
-            Joining the team, supporting a project or asking about the rockets?
-            Send HiPR a message.
+      <header className="bg-black">
+        <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
+              Contact HiPR
+            </p>
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.03em] sm:text-7xl">
+              Contact
+            </h1>
+          </div>
+          <p className="max-w-xl text-lg leading-8 text-white/62 lg:translate-y-[14px] lg:justify-self-end">
+            Talk to HiPR about joining the team, supporting a project,
+            technical collaboration or the wider rocketry programme.
           </p>
         </div>
-      </section>
+      </header>
 
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-[1180px] gap-14 px-6 py-16 sm:px-10 lg:grid-cols-[0.72fr_1.28fr] lg:px-12 lg:py-24">
+      <section className="bg-black">
+        <div className="mx-auto grid max-w-[1500px] gap-14 px-6 py-16 sm:px-10 lg:grid-cols-[0.72fr_1.28fr] lg:px-12 lg:py-24">
           <aside>
             <h2 className="text-3xl font-semibold">What can we help with?</h2>
-            <div className="mt-9 divide-y divide-black/15 border-y border-black/15">
+            <div className="mt-9 divide-y divide-white/15 border-y border-white/15">
               {[
                 ["Join the team", "Build, test, launch or support the next vehicle."],
                 ["Partner with HiPR", "Sponsor student engineering or offer technical support."],
@@ -111,21 +102,21 @@ export default function ContactUs() {
               ].map(([title, description]) => (
                 <div key={title} className="py-6">
                   <h3 className="font-semibold">{title}</h3>
-                  <p className="mt-2 max-w-sm text-sm leading-6 text-black/58">
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-white/55">
                     {description}
                   </p>
                 </div>
               ))}
             </div>
-            <p className="mt-7 text-sm leading-6 text-black/48">
+            <p className="mt-7 text-sm leading-6 text-white/42">
               HiPR is a student team. Replies may take a little longer during
               exams and launch campaigns.
             </p>
           </aside>
 
-          <div className="border border-black/15 bg-[#f4f3f0] p-6 sm:p-10 lg:p-12">
-            <div className="border-b border-black/15 pb-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/45">
+          <div className="border border-white/15 bg-[#070707] p-6 sm:p-10 lg:p-12">
+            <div className="border-b border-white/15 pb-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-white/40">
                 Message the team
               </p>
               <h2 className="mt-3 text-3xl font-semibold">Get in touch</h2>
@@ -201,7 +192,7 @@ export default function ContactUs() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="group inline-flex min-w-40 items-center justify-center gap-3 bg-black px-6 py-4 font-semibold text-white transition-colors hover:bg-[#c95049] disabled:cursor-wait disabled:opacity-60"
+                  className="group inline-flex min-w-40 items-center justify-center gap-3 border border-white/55 bg-transparent px-6 py-4 font-semibold text-white transition-colors hover:bg-white hover:text-black disabled:cursor-wait disabled:opacity-60"
                 >
                   {status === "sending" ? "Sending…" : "Send message"}
                   {status !== "sending" ? (

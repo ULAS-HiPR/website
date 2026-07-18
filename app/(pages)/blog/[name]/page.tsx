@@ -9,11 +9,12 @@ export default async function BlogPage({
 }) {
   const post = getPost(params.name);
   return (
-    <div className="sm:px-20 px-8 py-4">
-      <h1 className="text-4xl font-bold my-2">
+    <main className="min-h-svh bg-black px-6 pb-24 pt-32 text-white sm:px-10 lg:px-12">
+      <article className="mx-auto max-w-5xl">
+      <h1 className="my-2 text-4xl font-bold uppercase tracking-[-0.02em] sm:text-6xl">
         {post?.title} {post?.author ? "- " + post?.author : ""}
       </h1>
-      <h2 className="text-2xl mb-8">
+      <h2 className="mb-10 mt-4 text-sm uppercase tracking-[0.12em] text-white/45">
         {post?.date.toLocaleDateString("en-GB", {
           day: "2-digit",
           month: "2-digit",
@@ -22,7 +23,7 @@ export default async function BlogPage({
       </h2>
       {/* <BlogPost content={post?.content!} /> */}
       <Markdown
-        className="whitespace-pre-wrap"
+        className="whitespace-pre-wrap text-white/72"
         remarkPlugins={[remarkGfm]}
         components={{
           img(props) {
@@ -30,7 +31,8 @@ export default async function BlogPage({
             return (
               <img
                 src={src}
-                className="h-[600px] w-full object-cover rounded-lg"
+                alt={props.alt ?? ""}
+                className="my-10 max-h-[760px] w-full object-cover"
               ></img>
             );
           },
@@ -40,16 +42,17 @@ export default async function BlogPage({
           },
           table(props) {
             const { children } = props;
-            return <table className="w-full">{children}</table>;
+            return <table className="w-full [&_img]:my-0">{children}</table>;
           },
           p(props) {
             const { children } = props;
-            return <p className="text-lg">{children}</p>;
+            return <p className="my-5 text-lg leading-8">{children}</p>;
           },
         }}
       >
         {post?.content}
       </Markdown>
-    </div>
+      </article>
+    </main>
   );
 }

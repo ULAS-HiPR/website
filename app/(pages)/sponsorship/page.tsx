@@ -2,21 +2,44 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+function PartnerCard({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="group flex min-h-[250px] items-center justify-center bg-[#070707] p-10 transition-colors hover:bg-[#0c0c0c]"
+    >
+      {children}
+    </a>
+  );
+}
+
 export default function Sponsorship() {
   return (
-    <main className="bg-white text-black">
-      <section className="relative min-h-[540px] overflow-hidden bg-[#020208] text-white">
+    <main className="bg-black text-white">
+      <section className="relative min-h-[540px] overflow-hidden bg-black text-white">
         <Image
-          src="/hero-earth.png"
-          alt="Ireland seen from orbit at sunrise"
+          src="/sponsorship-team.png"
+          alt="ULAS HiPR team gathered at the University of Limerick"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center brightness-[0.5]"
+          className="scale-110 object-cover object-[center_56%] sm:scale-100"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,2,8,0.92)_0%,rgba(2,2,8,0.7)_48%,rgba(2,2,8,0.2)_80%,rgba(2,2,8,0.35)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35" />
 
-        <div className="relative mx-auto flex min-h-[540px] max-w-[1180px] flex-col justify-center px-6 py-20 sm:px-10 lg:px-12">
+        <div className="relative mx-auto flex min-h-[540px] max-w-[1500px] flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-12">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
             Support HiPR
           </p>
@@ -40,15 +63,15 @@ export default function Sponsorship() {
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1180px] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+      <section className="bg-[#050505]">
+        <div className="mx-auto max-w-[1500px] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/45">
+              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-white/40">
                 Gold sponsor
               </p>
               <h2 className="mt-4 text-4xl font-semibold">Analog Devices</h2>
-              <p className="mt-6 max-w-lg leading-8 text-black/62">
+              <p className="mt-6 max-w-lg leading-8 text-white/62">
                 HiPR&apos;s gold sponsor supports the team as students turn
                 ambitious designs into tested flight hardware.
               </p>
@@ -70,7 +93,7 @@ export default function Sponsorship() {
               href="https://www.analog.com/en/index.html"
               target="_blank"
               rel="noreferrer"
-              className="flex min-h-[340px] items-center justify-center bg-black p-12"
+              className="flex min-h-[340px] items-center justify-center border border-white/15 bg-black p-12"
             >
               <div className="relative h-32 w-full max-w-xl">
                 <Image
@@ -86,38 +109,84 @@ export default function Sponsorship() {
         </div>
       </section>
 
-      <section className="bg-[#f2f1ee]">
-        <div className="mx-auto max-w-[1180px] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
-          <div className="grid gap-8 border-b border-black/15 pb-10 lg:grid-cols-2 lg:items-end">
+      <section className="bg-black">
+        <div className="mx-auto max-w-[1500px] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+          <div className="grid gap-8 border-b border-white/15 pb-10 lg:grid-cols-2 lg:items-end">
             <h2 className="text-4xl font-semibold">Partners</h2>
-            <p className="max-w-xl leading-8 text-black/62">
-              Academic and engineering partners give students access to the
-              knowledge and tools needed for serious aerospace work.
+            <p className="max-w-xl leading-8 text-white/62 lg:translate-y-4">
+              Academic, manufacturing and engineering partners give students
+              the expertise, components and tools needed for serious aerospace
+              work.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-px bg-black/15 md:grid-cols-2">
-            <a
+          <div className="mt-12 grid gap-px bg-white/15 sm:grid-cols-2 lg:grid-cols-3">
+            <PartnerCard
               href="https://www.ul.ie/scieng"
-              target="_blank"
-              rel="noreferrer"
-              className="flex min-h-[280px] items-center justify-center bg-white p-10"
+              label="Visit the University of Limerick Faculty of Science and Engineering"
             >
-              <div className="relative h-28 w-full max-w-lg">
+              <div className="flex w-full max-w-md items-center justify-center gap-5 sm:gap-7">
                 <Image
-                  src="/UL_school_of_engineering.jpeg"
-                  alt="University of Limerick Science and Engineering"
-                  fill
-                  sizes="500px"
-                  className="object-contain"
+                  src="/partners/ul-symbol.svg"
+                  alt=""
+                  width={58}
+                  height={96}
+                  loading="eager"
+                  className="h-24 w-auto shrink-0"
                 />
+                <div className="border-l border-white/20 pl-5 sm:pl-7">
+                  <p className="text-xl font-semibold uppercase leading-tight tracking-[0.035em] sm:text-2xl">
+                    University of Limerick
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-white/55">
+                    Ollscoil Luimnigh
+                  </p>
+                  <p className="mt-4 border-t border-white/15 pt-4 text-sm leading-tight text-white/70">
+                    Faculty of Science and Engineering
+                  </p>
+                </div>
               </div>
-            </a>
-            <a
+            </PartnerCard>
+
+            <PartnerCard href="https://easyeda.com/" label="Visit EasyEDA">
+              <Image
+                src="/partners/easyeda.svg"
+                alt="EasyEDA"
+                width={300}
+                height={64}
+                loading="eager"
+                className="h-auto w-full max-w-[260px] object-contain"
+              />
+            </PartnerCard>
+
+            <PartnerCard href="https://www.onsemi.com/" label="Visit onsemi">
+              <Image
+                src="/partners/onsemi.svg"
+                alt="onsemi"
+                width={346}
+                height={60}
+                loading="eager"
+                className="h-auto w-full max-w-[300px] object-contain brightness-0 invert"
+              />
+            </PartnerCard>
+
+            <PartnerCard
+              href="https://luxiumsolutions.com/"
+              label="Visit Luxium Solutions"
+            >
+              <Image
+                src="/partners/luxium.svg"
+                alt="Luxium Solutions"
+                width={300}
+                height={78}
+                loading="eager"
+                className="h-auto w-full max-w-[280px] object-contain"
+              />
+            </PartnerCard>
+
+            <PartnerCard
               href="https://www.ansys.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex min-h-[280px] items-center justify-center bg-white p-10"
+              label="Visit Ansys"
             >
               <div className="relative h-28 w-full max-w-lg">
                 <Image
@@ -125,16 +194,30 @@ export default function Sponsorship() {
                   alt="Ansys"
                   fill
                   sizes="500px"
-                  className="object-contain"
+                  loading="eager"
+                  className="object-contain brightness-0 invert"
                 />
               </div>
-            </a>
+            </PartnerCard>
+            <PartnerCard
+              href="https://imr.ie/"
+              label="Visit Irish Manufacturing Research"
+            >
+              <Image
+                src="/partners/imr.svg"
+                alt="Irish Manufacturing Research"
+                width={335}
+                height={85}
+                loading="eager"
+                className="h-auto w-full max-w-[285px] object-contain"
+              />
+            </PartnerCard>
           </div>
         </div>
       </section>
 
       <section className="bg-black text-white">
-        <div className="mx-auto grid max-w-[1180px] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-[1500px] gap-12 border-t border-white/15 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-24">
           <div>
             <h2 className="text-4xl font-semibold">Become a sponsor</h2>
             <p className="mt-5 max-w-2xl leading-8 text-white/62">

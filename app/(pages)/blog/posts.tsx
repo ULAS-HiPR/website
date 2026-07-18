@@ -69,9 +69,9 @@ function FeaturedPost({ post }: { post: Post }) {
 
 function BlogPost({ post }: { post: Post }) {
   return (
-    <article className="group border-b border-black/15 pb-10">
+    <article className="group border-b border-white/15 pb-10">
       <Link href={`/blog/${post.filename}`} className="block">
-        <div className="relative aspect-[16/10] overflow-hidden bg-[#eee]">
+        <div className="relative aspect-[16/10] overflow-hidden bg-[#090909]">
           <Image
             src={postImage(post.content)}
             alt=""
@@ -80,11 +80,11 @@ function BlogPost({ post }: { post: Post }) {
             className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
           />
         </div>
-        <p className="mt-5 text-xs font-medium uppercase tracking-[0.08em] text-black/45">
+        <p className="mt-5 text-xs font-medium uppercase tracking-[0.08em] text-white/40">
           <PostDate date={post.date} />
         </p>
         <h2 className="mt-3 text-2xl font-semibold leading-snug">{post.title}</h2>
-        <p className="mt-4 line-clamp-3 leading-7 text-black/62">
+        <p className="mt-4 line-clamp-3 leading-7 text-white/58">
           {postExcerpt(post.content)}…
         </p>
         <span className="mt-6 inline-flex items-center gap-3 font-semibold">
@@ -106,14 +106,14 @@ export default async function Posts() {
   if (!latest) return null;
 
   return (
-    <section className="mx-auto max-w-[1180px] px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+    <section className="mx-auto max-w-[1500px] bg-black px-6 py-16 text-white sm:px-10 lg:px-12 lg:py-24">
       <FeaturedPost post={latest} />
 
       {archive.length ? (
         <>
-          <div className="mb-10 mt-20 flex items-end justify-between border-b border-black/15 pb-6">
+          <div className="mb-10 mt-20 flex items-end justify-between border-b border-white/15 pb-6">
             <h2 className="text-3xl font-semibold">All updates</h2>
-            <span className="text-sm text-black/45">{archive.length} stories</span>
+            <span className="text-sm text-white/40">{archive.length} stories</span>
           </div>
           <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {archive.map((post) => (
