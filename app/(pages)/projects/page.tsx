@@ -134,7 +134,8 @@ function BadhbhAnnotation({
 }: {
   annotation: (typeof badhbhAnnotations)[number];
 }) {
-  const element = useRef<HTMLDivElement>(null);
+  const containerElement = useRef<HTMLDivElement>(null);
+  const stickyElement = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const placementPoint = {
     threeFifths: 0.4,
@@ -143,8 +144,9 @@ function BadhbhAnnotation({
   }[annotation.placement];
 
   useEffect(() => {
-    const node = element.current;
-    if (!node) {
+    const containerNode = containerElement.current;
+    const stickyNode = stickyElement.current;
+    if (!containerNode || !stickyNode) {
       setVisible(true);
       return;
     }
@@ -152,9 +154,15 @@ function BadhbhAnnotation({
     let frame = 0;
     const update = () => {
       frame = 0;
-      const bounds = node.getBoundingClientRect();
+      const containerBounds = containerNode.getBoundingClientRect();
+      const stickyBounds = stickyNode.getBoundingClientRect();
       const pinLine = window.innerHeight * placementPoint;
-      setVisible(bounds.top <= pinLine && bounds.bottom > pinLine);
+      const exitRunway = window.innerHeight * 0.45;
+      const isPinned = Math.abs(stickyBounds.top - pinLine) < 2;
+      const hasExitRunway =
+        containerBounds.bottom >
+        pinLine + stickyBounds.height + exitRunway;
+      setVisible(isPinned && hasExitRunway);
     };
     const schedule = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -179,10 +187,10 @@ function BadhbhAnnotation({
 
   return (
     <div
-      ref={element}
-      className="relative h-[120svh] px-5 sm:px-10 lg:px-16"
+      ref={containerElement}
+      className="relative h-[170svh] px-5 sm:px-10 lg:px-16"
     >
-      <div className={`sticky ${placementClass} ${isLeft ? "mr-auto" : "ml-auto"} w-[min(86vw,390px)]`}>
+      <div ref={stickyElement} className={`sticky ${placementClass} ${isLeft ? "mr-auto" : "ml-auto"} w-[min(86vw,390px)]`}>
         <article
           className={`relative -translate-y-1/2 border-white/16 bg-black/78 p-6 shadow-2xl backdrop-blur-md transition-all duration-700 sm:p-7 ${
             isLeft ? "border-l-2" : "border-r-2 text-right"
@@ -194,19 +202,19 @@ function BadhbhAnnotation({
         >
           <span
             aria-hidden="true"
-            className={`absolute top-1/2 hidden h-px w-[clamp(84px,13vw,205px)] bg-gradient-to-r lg:block ${
+            className={`absolute top-1/2 hidden h-px w-[clamp(84px,13vw,205px)] bg-gradient-to-r transition-opacity duration-700 lg:block ${
               isLeft
                 ? "left-full from-[#e12e2d] to-transparent"
                 : "right-full rotate-180 from-[#e12e2d] to-transparent"
-            }`}
+            } ${visible ? "opacity-100" : "opacity-0"}`}
           />
           <span
             aria-hidden="true"
-            className={`absolute top-[calc(50%-3px)] hidden h-1.5 w-1.5 rounded-full bg-[#e12e2d] shadow-[0_0_14px_#e12e2d] lg:block ${
+            className={`absolute top-[calc(50%-3px)] hidden h-1.5 w-1.5 rounded-full bg-[#e12e2d] shadow-[0_0_14px_#e12e2d] transition-opacity duration-700 lg:block ${
               isLeft
                 ? "left-[calc(100%+clamp(84px,13vw,205px)-3px)]"
                 : "right-[calc(100%+clamp(84px,13vw,205px)-3px)]"
-            }`}
+            } ${visible ? "opacity-100" : "opacity-0"}`}
           />
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#e12e2d]">
             {annotation.label}
@@ -230,7 +238,7 @@ function BadhbhScrollSection({ project }: { project: Project }) {
   return (
     <section
       id={project.id}
-      className="relative h-[730svh] scroll-mt-[88px] bg-black text-white"
+      className="relative h-[980svh] scroll-mt-[88px] bg-black text-white"
     >
       <div className="sticky top-0 h-svh overflow-hidden bg-black">
         <RocketAnimation

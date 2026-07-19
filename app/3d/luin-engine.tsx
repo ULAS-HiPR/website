@@ -63,7 +63,7 @@ function StageFloor() {
 }
 
 function EngineModel({ reduceMotion, sectioned }: { reduceMotion: boolean; sectioned: boolean }) {
-  const { scene } = useGLTF("/luin-engine.glb?v=3");
+  const { scene } = useGLTF("/luin-engine.glb?v=4");
   const { engine, materials } = useMemo(() => {
     const clone = scene.clone(true);
     const materialClones = new Map<THREE.Material, THREE.Material>();
@@ -210,4 +210,4 @@ export default function LuinEngine({ className = "" }: { className?: string }) {
   );
 }
 
-useGLTF.preload("/luin-engine.glb?v=3");
+useGLTF.preload("/luin-engine.glb?v=4");

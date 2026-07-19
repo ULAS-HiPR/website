@@ -134,7 +134,7 @@ function DeploymentModel({
   useFrame((_, delta) => {
     if (!group.current) return;
 
-    if (!reduceMotion) {
+    if (!reduceMotion && !sectioned) {
       group.current.rotation.y += delta * 0.2;
     }
   });
