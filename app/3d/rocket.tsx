@@ -392,7 +392,7 @@ export default function RocketAnimation({
 
   return (
     <div ref={host} className="absolute inset-0 overflow-hidden bg-black">
-      <div className="absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7">
+      <div className="absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7 lg:top-[164px]">
         <button
           type="button"
           aria-pressed={!sectioned}

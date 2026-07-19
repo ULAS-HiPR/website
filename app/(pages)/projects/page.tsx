@@ -90,7 +90,7 @@ function ProjectSection({ project }: { project: Project }) {
   return (
     <section
       id={project.id}
-      className="scroll-mt-24 bg-black text-white"
+      className="scroll-mt-[88px] bg-black text-white"
     >
       <div className="mx-auto grid min-h-[720px] max-w-[1500px] lg:grid-cols-2">
         <div className={`relative min-h-[520px] overflow-hidden border-white/10 ${project.imageFirst ? "lg:order-1 lg:border-r" : "lg:order-2 lg:border-l"}`}>

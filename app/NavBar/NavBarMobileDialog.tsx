@@ -14,13 +14,6 @@ const groups = [
       ["Sionna", "/projects#sionna"],
     ],
   },
-  {
-    label: "Payloads",
-    links: [
-      ["Toirtis", "/payloads#toirtis"],
-      ["Mu", "/payloads#mu"],
-    ],
-  },
   { label: "Engines", links: [["Luin", "/engines#luin"]] },
   {
     label: "Controls",
@@ -28,6 +21,13 @@ const groups = [
       ["Ogma", "/controls#ogma"],
       ["Airbrakes", "/controls#airbrakes"],
       ["CO₂ deployment", "/controls#co2-deployment"],
+    ],
+  },
+  {
+    label: "Payloads",
+    links: [
+      ["Toirtis", "/payloads#toirtis"],
+      ["Mu", "/payloads#mu"],
     ],
   },
 ];

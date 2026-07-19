@@ -18,13 +18,6 @@ const groups = [
     ],
   },
   {
-    label: "Payloads",
-    links: [
-      { label: "Toirtis", href: "/payloads#toirtis" },
-      { label: "Mu", href: "/payloads#mu" },
-    ],
-  },
-  {
     label: "Engines",
     links: [{ label: "Luin", href: "/engines#luin" }],
   },
@@ -34,6 +27,13 @@ const groups = [
       { label: "Ogma", href: "/controls#ogma" },
       { label: "Airbrakes", href: "/controls#airbrakes" },
       { label: "CO₂ deployment", href: "/controls#co2-deployment" },
+    ],
+  },
+  {
+    label: "Payloads",
+    links: [
+      { label: "Toirtis", href: "/payloads#toirtis" },
+      { label: "Mu", href: "/payloads#mu" },
     ],
   },
 ];
@@ -66,7 +66,12 @@ export default function NavBar() {
       />
 
       <div className="relative z-10 mx-auto flex h-[88px] max-w-[1600px] items-center gap-5 px-4 lg:gap-8 lg:px-6 xl:gap-10 xl:px-10">
-        <Link href="/" aria-label="ULAS HiPR home" className="shrink-0">
+        <Link
+          href="/"
+          aria-label="ULAS HiPR home"
+          className="shrink-0"
+          onClick={() => setOpenGroup(null)}
+        >
           <Image
             src="/logo.png"
             alt="ULAS HiPR"
@@ -108,6 +113,7 @@ export default function NavBar() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      onClick={() => setOpenGroup(null)}
                       className="block py-2 text-[15px] font-medium uppercase tracking-[0.08em] text-white/68 drop-shadow-md transition-colors hover:text-white"
                     >
                       {link.label}
@@ -124,6 +130,7 @@ export default function NavBar() {
                 key={link.href}
                 href={link.href}
                 onMouseEnter={() => setOpenGroup(null)}
+                onClick={() => setOpenGroup(null)}
                 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/82 drop-shadow-md transition-colors hover:text-white lg:text-xs xl:text-[13px]"
               >
                 {link.label}

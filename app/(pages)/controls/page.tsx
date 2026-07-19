@@ -44,7 +44,7 @@ function Specifications({ rows }: { rows: string[][] }) {
 
 function OgmaSection() {
   return (
-    <section id="ogma" className="scroll-mt-[88px] bg-black text-white">
+    <section id="ogma" className="scroll-mt-[-7px] bg-black text-white">
       <div className="mx-auto grid min-h-[790px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
@@ -102,7 +102,7 @@ function OgmaSection() {
 
 function AirbrakesSection() {
   return (
-    <section id="airbrakes" className="scroll-mt-[88px] bg-black text-white">
+    <section id="airbrakes" className="scroll-mt-[-7px] bg-black text-white">
       <div className="mx-auto grid min-h-[850px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
@@ -174,7 +174,7 @@ function AirbrakesSection() {
 
 function RecoverySection() {
   return (
-    <section id="co2-deployment" className="scroll-mt-[88px] bg-black text-white">
+    <section id="co2-deployment" className="scroll-mt-[-7px] bg-black text-white">
       <div className="mx-auto grid min-h-[760px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">

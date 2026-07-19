@@ -11,7 +11,7 @@ const muSpecifications = [
 
 function MuSection() {
   return (
-    <section id="mu" className="scroll-mt-24 bg-black text-white">
+    <section id="mu" className="scroll-mt-[-7px] bg-black text-white">
       <div className="mx-auto grid min-h-[780px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
@@ -90,7 +90,7 @@ function ToirtisSection() {
   ];
 
   return (
-    <section id="toirtis" className="scroll-mt-24 bg-black text-white">
+    <section id="toirtis" className="scroll-mt-[-7px] bg-black text-white">
       <div className="mx-auto grid min-h-[760px] max-w-[1500px] border-x border-white/10 lg:grid-cols-2">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">

@@ -146,7 +146,7 @@ export default function LuinEngine({ className = "" }: { className?: string }) {
 
   return (
     <div className={`relative bg-transparent ${className}`}>
-      <div className="absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7">
+      <div className="absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7 lg:top-24">
         <button
           type="button"
           aria-pressed={!sectioned}

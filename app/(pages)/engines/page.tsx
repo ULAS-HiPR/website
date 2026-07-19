@@ -14,7 +14,7 @@ const specifications = [
 
 function LuinSection() {
   return (
-    <section id="luin" className="relative scroll-mt-24 overflow-hidden bg-black text-white">
+    <section id="luin" className="relative scroll-mt-[-7px] overflow-hidden bg-black text-white">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[34%] bg-[radial-gradient(ellipse_at_72%_100%,rgba(103,108,116,0.34)_0%,rgba(54,57,62,0.22)_28%,rgba(17,18,20,0.08)_56%,transparent_74%),linear-gradient(180deg,transparent_0%,rgba(29,31,34,0.86)_100%)]"
