@@ -8,12 +8,6 @@ export default function OgmaVideo() {
       loop
       playsInline
       preload="metadata"
-      onLoadedMetadata={(event) => {
-        event.currentTarget.currentTime = Math.min(
-          6,
-          Math.max(0, event.currentTarget.duration - 0.1),
-        );
-      }}
       aria-label="Rotating render of the Ogma modular flight computer"
       className="absolute inset-0 h-full w-full object-contain p-5 brightness-[0.96] sm:p-8"
     >
