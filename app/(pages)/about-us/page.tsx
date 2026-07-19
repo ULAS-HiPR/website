@@ -6,7 +6,7 @@ export default function AboutUs() {
     <main className="min-h-svh bg-black px-6 pb-24 pt-36 text-white sm:px-10 lg:px-12">
       <div className="mx-auto max-w-[1500px]">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">ULAS HiPR</p>
-        <h1 className="mt-5 max-w-5xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.03em] sm:text-7xl lg:text-[88px]">
+        <h1 className="mt-5 max-w-5xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.015em] sm:text-7xl lg:text-[88px]">
           Student engineering. Flight-proven hardware.
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-white/65">

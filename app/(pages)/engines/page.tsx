@@ -26,10 +26,10 @@ function LuinSection() {
             <span>Engine 01</span>
           </div>
 
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#f15a4f]">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#e12e2d]">
             Ireland&apos;s first additively manufactured liquid rocket engine
           </p>
-          <h2 className="mt-5 text-5xl font-semibold uppercase leading-[0.92] tracking-[-0.025em] sm:text-7xl">
+          <h2 className="mt-5 text-5xl font-semibold uppercase leading-[0.92] tracking-[-0.012em] sm:text-7xl">
             Luin of
             <br />
             Celtchar
@@ -91,7 +91,7 @@ export default function EnginesPage() {
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">Propulsion programme</p>
-            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.03em] sm:text-7xl">Engines</h1>
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Engines</h1>
           </div>
           <p className="max-w-xl text-lg leading-8 text-white/62 lg:translate-y-[14px] lg:justify-self-end">
             Student-researched and designed propulsion systems built to establish advanced liquid-engine capability in Ireland.

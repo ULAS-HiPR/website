@@ -11,7 +11,7 @@ export default async function BlogPage({
   return (
     <main className="min-h-svh bg-black px-6 pb-24 pt-32 text-white sm:px-10 lg:px-12">
       <article className="mx-auto max-w-5xl">
-      <h1 className="my-2 text-4xl font-bold uppercase tracking-[-0.02em] sm:text-6xl">
+      <h1 className="my-2 text-4xl font-bold uppercase tracking-[-0.01em] sm:text-6xl">
         {post?.title} {post?.author ? "- " + post?.author : ""}
       </h1>
       <h2 className="mb-10 mt-4 text-sm uppercase tracking-[0.12em] text-white/45">

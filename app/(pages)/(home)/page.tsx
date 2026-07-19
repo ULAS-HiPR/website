@@ -18,8 +18,8 @@ const featuredSystems = [
     name: "Macha",
     label: "Mach-25 · second in category",
     href: "/projects#mach25",
-    image: "/mach25/macha-launch-keyframe.jpg",
-    position: "object-[50%_24%]",
+    image: "/mach25/macha-home.png",
+    position: "object-[50%_45%]",
     scale: "",
     zoom: "group-hover:scale-[1.025]",
     backdrop: true,
@@ -28,8 +28,8 @@ const featuredSystems = [
     name: "Morrigu",
     label: "First competition flight",
     href: "/projects#mach24",
-    image: "/mach_24/ee5fae67-df3b-4e7b-b6da-cc28ca9c7ff3.JPG",
-    position: "object-[50%_58%]",
+    image: "/mach_24/morrigu-launch-keyframe.jpg",
+    position: "object-[50%_31%]",
     backdrop: false,
   },
 ];
@@ -67,7 +67,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/5 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/48">{system.label}</p>
-                <h2 className="mt-2 text-3xl font-semibold uppercase tracking-[-0.02em]">{system.name}</h2>
+                <h2 className="mt-2 text-3xl font-semibold uppercase tracking-[-0.01em]">{system.name}</h2>
               </div>
             </Link>
           ))}
@@ -90,8 +90,8 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/62">
               University of Limerick
             </p>
-            <h2 className="mt-5 max-w-4xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.03em] sm:text-7xl lg:text-[88px]">
-              Ireland&apos;s first rocketry team.
+            <h2 className="mt-5 max-w-4xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.015em] sm:text-7xl lg:text-[88px]">
+              Building Ireland&apos;s Space Industry.
             </h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/72">
               More than 100 students developing flight-proven rockets,
@@ -103,7 +103,7 @@ export default function Home() {
                 href="/projects"
                 className="group inline-flex min-w-44 items-center justify-between border border-white/60 px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] transition-colors hover:bg-white hover:text-black"
               >
-                Explore systems
+                Explore rockets
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link

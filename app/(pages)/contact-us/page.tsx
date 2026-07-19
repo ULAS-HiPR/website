@@ -79,7 +79,7 @@ export default function ContactUs() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
               Contact HiPR
             </p>
-            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.03em] sm:text-7xl">
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">
               Contact
             </h1>
           </div>

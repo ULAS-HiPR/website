@@ -9,7 +9,6 @@ import {
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { clone as cloneSkeleton } from "three/examples/jsm/utils/SkeletonUtils.js";
 
 const FLOOR_Y = -2.18;
 const WORLD_UNITS_PER_METRE = 1.6;
@@ -68,57 +67,6 @@ function StageFloor() {
         color="#000000"
       />
     </>
-  );
-}
-
-function ScaleFigure() {
-  const { scene } = useGLTF("/models/scale-person.glb");
-  const figure = useMemo(() => cloneSkeleton(scene), [scene]);
-  const material = useMemo(
-    () =>
-      new THREE.MeshStandardMaterial({
-        color: "#777d82",
-        metalness: 0.18,
-        roughness: 0.72,
-      }),
-    []
-  );
-
-  const presentation = useMemo(() => {
-    figure.updateMatrixWorld(true);
-    const bounds = new THREE.Box3().setFromObject(figure);
-    const size = bounds.getSize(new THREE.Vector3());
-    const scale = (1.75 * WORLD_UNITS_PER_METRE) / Math.max(size.y, 0.001);
-
-    return {
-      scale,
-      position: [
-        0.92 - bounds.getCenter(new THREE.Vector3()).x * scale,
-        FLOOR_Y + 0.04 - bounds.min.y * scale,
-        0.12,
-      ] as [number, number, number],
-    };
-  }, [figure]);
-
-  useEffect(() => {
-    figure.traverse((child) => {
-      if (!(child instanceof THREE.Mesh)) return;
-      child.material = material;
-      child.castShadow = true;
-      child.receiveShadow = true;
-      child.frustumCulled = false;
-    });
-  }, [figure, material]);
-
-  useEffect(() => () => material.dispose(), [material]);
-
-  return (
-    <primitive
-      object={figure}
-      position={presentation.position}
-      rotation={[0, -0.12, 0]}
-      scale={presentation.scale}
-    />
   );
 }
 
@@ -202,12 +150,14 @@ function RocketModel({
   active,
   reduceMotion,
   sectioned,
+  verticalOffset,
 }: {
   model: string;
   height: number;
   active: boolean;
   reduceMotion: boolean;
   sectioned: boolean;
+  verticalOffset: number;
 }) {
   const { scene } = useGLTF(model);
   const rocket = useMemo(() => scene.clone(true), [scene]);
@@ -261,12 +211,12 @@ function RocketModel({
     return {
       scale,
       position: [
-        -center.x * scale - 0.45,
-        FLOOR_Y + 0.14 - bounds.min.z * scale,
+        -center.x * scale,
+        FLOOR_Y + 0.14 - bounds.min.z * scale + verticalOffset,
         center.y * scale,
       ] as [number, number, number],
     };
-  }, [height, rocket]);
+  }, [height, rocket, verticalOffset]);
 
   useEffect(() => {
     const fallbackMaterials = [
@@ -352,10 +302,14 @@ export default function RocketAnimation({
   model = "/rockets/sionna.glb",
   name = "Sionna",
   height = 1.34,
+  verticalOffset = 0,
+  controlsTopClass = "lg:top-[164px]",
 }: {
   model?: string;
   name?: string;
   height?: number;
+  verticalOffset?: number;
+  controlsTopClass?: string;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -392,7 +346,7 @@ export default function RocketAnimation({
 
   return (
     <div ref={host} className="absolute inset-0 overflow-hidden bg-black">
-      <div className="absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7 lg:top-[164px]">
+      <div className={`absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7 ${controlsTopClass}`}>
         <button
           type="button"
           aria-pressed={!sectioned}
@@ -456,8 +410,8 @@ export default function RocketAnimation({
               active={active}
               reduceMotion={reduceMotion}
               sectioned={sectioned}
+              verticalOffset={verticalOffset}
             />
-            <ScaleFigure />
             <Environment resolution={128}>
               <Lightformer intensity={5} position={[0, 4, 3]} scale={[7, 0.35, 1]} />
               <Lightformer intensity={3} position={[-4, 0, 2]} rotation-y={Math.PI / 2} scale={[5, 0.5, 1]} />
@@ -471,31 +425,9 @@ export default function RocketAnimation({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_55%,rgba(255,255,255,0.055),transparent_34%)]" />
       )}
 
-      <p className="absolute bottom-7 left-7 z-10 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/32 sm:bottom-10 sm:left-10">
-        Scale figure · 1.75 m ·{" "}
-        <a
-          href="https://sketchfab.com/3d-models/base-model-for-augmented-reality-3d-body-overlay-a4b2fb9cb5234434b39ed49835728ba8"
-          target="_blank"
-          rel="noreferrer"
-          className="transition-colors hover:text-white/62"
-        >
-          geenee
-        </a>{" "}
-        ·{" "}
-        <a
-          href="https://creativecommons.org/licenses/by/4.0/"
-          target="_blank"
-          rel="noreferrer"
-          className="transition-colors hover:text-white/62"
-        >
-          CC BY 4.0
-        </a>
-      </p>
       <p className="pointer-events-none absolute bottom-7 right-7 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/38 sm:bottom-10 sm:right-10">
         {name} · {height.toFixed(2)} m
       </p>
     </div>
   );
 }
-
-useGLTF.preload("/models/scale-person.glb");

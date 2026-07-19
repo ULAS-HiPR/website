@@ -63,13 +63,13 @@ export default function HeroReel() {
               ULAS HiPR · 2026
             </p>
             <h1
-              aria-label="Engineered in Limerick."
-              data-text={"ENGINEERED\nIN LIMERICK."}
-              className="hero-glitch-title mt-5 text-[50px] font-bold uppercase leading-[0.88] tracking-[-0.035em] sm:text-7xl lg:text-[96px]"
+              aria-label="Ireland's first competitive rocketry team."
+              data-text={"IRELAND'S FIRST\nCOMPETITIVE\nROCKETRY TEAM."}
+              className="hero-glitch-title mt-5 text-[50px] font-bold uppercase leading-[0.88] tracking-[-0.017em] sm:text-7xl lg:text-[96px]"
             >
-              Engineered
-              <br />
-              in Limerick.
+              <span className="block">Ireland&apos;s first</span>
+              <span className="block text-[#e12e2d]">Competitive</span>
+              <span className="block">rocketry team.</span>
             </h1>
           </div>
         </div>

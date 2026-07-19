@@ -19,10 +19,10 @@ function MuSection() {
             <span>Payload 02</span>
           </div>
 
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#f15a4f]">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#e12e2d]">
             Standalone cosmic-ray detector
           </p>
-          <h2 className="mt-5 text-6xl font-semibold uppercase leading-none tracking-[-0.03em] sm:text-8xl">
+          <h2 className="mt-5 text-6xl font-semibold uppercase leading-none tracking-[-0.015em] sm:text-8xl">
             Mu
           </h2>
           <p className="mt-8 max-w-xl text-base leading-8 text-white/68">
@@ -98,10 +98,10 @@ function ToirtisSection() {
             <span>Payload 01</span>
           </div>
 
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#f15a4f]">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#e12e2d]">
             Deployable robotic payload
           </p>
-          <h2 className="mt-5 text-6xl font-semibold uppercase leading-none tracking-[-0.03em] sm:text-8xl">
+          <h2 className="mt-5 text-6xl font-semibold uppercase leading-none tracking-[-0.015em] sm:text-8xl">
             Toirtis
           </h2>
           <p className="mt-8 max-w-xl text-base leading-8 text-white/68">
@@ -154,7 +154,7 @@ export default function PayloadsPage() {
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">Mission systems</p>
-            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.03em] sm:text-7xl">Payloads</h1>
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Payloads</h1>
           </div>
           <p className="max-w-xl text-lg leading-8 text-white/62 lg:translate-y-[14px] lg:justify-self-end">
             Scientific instruments and deployable robotic systems designed to fly, survive and return useful data.

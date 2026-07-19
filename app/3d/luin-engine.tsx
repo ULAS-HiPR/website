@@ -63,69 +63,72 @@ function StageFloor() {
 }
 
 function EngineModel({ reduceMotion, sectioned }: { reduceMotion: boolean; sectioned: boolean }) {
-  const { scene } = useGLTF("/luin-engine.glb?v=2");
-  const engine = useMemo(() => scene.clone(true), [scene]);
+  const { scene } = useGLTF("/luin-engine.glb?v=3");
+  const { engine, materials } = useMemo(() => {
+    const clone = scene.clone(true);
+    const materialClones = new Map<THREE.Material, THREE.Material>();
+
+    const cloneMaterial = (material: THREE.Material) => {
+      const existing = materialClones.get(material);
+      if (existing) return existing;
+
+      const cloned = material.clone();
+      if (cloned instanceof THREE.MeshStandardMaterial) {
+        cloned.metalness = 0.82;
+        cloned.roughness = 0.28;
+        cloned.envMapIntensity = 1.45;
+        cloned.side = THREE.DoubleSide;
+        cloned.clipShadows = true;
+      }
+
+      materialClones.set(material, cloned);
+      return cloned;
+    };
+
+    clone.traverse((child) => {
+      if (!(child instanceof THREE.Mesh)) return;
+
+      child.material = Array.isArray(child.material)
+        ? child.material.map(cloneMaterial)
+        : cloneMaterial(child.material);
+      child.castShadow = true;
+      child.receiveShadow = true;
+    });
+
+    return { engine: clone, materials: Array.from(materialClones.values()) };
+  }, [scene]);
   const group = useRef<THREE.Group>(null);
   const sectionPlane = useMemo(
     () => new THREE.Plane(new THREE.Vector3(0, 0, -1), 0),
     []
   );
 
-  const aluminium = useMemo(
-    () =>
-      new THREE.MeshPhysicalMaterial({
-        color: "#b8bdc2",
-        metalness: 0.9,
-        roughness: 0.24,
-        clearcoat: 0.24,
-        clearcoatRoughness: 0.2,
-        envMapIntensity: 1.45,
-        side: THREE.DoubleSide,
-        clipShadows: true,
-      }),
-    []
-  );
+  useEffect(() => {
+    return () => materials.forEach((material) => material.dispose());
+  }, [materials]);
 
   useEffect(() => {
-    engine.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        child.geometry.computeVertexNormals();
-        child.material = aluminium;
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
+    materials.forEach((material) => {
+      material.clippingPlanes = sectioned ? [sectionPlane] : [];
+      material.needsUpdate = true;
     });
-
-    return () => aluminium.dispose();
-  }, [aluminium, engine]);
-
-  useEffect(() => {
-    aluminium.clippingPlanes = sectioned ? [sectionPlane] : [];
-    aluminium.needsUpdate = true;
-  }, [aluminium, sectionPlane, sectioned]);
+  }, [materials, sectionPlane, sectioned]);
 
   useFrame((_, delta) => {
     if (!group.current) return;
 
-    if (sectioned) {
-      group.current.rotation.y = THREE.MathUtils.damp(
-        group.current.rotation.y,
-        0,
-        6,
-        delta
-      );
-    } else if (!reduceMotion) {
+    if (!reduceMotion) {
       group.current.rotation.y += delta * 0.22;
     }
   });
 
   return (
-    <group ref={group}>
+    <group ref={group} position={[0, 0.3, 0]}>
       <Center>
         <primitive
           object={engine}
-          scale={0.0105}
-          rotation={[-Math.PI / 2, 0, 0]}
+          scale={8}
+          rotation={[0, 0, -Math.PI / 2]}
         />
       </Center>
     </group>
@@ -207,4 +210,4 @@ export default function LuinEngine({ className = "" }: { className?: string }) {
   );
 }
 
-useGLTF.preload("/luin-engine.glb?v=2");
+useGLTF.preload("/luin-engine.glb?v=3");

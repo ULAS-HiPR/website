@@ -47,13 +47,14 @@
     @apply bg-background text-foreground;
     font-family: "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
     font-stretch: condensed;
+    letter-spacing: 0.015em;
     margin: 0;
     overflow-x: hidden;
   }
 }
 
 ::selection {
-  background: #f15a4f;
+  background: #e12e2d;
   color: #ffffff;
 }
 
@@ -76,7 +77,7 @@
 }
 
 .hero-reel-copy--glitching .hero-glitch-title::before {
-  color: #f15a4f;
+  color: #e12e2d;
   opacity: 0.72;
   animation: hero-glitch-layer-a 950ms steps(2, end) forwards;
 }

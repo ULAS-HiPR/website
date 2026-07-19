@@ -83,14 +83,12 @@ function DeploymentModel({
   const { scene: exteriorScene } = useGLTF(
     "/controls/co2/co2-deployment.glb?v=2"
   );
-  const { scene: sectionScene } = useGLTF(
-    "/controls/co2/co2-deployment-section.glb?v=1"
-  );
-  const deployment = useMemo(
-    () => (sectioned ? sectionScene : exteriorScene).clone(true),
-    [exteriorScene, sectionScene, sectioned]
-  );
+  const deployment = useMemo(() => exteriorScene.clone(true), [exteriorScene]);
   const group = useRef<THREE.Group>(null);
+  const sectionPlane = useMemo(
+    () => new THREE.Plane(new THREE.Vector3(0, 0, -1), 0),
+    []
+  );
 
   const aluminium = useMemo(
     () =>
@@ -128,17 +126,15 @@ function DeploymentModel({
 
   useEffect(() => () => aluminium.dispose(), [aluminium]);
 
+  useEffect(() => {
+    aluminium.clippingPlanes = sectioned ? [sectionPlane] : [];
+    aluminium.needsUpdate = true;
+  }, [aluminium, sectionPlane, sectioned]);
+
   useFrame((_, delta) => {
     if (!group.current) return;
 
-    if (sectioned) {
-      group.current.rotation.y = THREE.MathUtils.damp(
-        group.current.rotation.y,
-        0,
-        6,
-        delta
-      );
-    } else if (!reduceMotion) {
+    if (!reduceMotion) {
       group.current.rotation.y += delta * 0.2;
     }
   });
@@ -209,6 +205,7 @@ export default function CO2Deployment({ className = "" }: { className?: string }
         onCreated={({ gl }) => {
           gl.setClearColor("#000000", 0);
           gl.outputColorSpace = THREE.SRGBColorSpace;
+          gl.localClippingEnabled = true;
         }}
       >
         <ambientLight intensity={0.24} />
@@ -266,4 +263,3 @@ export default function CO2Deployment({ className = "" }: { className?: string }
 }
 
 useGLTF.preload("/controls/co2/co2-deployment.glb?v=2");
-useGLTF.preload("/controls/co2/co2-deployment-section.glb?v=1");

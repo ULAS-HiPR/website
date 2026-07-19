@@ -52,10 +52,10 @@ function OgmaSection() {
             <span>Control 01</span>
           </div>
 
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#f15a4f]">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#e12e2d]">
             Modular flight computer
           </p>
-          <h2 className="mt-5 text-6xl font-semibold uppercase leading-none tracking-[-0.03em] sm:text-8xl">
+          <h2 className="mt-5 text-6xl font-semibold uppercase leading-none tracking-[-0.015em] sm:text-8xl">
             Ogma
           </h2>
           <p className="mt-8 max-w-xl text-base leading-8 text-white/68">
@@ -110,10 +110,10 @@ function AirbrakesSection() {
             <span>Control 02</span>
           </div>
 
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#f15a4f]">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#e12e2d]">
             Active altitude control
           </p>
-          <h2 className="mt-5 text-5xl font-semibold uppercase leading-none tracking-[-0.03em] sm:text-7xl">
+          <h2 className="mt-5 text-5xl font-semibold uppercase leading-none tracking-[-0.015em] sm:text-7xl">
             Airbrakes
           </h2>
           <p className="mt-8 max-w-xl text-base leading-8 text-white/68">
@@ -182,10 +182,10 @@ function RecoverySection() {
             <span>Control 03</span>
           </div>
 
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#f15a4f]">
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.13em] text-[#e12e2d]">
             Pneumatic recovery
           </p>
-          <h2 className="mt-5 text-5xl font-semibold uppercase leading-[0.95] tracking-[-0.03em] sm:text-7xl">
+          <h2 className="mt-5 text-5xl font-semibold uppercase leading-[0.95] tracking-[-0.015em] sm:text-7xl">
             CO2
             <br />
             deployment
@@ -241,7 +241,7 @@ export default function ControlsPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
               Guidance and recovery
             </p>
-            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.03em] sm:text-7xl">
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">
               Controls
             </h1>
           </div>

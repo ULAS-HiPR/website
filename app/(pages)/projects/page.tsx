@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import RocketAnimation from "@/app/3d/rocket";
 
 type Project = {
@@ -42,6 +42,8 @@ const projects: Project[] = [
     model: "/rockets/morrigu.glb",
     height: 1.84,
     details: ["First competition flight", "Spring recovery", "Deployable payload"],
+    launchVideo: "/mach_24/morrigu-launch.mp4",
+    launchPoster: "/mach_24/morrigu-launch-keyframe.jpg",
   },
   {
     id: "euroc24",
@@ -65,8 +67,6 @@ const projects: Project[] = [
     model: "/rockets/macha.glb",
     height: 1.96,
     details: ["2.273 km apogee", "Second place in category", "AI landing-zone CanSat"],
-    launchVideo: "/mach25/macha-launch.mp4",
-    launchPoster: "/mach25/macha-launch-keyframe.jpg",
   },
   {
     id: "mach26",
@@ -85,6 +85,191 @@ const projects: Project[] = [
     imageFirst: true,
   },
 ];
+
+const badhbhAnnotations = [
+  {
+    label: "Structure",
+    title: "Composite airframe",
+    copy: "A 2.5-metre Category 3 vehicle built around a fully composite airframe, carrying HiPR's most tightly integrated flight architecture to date.",
+    stat: "2.5 m vehicle",
+    side: "left" as const,
+    placement: "middle" as const,
+  },
+  {
+    label: "Flight control",
+    title: "Ogma avionics",
+    copy: "A custom six-board flight computer links sensing, logging, communications and actuator control across the vehicle.",
+    stat: "6-board stack",
+    side: "right" as const,
+    placement: "threeFifths" as const,
+  },
+  {
+    label: "Altitude control",
+    title: "Active airbrakes",
+    copy: "Servo-driven airbrakes add controllable drag during ascent. CFD-derived force models feed the onboard controller in real time.",
+    stat: "Closed-loop control",
+    side: "left" as const,
+    placement: "oneThird" as const,
+  },
+  {
+    label: "Recovery",
+    title: "CO₂ deployment",
+    copy: "A twin-cartridge pneumatic system pressurises the recovery bay on command and deploys the parachute through custom flight hardware.",
+    stat: "Twin cartridges",
+    side: "right" as const,
+    placement: "middle" as const,
+  },
+  {
+    label: "Payload bay",
+    title: "Toirtis + Mu",
+    copy: "The payload stack combined a deployable walking robot with a standalone cosmic-ray detector and its own flight logger.",
+    stat: "Two experimental payloads",
+    side: "left" as const,
+    placement: "threeFifths" as const,
+  },
+];
+
+function BadhbhAnnotation({
+  annotation,
+}: {
+  annotation: (typeof badhbhAnnotations)[number];
+}) {
+  const element = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const placementPoint = {
+    threeFifths: 0.4,
+    middle: 0.5,
+    oneThird: 2 / 3,
+  }[annotation.placement];
+
+  useEffect(() => {
+    const node = element.current;
+    if (!node) {
+      setVisible(true);
+      return;
+    }
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const bounds = node.getBoundingClientRect();
+      const pinLine = window.innerHeight * placementPoint;
+      setVisible(bounds.top <= pinLine && bounds.bottom > pinLine);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [placementPoint]);
+
+  const isLeft = annotation.side === "left";
+  const placementClass = {
+    threeFifths: "top-[40svh]",
+    middle: "top-[50svh]",
+    oneThird: "top-[66.666svh]",
+  }[annotation.placement];
+
+  return (
+    <div
+      ref={element}
+      className="relative h-[120svh] px-5 sm:px-10 lg:px-16"
+    >
+      <div className={`sticky ${placementClass} ${isLeft ? "mr-auto" : "ml-auto"} w-[min(86vw,390px)]`}>
+        <article
+          className={`relative -translate-y-1/2 border-white/16 bg-black/78 p-6 shadow-2xl backdrop-blur-md transition-all duration-700 sm:p-7 ${
+            isLeft ? "border-l-2" : "border-r-2 text-right"
+          } ${
+            visible
+              ? "translate-x-0 opacity-100"
+              : `opacity-0 ${isLeft ? "-translate-x-4" : "translate-x-4"}`
+          }`}
+        >
+          <span
+            aria-hidden="true"
+            className={`absolute top-1/2 hidden h-px w-[clamp(84px,13vw,205px)] bg-gradient-to-r lg:block ${
+              isLeft
+                ? "left-full from-[#e12e2d] to-transparent"
+                : "right-full rotate-180 from-[#e12e2d] to-transparent"
+            }`}
+          />
+          <span
+            aria-hidden="true"
+            className={`absolute top-[calc(50%-3px)] hidden h-1.5 w-1.5 rounded-full bg-[#e12e2d] shadow-[0_0_14px_#e12e2d] lg:block ${
+              isLeft
+                ? "left-[calc(100%+clamp(84px,13vw,205px)-3px)]"
+                : "right-[calc(100%+clamp(84px,13vw,205px)-3px)]"
+            }`}
+          />
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#e12e2d]">
+            {annotation.label}
+          </p>
+          <h3 className="mt-3 text-2xl font-semibold uppercase tracking-[0.01em] sm:text-3xl">
+            {annotation.title}
+          </h3>
+          <p className="mt-5 text-sm leading-7 text-white/66">
+            {annotation.copy}
+          </p>
+          <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">
+            {annotation.stat}
+          </p>
+        </article>
+      </div>
+    </div>
+  );
+}
+
+function BadhbhScrollSection({ project }: { project: Project }) {
+  return (
+    <section
+      id={project.id}
+      className="relative h-[730svh] scroll-mt-[88px] bg-black text-white"
+    >
+      <div className="sticky top-0 h-svh overflow-hidden bg-black">
+        <RocketAnimation
+          model={project.model}
+          name={project.name}
+          height={project.height}
+          verticalOffset={-0.22}
+          controlsTopClass="lg:top-[104px]"
+        />
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-20">
+        <div className="h-[68svh]" aria-hidden="true" />
+        <div className="sticky top-0 z-30 flex h-[88px] items-center bg-black/88 px-6 backdrop-blur-md sm:px-10 lg:px-16">
+          <div className="mx-auto grid w-full max-w-[1500px] grid-cols-[1fr_auto_1fr] items-center gap-6">
+            <p className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-white/38 sm:block">
+              {project.programme} · Vehicle {project.number}
+            </p>
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold uppercase leading-none tracking-[0.04em] sm:text-3xl">
+                {project.name}
+              </h2>
+              <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.17em] text-white/38">
+                Scroll to see more
+              </p>
+            </div>
+            <p className="hidden justify-self-end text-[10px] font-semibold uppercase tracking-[0.15em] text-white/30 sm:block">
+              Category 3 · 2.5 m
+            </p>
+          </div>
+        </div>
+        <div className="h-[40svh]" aria-hidden="true" />
+        {badhbhAnnotations.map((annotation) => (
+          <BadhbhAnnotation key={annotation.title} annotation={annotation} />
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function ProjectSection({ project }: { project: Project }) {
   return (
@@ -145,7 +330,7 @@ function ProjectSection({ project }: { project: Project }) {
             </video>
           </div>
           <figcaption className="px-1 pt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45">
-            Macha launch · Mach-25
+            {project.name} launch · {project.programme}
           </figcaption>
         </figure>
       ) : null}
@@ -172,7 +357,7 @@ export default function Projects() {
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">Flight programme</p>
-            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.03em] sm:text-7xl">Rockets</h1>
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Rockets</h1>
           </div>
           <p className="max-w-xl text-lg leading-8 text-white/62 lg:translate-y-[14px] lg:justify-self-end">
             A chronological record of the vehicles designed, built and flown by HiPR at the University of Limerick.
@@ -180,7 +365,9 @@ export default function Projects() {
         </div>
       </header>
 
-      {[...projects].reverse().map((project) => (
+      <BadhbhScrollSection project={projects.find((project) => project.id === "mach26")!} />
+
+      {[...projects].filter((project) => project.id !== "mach26").reverse().map((project) => (
         <ProjectSection key={project.id} project={project} />
       ))}
 
