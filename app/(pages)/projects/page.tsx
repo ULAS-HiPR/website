@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import RocketAnimation from "@/app/3d/rocket";
@@ -17,6 +18,7 @@ type Project = {
   imageFirst?: boolean;
   launchVideo?: string;
   launchPoster?: string;
+  bannerImage?: string;
 };
 
 const projects: Project[] = [
@@ -44,6 +46,7 @@ const projects: Project[] = [
     details: ["First competition flight", "Spring recovery", "Deployable payload"],
     launchVideo: "/mach_24/morrigu-launch.mp4",
     launchPoster: "/mach_24/morrigu-launch-keyframe.jpg",
+    bannerImage: "/mach_24/hipr-banner.png",
   },
   {
     id: "euroc24",
@@ -75,7 +78,7 @@ const projects: Project[] = [
     name: "Badhbh",
     description:
       "Badhbh is HiPR's 2.5-metre Category 3 vehicle and its most integrated competition rocket to date. The fully composite airframe carried active airbrakes, a custom six-board flight computer, twin-cartridge CO₂ recovery, a walking robotic payload and a muon detector.",
-    model: "/rockets/badhbh.glb",
+    model: "/rockets/badhbh-assembly.glb",
     height: 2.5,
     details: [
       "2.5 m fully composite airframe",
@@ -247,6 +250,8 @@ function BadhbhScrollSection({ project }: { project: Project }) {
           height={project.height}
           verticalOffset={-0.22}
           controlsTopClass="lg:top-[104px]"
+          modelAxis="y"
+          preserveMaterials
         />
       </div>
 
@@ -323,19 +328,32 @@ function ProjectSection({ project }: { project: Project }) {
 
       {project.launchVideo ? (
         <figure className="mx-auto max-w-[1500px] bg-black px-3 pb-3 sm:px-4 sm:pb-4">
-          <div className="h-[78svh] min-h-[560px] max-h-[900px] overflow-hidden bg-black">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={project.launchPoster}
-              aria-label={`${project.name} launch at ${project.programme}`}
-              className="h-full w-full object-contain"
-            >
-              <source src={project.launchVideo} type="video/mp4" />
-            </video>
+          <div className={`grid gap-3 sm:gap-4 ${project.bannerImage ? "lg:grid-cols-2" : ""}`}>
+            <div className="relative h-[78svh] min-h-[560px] max-h-[900px] overflow-hidden bg-black">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster={project.launchPoster}
+                aria-label={`${project.name} launch at ${project.programme}`}
+                className="h-full w-full object-contain"
+              >
+                <source src={project.launchVideo} type="video/mp4" />
+              </video>
+            </div>
+            {project.bannerImage ? (
+              <div className="relative h-[78svh] min-h-[560px] max-h-[900px] overflow-hidden bg-[#0c0d14]">
+                <Image
+                  src={project.bannerImage}
+                  alt="ULAS HiPR vehicle programme banner showing Sionna, Morrigu, Airmedh and Macha"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-contain"
+                />
+              </div>
+            ) : null}
           </div>
           <figcaption className="px-1 pt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45">
             {project.name} launch · {project.programme}

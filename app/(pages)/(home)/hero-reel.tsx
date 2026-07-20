@@ -45,7 +45,7 @@ export default function HeroReel() {
             revealVideo ? "brightness-100" : "brightness-[0.68]"
           }`}
         >
-          <source src="/hipr-demo-reel.m4v" type="video/mp4" />
+          <source src="/hipr-demo-reel.mp4" type="video/mp4" />
         </video>
 
         <div

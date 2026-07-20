@@ -39,6 +39,7 @@ const groups = [
 ];
 
 const directLinks = [
+  { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
   { label: "Sponsors", href: "/sponsorship" },
   { label: "Contact", href: "/contact-us" },

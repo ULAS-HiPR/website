@@ -34,6 +34,7 @@ const groups = [
 
 const directLinks = [
   ["Home", "/"],
+  ["About", "/about"],
   ["Blog", "/blog"],
   ["Sponsors", "/sponsorship"],
   ["Contact", "/contact-us"],

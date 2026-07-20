@@ -151,6 +151,8 @@ function RocketModel({
   reduceMotion,
   sectioned,
   verticalOffset,
+  modelAxis,
+  preserveMaterials,
 }: {
   model: string;
   height: number;
@@ -158,9 +160,24 @@ function RocketModel({
   reduceMotion: boolean;
   sectioned: boolean;
   verticalOffset: number;
+  modelAxis: "y" | "z";
+  preserveMaterials: boolean;
 }) {
   const { scene } = useGLTF(model);
-  const rocket = useMemo(() => scene.clone(true), [scene]);
+  const rocket = useMemo(() => {
+    const clone = scene.clone(true);
+
+    if (preserveMaterials) {
+      clone.traverse((child) => {
+        if (!(child instanceof THREE.Mesh)) return;
+        child.material = Array.isArray(child.material)
+          ? child.material.map((material) => material.clone())
+          : child.material.clone();
+      });
+    }
+
+    return clone;
+  }, [preserveMaterials, scene]);
   const group = useRef<THREE.Group>(null);
   const sectionPlane = useMemo(
     () => new THREE.Plane(new THREE.Vector3(0, 0, -1), 0),
@@ -206,19 +223,61 @@ function RocketModel({
     const bounds = new THREE.Box3().setFromObject(rocket);
     const size = bounds.getSize(new THREE.Vector3());
     const center = bounds.getCenter(new THREE.Vector3());
-    const scale = (height * WORLD_UNITS_PER_METRE) / Math.max(size.z, 0.001);
+    const scale =
+      (height * WORLD_UNITS_PER_METRE) /
+      Math.max(modelAxis === "y" ? size.y : size.z, 0.001);
 
-    return {
-      scale,
-      position: [
-        -center.x * scale,
-        FLOOR_Y + 0.14 - bounds.min.z * scale + verticalOffset,
-        center.y * scale,
-      ] as [number, number, number],
-    };
-  }, [height, rocket, verticalOffset]);
+    return modelAxis === "y"
+      ? {
+          scale,
+          position: [
+            -center.x * scale,
+            FLOOR_Y + 0.14 - bounds.min.y * scale + verticalOffset,
+            -center.z * scale,
+          ] as [number, number, number],
+          rotation: [0, 0, 0] as [number, number, number],
+        }
+      : {
+          scale,
+          position: [
+            -center.x * scale,
+            FLOOR_Y + 0.14 - bounds.min.z * scale + verticalOffset,
+            center.y * scale,
+          ] as [number, number, number],
+          rotation: [-Math.PI / 2, 0, 0] as [number, number, number],
+        };
+  }, [height, modelAxis, rocket, verticalOffset]);
+
+  const importedMaterials = useMemo(() => {
+    const found = new Set<THREE.Material>();
+    if (!preserveMaterials) return found;
+
+    rocket.traverse((child) => {
+      if (!(child instanceof THREE.Mesh)) return;
+      const childMaterials = Array.isArray(child.material)
+        ? child.material
+        : [child.material];
+      childMaterials.forEach((material) => found.add(material));
+    });
+    return found;
+  }, [preserveMaterials, rocket]);
 
   useEffect(() => {
+    if (preserveMaterials) {
+      rocket.traverse((child) => {
+        if (!(child instanceof THREE.Mesh)) return;
+        child.castShadow = true;
+        child.receiveShadow = true;
+      });
+
+      importedMaterials.forEach((material) => {
+        material.side = THREE.DoubleSide;
+        material.clipShadows = true;
+      });
+
+      return () => importedMaterials.forEach((material) => material.dispose());
+    }
+
     const fallbackMaterials = [
       materials.structure,
       materials.recovery,
@@ -260,16 +319,24 @@ function RocketModel({
     });
 
     return () => Object.values(materials).forEach((material) => material.dispose());
-  }, [materials, rocket]);
+  }, [importedMaterials, materials, preserveMaterials, rocket]);
 
   useEffect(() => () => carbonWeave?.dispose(), [carbonWeave]);
 
   useEffect(() => {
+    if (preserveMaterials) {
+      importedMaterials.forEach((material) => {
+        material.clippingPlanes = sectioned ? [sectionPlane] : [];
+        material.needsUpdate = true;
+      });
+      return;
+    }
+
     Object.entries(materials).forEach(([name, material]) => {
       material.clippingPlanes = sectioned && name !== "fin" ? [sectionPlane] : [];
       material.needsUpdate = true;
     });
-  }, [materials, sectionPlane, sectioned]);
+  }, [importedMaterials, materials, preserveMaterials, sectionPlane, sectioned]);
 
   useFrame((_, delta) => {
     if (!group.current || !active) return;
@@ -290,7 +357,7 @@ function RocketModel({
     <group ref={group}>
       <primitive
         object={rocket}
-        rotation={[-Math.PI / 2, 0, 0]}
+        rotation={presentation.rotation}
         scale={presentation.scale}
         position={presentation.position}
       />
@@ -304,12 +371,16 @@ export default function RocketAnimation({
   height = 1.34,
   verticalOffset = 0,
   controlsTopClass = "lg:top-[164px]",
+  modelAxis = "z",
+  preserveMaterials = false,
 }: {
   model?: string;
   name?: string;
   height?: number;
   verticalOffset?: number;
   controlsTopClass?: string;
+  modelAxis?: "y" | "z";
+  preserveMaterials?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -411,6 +482,8 @@ export default function RocketAnimation({
               reduceMotion={reduceMotion}
               sectioned={sectioned}
               verticalOffset={verticalOffset}
+              modelAxis={modelAxis}
+              preserveMaterials={preserveMaterials}
             />
             <Environment resolution={128}>
               <Lightformer intensity={5} position={[0, 4, 3]} scale={[7, 0.35, 1]} />
