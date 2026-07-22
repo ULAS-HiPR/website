@@ -6,15 +6,37 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useNavVisible } from "./use-at-top";
 
-const groups = [
+type NavLink = { label: string; href: string };
+type NavSection = { label: string; href: string; links: NavLink[] };
+type NavGroup = {
+  label: string;
+  links?: NavLink[];
+  sections?: NavSection[];
+};
+
+const groups: NavGroup[] = [
   {
     label: "Rockets",
-    links: [
-      { label: "Badhbh", href: "/projects#mach26" },
-      { label: "Macha", href: "/projects#mach25" },
-      { label: "Airmedh", href: "/projects#euroc24" },
-      { label: "Morrigu", href: "/projects#mach24" },
-      { label: "Sionna", href: "/projects#sionna" },
+    sections: [
+      {
+        label: "Competition",
+        href: "/projects",
+        links: [
+          { label: "Badhbh", href: "/projects#mach26" },
+          { label: "Macha", href: "/projects#mach25" },
+          { label: "Airmedh", href: "/projects#euroc24" },
+          { label: "Morrigu", href: "/projects#mach24" },
+        ],
+      },
+      {
+        label: "Flight test",
+        href: "/test-vehicles",
+        links: [
+          { label: "Sguaba Tuinne", href: "/test-vehicles#sguaba-tuinne" },
+          { label: "Feth Fiada", href: "/test-vehicles#feth-fiada" },
+          { label: "Sionna", href: "/test-vehicles#sionna" },
+        ],
+      },
     ],
   },
   {
@@ -48,8 +70,15 @@ const directLinks = [
 export default function NavBar() {
   const visible = useNavVisible();
   const [openGroup, setOpenGroup] = useState<string | null>(null);
-  const openLinkCount = groups.find((group) => group.label === openGroup)?.links.length ?? 0;
-  const panelHeight = openGroup ? 124 + openLinkCount * 38 : 88;
+  const openGroupData = groups.find((group) => group.label === openGroup);
+  const openLinkCount = openGroupData
+    ? (openGroupData.links?.length ?? 0) +
+      (openGroupData.sections?.reduce(
+        (total, section) => total + section.links.length + 1,
+        0,
+      ) ?? 0)
+    : 0;
+  const panelHeight = openGroup ? 116 + openLinkCount * 38 : 88;
 
   return (
     <header
@@ -104,13 +133,34 @@ export default function NavBar() {
                 </button>
 
                 <div
-                  className={`absolute left-0 top-[72px] w-56 pt-5 transition-[opacity,transform] duration-500 ${
+                  className={`absolute left-0 top-[72px] w-64 pt-5 transition-[opacity,transform] duration-500 ${
                     openGroup === group.label
                       ? "pointer-events-auto translate-y-0 opacity-100 delay-75"
                       : "pointer-events-none -translate-y-2 opacity-0"
                   }`}
                 >
-                  {group.links.map((link) => (
+                  {group.sections?.map((section, sectionIndex) => (
+                    <div key={section.href} className={sectionIndex ? "mt-4" : ""}>
+                      <Link
+                        href={section.href}
+                        onClick={() => setOpenGroup(null)}
+                        className="block py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/38 transition-colors hover:text-white/70"
+                      >
+                        {section.label}
+                      </Link>
+                      {section.links.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setOpenGroup(null)}
+                          className="block py-2 pl-4 text-[15px] font-medium uppercase tracking-[0.08em] text-white/68 drop-shadow-md transition-colors hover:text-white"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                  {group.links?.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About | ULAS HiPR",
@@ -59,8 +60,20 @@ const chapters = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-svh bg-black text-white">
-      <header className="mx-auto grid min-h-[78svh] max-w-[1500px] content-center gap-14 px-6 pb-20 pt-36 sm:px-10 lg:grid-cols-2 lg:gap-20 lg:px-12 lg:pt-40 xl:px-16">
+    <main className="relative isolate min-h-svh overflow-hidden bg-black text-white">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0">
+        <Image
+          src="/about-team-ulster.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-80 brightness-[0.82] saturate-[0.82]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.32)_48%,rgba(0,0,0,0.62)_100%)]" />
+      </div>
+
+      <header className="relative z-10 mx-auto grid min-h-[78svh] max-w-[1500px] content-center gap-14 px-6 pb-20 pt-36 sm:px-10 lg:grid-cols-2 lg:gap-20 lg:px-12 lg:pt-40 xl:px-16">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/38">
             University of Limerick
@@ -78,7 +91,7 @@ export default function AboutPage() {
         </p>
       </header>
 
-      <article className="mx-auto max-w-[1500px] px-6 pb-28 sm:px-10 lg:px-12 xl:px-16">
+      <article className="relative z-10 mx-auto max-w-[1500px] px-6 pb-28 sm:px-10 lg:px-12 xl:px-16">
         {chapters.map((chapter) => (
           <section
             key={chapter.marker}

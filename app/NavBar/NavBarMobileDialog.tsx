@@ -3,15 +3,37 @@
 import { DrawerClose, DrawerContent } from "@/components/ui/drawer";
 import Link from "next/link";
 
-const groups = [
+type MobileLink = [label: string, href: string];
+type MobileSection = { label: string; href: string; links: MobileLink[] };
+type MobileGroup = {
+  label: string;
+  links?: MobileLink[];
+  sections?: MobileSection[];
+};
+
+const groups: MobileGroup[] = [
   {
     label: "Rockets",
-    links: [
-      ["Badhbh", "/projects#mach26"],
-      ["Macha", "/projects#mach25"],
-      ["Airmedh", "/projects#euroc24"],
-      ["Morrigu", "/projects#mach24"],
-      ["Sionna", "/projects#sionna"],
+    sections: [
+      {
+        label: "Competition",
+        href: "/projects",
+        links: [
+          ["Badhbh", "/projects#mach26"],
+          ["Macha", "/projects#mach25"],
+          ["Airmedh", "/projects#euroc24"],
+          ["Morrigu", "/projects#mach24"],
+        ],
+      },
+      {
+        label: "Flight test",
+        href: "/test-vehicles",
+        links: [
+          ["Sguaba Tuinne", "/test-vehicles#sguaba-tuinne"],
+          ["Feth Fiada", "/test-vehicles#feth-fiada"],
+          ["Sionna", "/test-vehicles#sionna"],
+        ],
+      },
     ],
   },
   { label: "Engines", links: [["Luin", "/engines#luin"]] },
@@ -46,19 +68,45 @@ export default function NavBarMobileDialog() {
       <nav aria-label="Mobile navigation" className="px-6 pb-4 pt-7">
         <div className="grid grid-cols-2 gap-x-8 gap-y-9 border-b border-white/15 pb-8">
           {groups.map((group) => (
-            <div key={group.label}>
+            <div key={group.label} className={group.sections ? "col-span-2" : ""}>
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/38">
                 {group.label}
               </p>
-              <div className="mt-3 space-y-2.5">
-                {group.links.map(([label, href]) => (
-                  <DrawerClose asChild key={href}>
-                    <Link href={href} className="block text-lg font-semibold uppercase tracking-[0.02em]">
-                      {label}
-                    </Link>
-                  </DrawerClose>
-                ))}
-              </div>
+              {group.sections ? (
+                <div className="mt-4 grid grid-cols-2 gap-7">
+                  {group.sections.map((section) => (
+                    <div key={section.href}>
+                      <DrawerClose asChild>
+                        <Link
+                          href={section.href}
+                          className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/38"
+                        >
+                          {section.label}
+                        </Link>
+                      </DrawerClose>
+                      <div className="mt-3 space-y-2.5 border-l border-white/14 pl-3">
+                        {section.links.map(([label, href]) => (
+                          <DrawerClose asChild key={href}>
+                            <Link href={href} className="block text-base font-semibold uppercase tracking-[0.02em]">
+                              {label}
+                            </Link>
+                          </DrawerClose>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-3 space-y-2.5">
+                  {group.links?.map(([label, href]) => (
+                    <DrawerClose asChild key={href}>
+                      <Link href={href} className="block text-lg font-semibold uppercase tracking-[0.02em]">
+                        {label}
+                      </Link>
+                    </DrawerClose>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

@@ -47,7 +47,7 @@
     @apply bg-background text-foreground;
     font-family: "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
     font-stretch: condensed;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.025em;
     margin: 0;
     overflow-x: hidden;
   }

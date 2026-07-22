@@ -23,20 +23,8 @@ type Project = {
 
 const projects: Project[] = [
   {
-    id: "sionna",
-    number: "01",
-    programme: "First high-powered vehicle",
-    name: "Sionna",
-    description:
-      "Named after the Celtic goddess of inspiration and innovation, Sionna was HiPR's first high-powered rocket. It was designed for a 1.5 km flight and launched during International Rocketry Week in Glasgow.",
-    model: "/rockets/sionna.glb",
-    height: 1.34,
-    details: ["1.5 km design target", "Student-built airframe", "Launched in Glasgow"],
-    imageFirst: true,
-  },
-  {
     id: "mach24",
-    number: "02",
+    number: "01",
     programme: "Mach-24 · 2024",
     name: "Morrigu",
     description:
@@ -50,7 +38,7 @@ const projects: Project[] = [
   },
   {
     id: "euroc24",
-    number: "03",
+    number: "02",
     programme: "EuRoC · 2024",
     name: "Airmedh",
     description:
@@ -62,7 +50,7 @@ const projects: Project[] = [
   },
   {
     id: "mach25",
-    number: "04",
+    number: "03",
     programme: "Mach-25 · 2025",
     name: "Macha",
     description:
@@ -73,7 +61,7 @@ const projects: Project[] = [
   },
   {
     id: "mach26",
-    number: "05",
+    number: "04",
     programme: "Mach-26 · 2026",
     name: "Badhbh",
     description:
@@ -306,7 +294,7 @@ function ProjectSection({ project }: { project: Project }) {
         >
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] opacity-55">
             <span>{project.programme}</span>
-            <span>{project.number} / 05</span>
+            <span>{project.number} / 04</span>
           </div>
           <h2 className="mt-14 text-5xl font-semibold uppercase leading-none sm:text-6xl">
             {project.name}
@@ -383,10 +371,10 @@ export default function Projects() {
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">Flight programme</p>
-            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Rockets</h1>
+            <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Competition rockets</h1>
           </div>
           <p className="max-w-xl text-lg leading-8 text-white/62 lg:translate-y-[14px] lg:justify-self-end">
-            A chronological record of the vehicles designed, built and flown by HiPR at the University of Limerick.
+            The vehicles built to carry HiPR&apos;s engineering into international competition.
           </p>
         </div>
       </header>
