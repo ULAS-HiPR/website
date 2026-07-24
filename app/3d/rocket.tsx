@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   ContactShadows,
   Environment,
@@ -373,6 +374,11 @@ export default function RocketAnimation({
   controlsTopClass = "lg:top-[164px]",
   modelAxis = "z",
   preserveMaterials = false,
+  exteriorImage,
+  blendBlackBackground = false,
+  sectionImage,
+  blendSectionBlackBackground = false,
+  defaultSectioned = true,
 }: {
   model?: string;
   name?: string;
@@ -381,12 +387,21 @@ export default function RocketAnimation({
   controlsTopClass?: string;
   modelAxis?: "y" | "z";
   preserveMaterials?: boolean;
+  exteriorImage?: string;
+  blendBlackBackground?: boolean;
+  sectionImage?: string;
+  blendSectionBlackBackground?: boolean;
+  defaultSectioned?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [active, setActive] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [sectioned, setSectioned] = useState(true);
+  const [sectioned, setSectioned] = useState(defaultSectioned);
+  const displayedImage = sectioned ? sectionImage : exteriorImage;
+  const blendDisplayedImage = sectioned
+    ? blendSectionBlackBackground
+    : blendBlackBackground;
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -444,7 +459,42 @@ export default function RocketAnimation({
         </button>
       </div>
 
-      {shouldLoad ? (
+      {displayedImage ? (
+        <div className="absolute inset-0 isolate overflow-hidden bg-black">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_38%,rgba(221,231,241,0.15)_0%,rgba(116,139,164,0.06)_30%,transparent_63%)]"
+          />
+          <div
+            aria-hidden="true"
+            className={`absolute inset-x-0 bottom-0 ${
+              blendDisplayedImage ? "h-[22%]" : "h-[34%]"
+            } bg-[radial-gradient(ellipse_at_50%_100%,rgba(109,118,132,0.72)_0%,rgba(48,53,61,0.74)_34%,rgba(16,18,22,0.78)_61%,transparent_82%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_48%)]`}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute bottom-[clamp(5.1rem,10svh,7rem)] left-1/2 h-[clamp(22px,4svh,42px)] w-[clamp(150px,31%,300px)] -translate-x-1/2 rounded-[50%] bg-black/85 blur-[16px]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute bottom-[clamp(5.3rem,10.5svh,7.2rem)] left-1/2 h-[clamp(8px,1.5svh,16px)] w-[clamp(78px,17%,165px)] -translate-x-1/2 rounded-[50%] bg-black/95 blur-md"
+          />
+          <Image
+            src={displayedImage}
+            alt={`${name} ${sectioned ? "Y–X section" : "exterior"} render`}
+            fill
+            priority
+            sizes="100vw"
+            className={`z-10 object-contain object-center px-10 py-[clamp(6rem,13svh,8rem)] drop-shadow-[0_24px_18px_rgba(0,0,0,0.58)] sm:px-20 lg:px-28 ${
+              blendDisplayedImage ? "mix-blend-screen" : ""
+            }`}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(112deg,transparent_28%,rgba(205,225,245,0.055)_46%,transparent_61%)] mix-blend-screen"
+          />
+        </div>
+      ) : shouldLoad ? (
         <Canvas
           className="pointer-events-none"
           shadows
@@ -498,7 +548,7 @@ export default function RocketAnimation({
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_55%,rgba(255,255,255,0.055),transparent_34%)]" />
       )}
 
-      <p className="pointer-events-none absolute bottom-7 right-7 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/38 sm:bottom-10 sm:right-10">
+      <p className="pointer-events-none absolute bottom-7 right-7 text-xs font-semibold uppercase tracking-[0.15em] text-white/38 sm:bottom-10 sm:right-10 sm:text-sm">
         {name} · {height.toFixed(2)} m
       </p>
     </div>

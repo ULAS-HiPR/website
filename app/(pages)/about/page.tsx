@@ -68,7 +68,7 @@ export default function AboutPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-80 brightness-[0.82] saturate-[0.82]"
+          className="object-cover object-center opacity-80 brightness-[0.72] saturate-[0.82]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.32)_48%,rgba(0,0,0,0.62)_100%)]" />
       </div>

@@ -49,7 +49,7 @@ function Specifications({ rows }: { rows: string[][] }) {
 
 function SguabaSection() {
   return (
-    <section id="sguaba-tuinne" className="scroll-mt-[-7px] bg-black text-white">
+    <section id="sguaba-tuinne" className="scroll-mt-[88px] bg-black text-white">
       <div className="mx-auto grid min-h-[800px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
@@ -88,7 +88,7 @@ function SguabaSection() {
             fill
             priority
             sizes="(min-width: 1024px) 55vw, 100vw"
-            className="object-cover object-center brightness-[0.78]"
+            className="object-cover object-top brightness-[0.78]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/66 via-transparent to-black/12" />
           <figcaption className="absolute bottom-7 left-7 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/58 sm:bottom-10 sm:left-10">

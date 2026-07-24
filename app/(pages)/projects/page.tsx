@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import RocketAnimation from "@/app/3d/rocket";
@@ -19,6 +18,11 @@ type Project = {
   launchVideo?: string;
   launchPoster?: string;
   bannerImage?: string;
+  exteriorImage?: string;
+  blendBlackBackground?: boolean;
+  sectionImage?: string;
+  blendSectionBlackBackground?: boolean;
+  defaultSectioned?: boolean;
 };
 
 const projects: Project[] = [
@@ -30,6 +34,10 @@ const projects: Project[] = [
     description:
       "Morrigu was HiPR's first competition rocket, built from fibreglass and carbon fibre with spring recovery and a deployable payload. The airframe broke up shortly after launch, reaching roughly 600 m and giving the new team its first full set of competition-flight lessons.",
     model: "/rockets/morrigu.glb",
+    exteriorImage: "/rockets/morrigu-render.png",
+    sectionImage: "/rockets/morrigu-section.png",
+    blendSectionBlackBackground: true,
+    defaultSectioned: false,
     height: 1.84,
     details: ["First competition flight", "Spring recovery", "Deployable payload"],
     launchVideo: "/mach_24/morrigu-launch.mp4",
@@ -44,6 +52,11 @@ const projects: Project[] = [
     description:
       "Airmedh was built around a Blue Tube airframe for the 3 km category at EuRoC 2024. The team launched it in Ponte de Sor, Portugal, reaching an apogee of 2.275 km and completing HiPR's first EuRoC campaign.",
     model: "/rockets/airmedh.glb",
+    exteriorImage: "/rockets/airmedh-render.png",
+    blendBlackBackground: true,
+    sectionImage: "/rockets/airmedh-section.png",
+    blendSectionBlackBackground: true,
+    defaultSectioned: false,
     height: 1.95,
     details: ["2.275 km apogee", "Blue Tube airframe", "Ponte de Sor, Portugal"],
     imageFirst: true,
@@ -58,6 +71,11 @@ const projects: Project[] = [
     model: "/rockets/macha.glb",
     height: 1.96,
     details: ["2.273 km apogee", "Second place in category", "AI landing-zone CanSat"],
+    exteriorImage: "/rockets/macha-render.png",
+    blendBlackBackground: true,
+    sectionImage: "/rockets/macha-section.png",
+    blendSectionBlackBackground: true,
+    defaultSectioned: false,
   },
   {
     id: "mach26",
@@ -240,6 +258,10 @@ function BadhbhScrollSection({ project }: { project: Project }) {
           controlsTopClass="lg:top-[104px]"
           modelAxis="y"
           preserveMaterials
+          exteriorImage="/rockets/badhbh-render-v2.png"
+          sectionImage="/rockets/badhbh-section.png"
+          blendSectionBlackBackground
+          defaultSectioned={false}
         />
       </div>
 
@@ -284,6 +306,11 @@ function ProjectSection({ project }: { project: Project }) {
             model={project.model}
             name={project.name}
             height={project.height}
+            exteriorImage={project.exteriorImage}
+            blendBlackBackground={project.blendBlackBackground}
+            sectionImage={project.sectionImage}
+            blendSectionBlackBackground={project.blendSectionBlackBackground}
+            defaultSectioned={project.defaultSectioned}
           />
         </div>
 
@@ -314,40 +341,6 @@ function ProjectSection({ project }: { project: Project }) {
         </div>
       </div>
 
-      {project.launchVideo ? (
-        <figure className="mx-auto max-w-[1500px] bg-black px-3 pb-3 sm:px-4 sm:pb-4">
-          <div className={`grid gap-3 sm:gap-4 ${project.bannerImage ? "lg:grid-cols-2" : ""}`}>
-            <div className="relative h-[78svh] min-h-[560px] max-h-[900px] overflow-hidden bg-black">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster={project.launchPoster}
-                aria-label={`${project.name} launch at ${project.programme}`}
-                className="h-full w-full object-contain"
-              >
-                <source src={project.launchVideo} type="video/mp4" />
-              </video>
-            </div>
-            {project.bannerImage ? (
-              <div className="relative h-[78svh] min-h-[560px] max-h-[900px] overflow-hidden bg-[#0c0d14]">
-                <Image
-                  src={project.bannerImage}
-                  alt="ULAS HiPR vehicle programme banner showing Sionna, Morrigu, Airmedh and Macha"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain"
-                />
-              </div>
-            ) : null}
-          </div>
-          <figcaption className="px-1 pt-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45">
-            {project.name} launch · {project.programme}
-          </figcaption>
-        </figure>
-      ) : null}
     </section>
   );
 }
@@ -374,7 +367,7 @@ export default function Projects() {
             <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Competition rockets</h1>
           </div>
           <p className="max-w-xl text-lg leading-8 text-white/62 lg:translate-y-[14px] lg:justify-self-end">
-            The vehicles built to carry HiPR&apos;s engineering into international competition.
+            The vehicles that represent HiPR at international competitions.
           </p>
         </div>
       </header>

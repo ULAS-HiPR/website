@@ -93,20 +93,35 @@ function DeploymentModel({
   const aluminium = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#c5cacf",
-        metalness: 0.88,
-        roughness: 0.25,
+        color: "#d7dce2",
+        metalness: 0.76,
+        roughness: 0.3,
         clearcoat: 0.22,
         clearcoatRoughness: 0.2,
-        envMapIntensity: 1.5,
+        envMapIntensity: 1.15,
         side: THREE.DoubleSide,
         clipShadows: true,
       }),
     []
   );
 
+  const edgeMaterial = useMemo(
+    () =>
+      new THREE.LineBasicMaterial({
+        color: "#080a0d",
+        transparent: true,
+        opacity: 0.94,
+        depthTest: true,
+        depthWrite: false,
+        clippingPlanes: [sectionPlane],
+      }),
+    [sectionPlane]
+  );
+
   useEffect(() => {
     const smoothedGeometries: THREE.BufferGeometry[] = [];
+    const edgeGeometries: THREE.EdgesGeometry[] = [];
+    const edgeObjects: THREE.LineSegments[] = [];
 
     deployment.traverse((child) => {
       if (child instanceof THREE.Mesh) {
@@ -118,18 +133,43 @@ function DeploymentModel({
         child.material = aluminium;
         child.castShadow = true;
         child.receiveShadow = true;
+
+        const edgeGeometry = new THREE.EdgesGeometry(smoothed, 24);
+        const edges = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+        edges.renderOrder = 4;
+        child.add(edges);
+        edgeGeometries.push(edgeGeometry);
+        edgeObjects.push(edges);
       }
     });
 
-    return () => smoothedGeometries.forEach((geometry) => geometry.dispose());
-  }, [aluminium, deployment]);
+    return () => {
+      edgeObjects.forEach((edges) => edges.parent?.remove(edges));
+      edgeGeometries.forEach((geometry) => geometry.dispose());
+      smoothedGeometries.forEach((geometry) => geometry.dispose());
+    };
+  }, [aluminium, deployment, edgeMaterial]);
 
-  useEffect(() => () => aluminium.dispose(), [aluminium]);
+  useEffect(
+    () => () => {
+      aluminium.dispose();
+      edgeMaterial.dispose();
+    },
+    [aluminium, edgeMaterial]
+  );
 
   useEffect(() => {
     aluminium.clippingPlanes = sectioned ? [sectionPlane] : [];
     aluminium.needsUpdate = true;
-  }, [aluminium, sectionPlane, sectioned]);
+    edgeMaterial.visible = sectioned;
+    edgeMaterial.needsUpdate = true;
+  }, [aluminium, edgeMaterial, sectionPlane, sectioned]);
+
+  useEffect(() => {
+    if (sectioned && group.current) {
+      group.current.rotation.set(0, 0, 0);
+    }
+  }, [sectioned]);
 
   useFrame((_, delta) => {
     if (!group.current) return;
@@ -200,6 +240,7 @@ export default function CO2Deployment({ className = "" }: { className?: string }
         gl={{
           antialias: true,
           alpha: true,
+          stencil: true,
           toneMapping: THREE.ACESFilmicToneMapping,
         }}
         onCreated={({ gl }) => {
@@ -233,7 +274,7 @@ export default function CO2Deployment({ className = "" }: { className?: string }
         />
 
         <Suspense fallback={null}>
-          <Bounds fit clip observe margin={1.5}>
+          <Bounds fit clip observe margin={sectioned ? 1.16 : 1.28}>
             <DeploymentModel
               reduceMotion={reduceMotion}
               sectioned={sectioned}

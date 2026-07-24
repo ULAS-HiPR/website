@@ -44,7 +44,7 @@ export default function Sponsorship() {
             Support HiPR
           </p>
           <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-tight sm:text-6xl">
-            Put Irish student rocketry into flight.
+            Partner with Ireland&apos;s largest student rocketry team.
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-8 text-white/72">
             Partner with University of Limerick students as they design, build
@@ -125,27 +125,39 @@ export default function Sponsorship() {
               href="https://www.ul.ie/scieng"
               label="Visit the University of Limerick Faculty of Science and Engineering"
             >
-              <div className="flex w-full max-w-md items-center justify-center gap-5 sm:gap-7">
-                <Image
-                  src="/partners/ul-symbol.svg"
-                  alt=""
-                  width={58}
-                  height={96}
-                  loading="eager"
-                  className="h-24 w-auto shrink-0"
-                />
-                <div className="border-l border-white/20 pl-5 sm:pl-7">
-                  <p className="text-xl font-semibold uppercase leading-tight tracking-[0.035em] sm:text-2xl">
-                    University of Limerick
-                  </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-white/55">
-                    Ollscoil Luimnigh
-                  </p>
-                  <p className="mt-4 border-t border-white/15 pt-4 text-sm leading-tight text-white/70">
-                    Faculty of Science and Engineering
-                  </p>
-                </div>
-              </div>
+              <Image
+                src="/partners/university-of-limerick.png"
+                alt="University of Limerick"
+                width={640}
+                height={293}
+                loading="eager"
+                className="h-auto w-full max-w-[420px] object-contain"
+              />
+            </PartnerCard>
+
+            <PartnerCard
+              href="https://software-engineering.ie/"
+              label="Visit Immersive Software Engineering"
+            >
+              <Image
+                src="/partners/ise.png"
+                alt="Immersive Software Engineering"
+                width={440}
+                height={300}
+                loading="eager"
+                className="h-auto w-full max-w-[270px] object-contain"
+              />
+            </PartnerCard>
+
+            <PartnerCard href="https://purcell.ie/" label="Visit Purcell">
+              <Image
+                src="/partners/purcell.png"
+                alt="Purcell"
+                width={555}
+                height={100}
+                loading="eager"
+                className="h-auto w-full max-w-[340px] object-contain"
+              />
             </PartnerCard>
 
             <PartnerCard href="https://easyeda.com/" label="Visit EasyEDA">
