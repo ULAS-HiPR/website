@@ -1,9 +1,9 @@
-name: Deploy refresh to GitHub Pages
+name: Deploy main to GitHub Pages
 
 on:
   push:
     branches:
-      - refresh
+      - main
   workflow_dispatch:
 
 permissions:
