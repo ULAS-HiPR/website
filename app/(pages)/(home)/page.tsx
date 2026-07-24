@@ -92,7 +92,7 @@ export default function Home() {
               University of Limerick
             </p>
             <h2 className="mt-5 max-w-4xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.015em] sm:text-7xl lg:text-[88px]">
-              Building Ireland&apos;s Space Industry.
+              Building Ireland&apos;s Space Generation
             </h2>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/72">
               More than 100 students developing flight-proven rockets,

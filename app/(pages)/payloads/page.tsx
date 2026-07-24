@@ -12,7 +12,7 @@ const muSpecifications = [
 
 function MuSection() {
   return (
-    <section id="mu" className="scroll-mt-[-7px] bg-black text-white">
+    <section id="mu" className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]">
       <div className="mx-auto grid min-h-[780px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
@@ -41,9 +41,9 @@ function MuSection() {
 
           <dl className="mt-10 border-t border-white/18">
             {muSpecifications.map(([label, value]) => (
-              <div key={label} className="grid grid-cols-[1fr_auto] gap-5 border-b border-white/14 py-4 text-sm">
+              <div key={label} className="grid grid-cols-1 gap-1 border-b border-white/14 py-4 text-sm sm:grid-cols-[1fr_auto] sm:gap-5">
                 <dt className="text-white/46">{label}</dt>
-                <dd className="text-right font-medium text-white/88">{value}</dd>
+                <dd className="font-medium text-white/88 sm:text-right">{value}</dd>
               </div>
             ))}
           </dl>
@@ -91,7 +91,7 @@ function ToirtisSection() {
   ];
 
   return (
-    <section id="toirtis" className="scroll-mt-[-7px] bg-black text-white">
+    <section id="toirtis" className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]">
       <div className="mx-auto grid min-h-[760px] max-w-[1500px] border-x border-white/10 lg:grid-cols-2">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
@@ -118,9 +118,9 @@ function ToirtisSection() {
 
           <dl className="mt-10 border-t border-white/18">
             {specifications.map(([label, value]) => (
-              <div key={label} className="grid grid-cols-[1fr_auto] gap-5 border-b border-white/14 py-4 text-sm">
+              <div key={label} className="grid grid-cols-1 gap-1 border-b border-white/14 py-4 text-sm sm:grid-cols-[1fr_auto] sm:gap-5">
                 <dt className="text-white/46">{label}</dt>
-                <dd className="text-right font-medium text-white/88">{value}</dd>
+                <dd className="font-medium text-white/88 sm:text-right">{value}</dd>
               </div>
             ))}
           </dl>
@@ -150,7 +150,7 @@ function ToirtisSection() {
 
 export default function PayloadsPage() {
   return (
-    <main className="bg-black pt-[88px] text-white">
+    <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <header className="bg-black">
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>

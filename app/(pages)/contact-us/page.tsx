@@ -32,6 +32,9 @@ const initialForm: ContactForm = {
   message: "",
 };
 
+const PAGECLIP_FORM_URL =
+  "https://send.pageclip.co/LKzmlrF6e3DnK96laPtVYHxffKTLJAbP/get-in-touch";
+
 export default function ContactUs() {
   const [formData, setFormData] = useState<ContactForm>(initialForm);
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
@@ -43,13 +46,11 @@ export default function ContactUs() {
   }
 
   function submitForm(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
     if (!window.Pageclip) {
-      setStatus("error");
       return;
     }
 
+    event.preventDefault();
     setStatus("sending");
     window.Pageclip.send(
       "LKzmlrF6e3DnK96laPtVYHxffKTLJAbP",
@@ -122,7 +123,12 @@ export default function ContactUs() {
               <h2 className="mt-3 text-3xl font-semibold">Get in touch</h2>
             </div>
 
-            <form onSubmit={submitForm} className="mt-8">
+            <form
+              action={PAGECLIP_FORM_URL}
+              method="post"
+              onSubmit={submitForm}
+              className="mt-8"
+            >
               <div className="grid gap-6 sm:grid-cols-2">
                 <label className="block text-sm font-semibold" htmlFor="name">
                   Name

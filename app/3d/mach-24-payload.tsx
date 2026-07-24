@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 import { withBasePath } from "@/lib/base-path";
 
-function Mach24Payload(props: any) {
+function Mach24Payload() {
   const { scene } = useGLTF(withBasePath("/mach24-payload.glb"));
   return (
     <mesh
@@ -18,7 +18,7 @@ function Mach24Payload(props: any) {
 
 export default function Mach24PayloadAnimation() {
   return (
-    <div className="h-[700px] -mx-12 ">
+    <div className="h-[calc(100svh-72px)] min-h-[560px] w-full min-[760px]:h-[calc(100svh-88px)]">
       <Canvas
         camera={{
           position: [0, -8, 0],
@@ -27,10 +27,7 @@ export default function Mach24PayloadAnimation() {
       >
         <ambientLight intensity={2} />
         <Mach24Payload />
-        <OrbitControls
-          onChange={(e) => console.log(e?.target.object)}
-          makeDefault
-        />
+        <OrbitControls makeDefault />
         <Environment preset="studio" />
       </Canvas>
     </div>

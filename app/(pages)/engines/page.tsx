@@ -14,7 +14,7 @@ const specifications = [
 
 function LuinSection() {
   return (
-    <section id="luin" className="relative scroll-mt-[-7px] overflow-hidden bg-black text-white">
+    <section id="luin" className="relative scroll-mt-[72px] overflow-hidden bg-black text-white min-[760px]:scroll-mt-[88px]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[34%] bg-[radial-gradient(ellipse_at_72%_100%,rgba(103,108,116,0.34)_0%,rgba(54,57,62,0.22)_28%,rgba(17,18,20,0.08)_56%,transparent_74%),linear-gradient(180deg,transparent_0%,rgba(29,31,34,0.86)_100%)]"
@@ -47,7 +47,7 @@ function LuinSection() {
 
           <dl className="mt-10 border-t border-white/20">
             {specifications.map(([label, value]) => (
-              <div key={label} className="grid grid-cols-[1fr_auto] gap-5 border-b border-white/16 py-4 text-sm">
+              <div key={label} className="grid grid-cols-1 gap-1 border-b border-white/16 py-4 text-sm sm:grid-cols-[1fr_auto] sm:gap-5">
                 <dt className="text-white/48">{label}</dt>
                 <dd className="font-medium text-white/88">{value}</dd>
               </div>
@@ -86,7 +86,7 @@ export default function EnginesPage() {
   }, []);
 
   return (
-    <main className="bg-black pt-[88px] text-white">
+    <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <header className="bg-black">
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>

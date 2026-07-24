@@ -1,7 +1,5 @@
 import Mach24PayloadAnimation from "@/app/3d/mach-24-payload";
 import SionnaAnimation from "@/app/3d/rocket";
-import ModelAnimation from "@/app/3d/rocket";
-import RocketAnimation from "@/app/3d/rocket";
 
 export function generateStaticParams() {
   return [{ name: "mach24-payload" }, { name: "sionna" }];
@@ -16,14 +14,16 @@ export default function Model({ params }: { params: { name: string } }) {
       case "mach24-payload":
         return <Mach24PayloadAnimation />;
       case "sionna":
-        return <SionnaAnimation />;
+        return <SionnaAnimation paintScheme="sionna" />;
       default:
         return <></>;
     }
   };
   return (
-    <div className="px-12 pb-8">
-      <Model />
-    </div>
+    <main className="min-h-svh bg-black pt-[72px] min-[760px]:pt-[88px]">
+      <div className="relative min-h-[calc(100svh-72px)] min-[760px]:min-h-[calc(100svh-88px)]">
+        <Model />
+      </div>
+    </main>
   );
 }

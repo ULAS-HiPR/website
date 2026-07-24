@@ -10,7 +10,7 @@ export default function PagesLayout({
 }) {
   return (
     <div>
-      <Drawer>
+      <Drawer shouldScaleBackground={false}>
         <div className="hidden min-[760px]:block">
           <NavBar />
         </div>

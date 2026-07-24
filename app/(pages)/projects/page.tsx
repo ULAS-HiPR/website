@@ -50,7 +50,7 @@ const projects: Project[] = [
     programme: "EuRoC · 2024",
     name: "Airmedh",
     description:
-      "Airmedh was built around a Blue Tube airframe for the 3 km category at EuRoC 2024. The team launched it in Ponte de Sor, Portugal, reaching an apogee of 2.275 km and completing HiPR's first EuRoC campaign.",
+      "Airmedh was built around a Bluetube airframe for the 3 km category at EuRoC 2024. The team launched it in Ponte de Sor, Portugal, reaching an apogee of 2.275 km and completing HiPR's first EuRoC campaign.",
     model: "/rockets/airmedh.glb",
     exteriorImage: "/rockets/airmedh-render.png",
     blendBlackBackground: true,
@@ -58,7 +58,7 @@ const projects: Project[] = [
     blendSectionBlackBackground: true,
     defaultSectioned: false,
     height: 1.95,
-    details: ["2.275 km apogee", "Blue Tube airframe", "Ponte de Sor, Portugal"],
+    details: ["2.275 km apogee", "Bluetube airframe", "Ponte de Sor, Portugal"],
     imageFirst: true,
   },
   {
@@ -247,7 +247,7 @@ function BadhbhScrollSection({ project }: { project: Project }) {
   return (
     <section
       id={project.id}
-      className="relative h-[980svh] scroll-mt-[88px] bg-black text-white"
+      className="relative h-[980svh] scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]"
     >
       <div className="sticky top-0 h-svh overflow-hidden bg-black">
         <RocketAnimation
@@ -298,7 +298,7 @@ function ProjectSection({ project }: { project: Project }) {
   return (
     <section
       id={project.id}
-      className="scroll-mt-[88px] bg-black text-white"
+      className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]"
     >
       <div className="mx-auto grid min-h-[720px] max-w-[1500px] lg:grid-cols-2">
         <div className={`relative min-h-[520px] overflow-hidden border-white/10 ${project.imageFirst ? "lg:order-1 lg:border-r" : "lg:order-2 lg:border-l"}`}>
@@ -359,7 +359,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <main className="bg-black pt-[88px] text-white">
+    <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <header className="bg-black">
         <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>

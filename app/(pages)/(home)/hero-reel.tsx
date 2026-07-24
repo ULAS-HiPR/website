@@ -28,9 +28,9 @@ export default function HeroReel() {
     <section
       id="demo-reel"
       data-intro-phase={phase}
-      className="relative bg-black px-3 pb-3 pt-[88px] sm:px-4 sm:pb-4"
+      className="relative bg-black px-3 pb-3 pt-[72px] sm:px-4 sm:pb-4 min-[760px]:pt-[88px]"
     >
-      <div className="relative h-[calc(100svh-176px)] min-h-[520px] max-h-[980px] overflow-hidden border-x border-b border-white/10 bg-black">
+      <div className="relative h-[calc(100svh-84px)] min-h-[520px] max-h-[980px] overflow-hidden border-x border-b border-white/10 bg-black min-[760px]:h-[calc(100svh-176px)]">
         <video
           autoPlay
           muted

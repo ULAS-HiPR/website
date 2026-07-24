@@ -14,6 +14,7 @@ import { withBasePath } from "@/lib/base-path";
 
 const FLOOR_Y = -2.18;
 const WORLD_UNITS_PER_METRE = 1.6;
+type PaintScheme = "default" | "sionna";
 
 function StageFloor() {
   const lightPool = useMemo(() => {
@@ -155,6 +156,7 @@ function RocketModel({
   verticalOffset,
   modelAxis,
   preserveMaterials,
+  paintScheme,
 }: {
   model: string;
   height: number;
@@ -164,6 +166,7 @@ function RocketModel({
   verticalOffset: number;
   modelAxis: "y" | "z";
   preserveMaterials: boolean;
+  paintScheme: PaintScheme;
 }) {
   const { scene } = useGLTF(withBasePath(model));
   const rocket = useMemo(() => {
@@ -187,38 +190,63 @@ function RocketModel({
   );
   const carbonWeave = useMemo(() => createCarbonWeaveTexture(), []);
   const materials = useMemo(
-    () => ({
-      carbon: buildMaterial("#b7bec4", 0.36, 0.42, {
-        map: carbonWeave,
-        bumpMap: carbonWeave,
-        bumpScale: 0.018,
-        clearcoat: 0.1,
-        clearcoatRoughness: 0.38,
-      }),
-      fin: buildMaterial("#b7bec4", 0.36, 0.42, {
-        map: carbonWeave,
-        bumpMap: carbonWeave,
-        bumpScale: 0.018,
-        clearcoat: 0.1,
-        clearcoatRoughness: 0.38,
-      }),
-      composite: buildMaterial("#425064", 0.46, 0.34, {
-        clearcoat: 0.24,
-        clearcoatRoughness: 0.3,
-      }),
-      nose: buildMaterial("#913832", 0.44, 0.33, {
-        clearcoat: 0.34,
-        clearcoatRoughness: 0.24,
-      }),
-      recovery: buildMaterial("#396a61", 0.4, 0.38),
-      electronics: buildMaterial("#334d68", 0.52, 0.32),
-      motor: buildMaterial("#565e63", 0.82, 0.24),
-      structure: buildMaterial("#a7afb5", 0.84, 0.22, {
-        clearcoat: 0.08,
-        clearcoatRoughness: 0.4,
-      }),
-    }),
-    [carbonWeave]
+    () => {
+      const isSionna = paintScheme === "sionna";
+      const sionnaBlue = "#00709f";
+
+      return {
+        carbon: buildMaterial(
+          isSionna ? sionnaBlue : "#b7bec4",
+          isSionna ? 0.12 : 0.36,
+          isSionna ? 0.28 : 0.42,
+          {
+            map: isSionna ? null : carbonWeave,
+            bumpMap: isSionna ? null : carbonWeave,
+            bumpScale: isSionna ? 0 : 0.018,
+            clearcoat: isSionna ? 0.48 : 0.1,
+            clearcoatRoughness: isSionna ? 0.2 : 0.38,
+          }
+        ),
+        fin: buildMaterial(
+          isSionna ? sionnaBlue : "#b7bec4",
+          isSionna ? 0.12 : 0.36,
+          isSionna ? 0.28 : 0.42,
+          {
+            map: isSionna ? null : carbonWeave,
+            bumpMap: isSionna ? null : carbonWeave,
+            bumpScale: isSionna ? 0 : 0.018,
+            clearcoat: isSionna ? 0.48 : 0.1,
+            clearcoatRoughness: isSionna ? 0.2 : 0.38,
+          }
+        ),
+        composite: buildMaterial(
+          isSionna ? sionnaBlue : "#425064",
+          isSionna ? 0.12 : 0.46,
+          isSionna ? 0.28 : 0.34,
+          {
+            clearcoat: isSionna ? 0.48 : 0.24,
+            clearcoatRoughness: isSionna ? 0.2 : 0.3,
+          }
+        ),
+        nose: buildMaterial(
+          isSionna ? "#f4f4f1" : "#913832",
+          isSionna ? 0.08 : 0.44,
+          isSionna ? 0.26 : 0.33,
+          {
+            clearcoat: 0.34,
+            clearcoatRoughness: 0.24,
+          }
+        ),
+        recovery: buildMaterial("#396a61", 0.4, 0.38),
+        electronics: buildMaterial("#334d68", 0.52, 0.32),
+        motor: buildMaterial("#565e63", 0.82, 0.24),
+        structure: buildMaterial("#a7afb5", 0.84, 0.22, {
+          clearcoat: 0.08,
+          clearcoatRoughness: 0.4,
+        }),
+      };
+    },
+    [carbonWeave, paintScheme]
   );
 
   const presentation = useMemo(() => {
@@ -380,6 +408,7 @@ export default function RocketAnimation({
   sectionImage,
   blendSectionBlackBackground = false,
   defaultSectioned = true,
+  paintScheme = "default",
 }: {
   model?: string;
   name?: string;
@@ -393,6 +422,7 @@ export default function RocketAnimation({
   sectionImage?: string;
   blendSectionBlackBackground?: boolean;
   defaultSectioned?: boolean;
+  paintScheme?: PaintScheme;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -535,6 +565,7 @@ export default function RocketAnimation({
               verticalOffset={verticalOffset}
               modelAxis={modelAxis}
               preserveMaterials={preserveMaterials}
+              paintScheme={paintScheme}
             />
             <Environment resolution={128}>
               <Lightformer intensity={5} position={[0, 4, 3]} scale={[7, 0.35, 1]} />
