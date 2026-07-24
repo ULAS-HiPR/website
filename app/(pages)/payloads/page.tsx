@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { withBasePath } from "@/lib/base-path";
 
 const muSpecifications = [
   ["Detector", "50 × 50 × 20 mm BC-408"],
@@ -50,7 +51,7 @@ function MuSection() {
 
         <div className="relative min-h-[620px] overflow-hidden bg-[#050505] lg:min-h-full">
           <Image
-            src="/payloads/mu/wrapped-board.jpeg"
+            src={withBasePath("/payloads/mu/wrapped-board.jpeg")}
             alt="Mu detector board assembled around its wrapped scintillator"
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -66,13 +67,13 @@ function MuSection() {
       <div className="mx-auto grid max-w-[1500px] border-x border-white/10 md:grid-cols-2">
         <figure className="bg-[#050505] p-4 md:border-r md:border-white/10 sm:p-6">
           <div className="relative aspect-[4/3] overflow-hidden border border-white/10 bg-black">
-            <Image src="/payloads/mu/enclosure-fit-check.png" alt="Mu detector PCB aligned with its 3D-printed enclosure" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+            <Image src={withBasePath("/payloads/mu/enclosure-fit-check.png")} alt="Mu detector PCB aligned with its 3D-printed enclosure" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
           </div>
           <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">Detector enclosure fit check</figcaption>
         </figure>
         <figure className="bg-[#050505] p-4 sm:p-6">
           <div className="relative aspect-[4/3] overflow-hidden border border-white/10 bg-black">
-            <Image src="/payloads/mu/preflight-flash-dashboard.png" alt="Mu console displaying stored particle pulses and flight telemetry" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left" />
+            <Image src={withBasePath("/payloads/mu/preflight-flash-dashboard.png")} alt="Mu console displaying stored particle pulses and flight telemetry" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left" />
           </div>
           <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">Pre-flight logger and flash readout</figcaption>
         </figure>
@@ -135,7 +136,7 @@ function ToirtisSection() {
             aria-label="Toirtis folding and deploying its four legs"
             className="absolute inset-0 h-full w-full object-contain"
           >
-            <source src="/payloads/toirtis/toirtis-deployment.m4v?v=1" type="video/mp4" />
+            <source src={withBasePath("/payloads/toirtis/toirtis-deployment.m4v?v=1")} type="video/mp4" />
           </video>
           <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.05]" />
           <p className="pointer-events-none absolute bottom-7 left-7 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/55 sm:bottom-10 sm:left-10">

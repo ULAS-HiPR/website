@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CO2Deployment from "@/app/3d/co2-deployment";
 import OgmaVideo from "./ogma-video";
+import { withBasePath } from "@/lib/base-path";
 
 const ogmaSpecifications = [
   ["Architecture", "5 × four-layer PCBs"],
@@ -84,7 +85,7 @@ function OgmaSection() {
       <figure className="mx-auto max-w-[1500px] border-x border-white/10 bg-[#050505] p-4 sm:p-6">
         <div className="relative aspect-[4/3] overflow-hidden bg-black sm:aspect-[16/8]">
           <Image
-            src="/controls/ogma/ogma-avbay.jpeg"
+            src={withBasePath("/controls/ogma/ogma-avbay.jpeg")}
             alt="Ogma flight-computer boards integrated into the avionics bay"
             fill
             sizes="100vw"
@@ -142,7 +143,7 @@ function AirbrakesSection() {
               aria-label="CAD animation of the airbrake mechanism deploying"
               className="absolute inset-0 h-full w-full object-contain p-6 opacity-90 sm:p-10"
             >
-              <source src="/controls/airbrakes/airbrake-mechanism-colour.mp4" type="video/mp4" />
+              <source src={withBasePath("/controls/airbrakes/airbrake-mechanism-colour.mp4")} type="video/mp4" />
             </video>
             <figcaption className="pointer-events-none absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/48 sm:bottom-7 sm:left-7">
               Mechanism development
@@ -159,7 +160,7 @@ function AirbrakesSection() {
               aria-label="Airbrake deploying from Badhbh's carbon-fibre airframe"
               className="absolute inset-0 h-full w-full object-cover object-center"
             >
-              <source src="/controls/airbrakes/airbrake-airframe.mp4" type="video/mp4" />
+              <source src={withBasePath("/controls/airbrakes/airbrake-airframe.mp4")} type="video/mp4" />
             </video>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-black/10" />
             <figcaption className="pointer-events-none absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/58 sm:bottom-7 sm:left-7">
@@ -216,7 +217,7 @@ function RecoverySection() {
       <figure className="mx-auto max-w-[1500px] border-x border-white/10 bg-[#050505] p-4 sm:p-6">
         <div className="relative aspect-[4/3] overflow-hidden bg-black sm:aspect-[16/8]">
           <Image
-            src="/controls/co2/co2-deployment.jpg"
+            src={withBasePath("/controls/co2/co2-deployment.jpg")}
             alt="Close view of HiPR's machined twin-cartridge CO2 recovery bulkhead"
             fill
             sizes="100vw"

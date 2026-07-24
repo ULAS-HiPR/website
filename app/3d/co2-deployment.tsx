@@ -15,6 +15,7 @@ import {
   mergeVertices,
   toCreasedNormals,
 } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+import { withBasePath } from "@/lib/base-path";
 
 function StageFloor() {
   const lightPool = useMemo(() => {
@@ -81,7 +82,7 @@ function DeploymentModel({
   sectioned: boolean;
 }) {
   const { scene: exteriorScene } = useGLTF(
-    "/controls/co2/co2-deployment.glb?v=2"
+    withBasePath("/controls/co2/co2-deployment.glb?v=2")
   );
   const deployment = useMemo(() => exteriorScene.clone(true), [exteriorScene]);
   const group = useRef<THREE.Group>(null);
@@ -303,4 +304,4 @@ export default function CO2Deployment({ className = "" }: { className?: string }
   );
 }
 
-useGLTF.preload("/controls/co2/co2-deployment.glb?v=2");
+useGLTF.preload(withBasePath("/controls/co2/co2-deployment.glb?v=2"));

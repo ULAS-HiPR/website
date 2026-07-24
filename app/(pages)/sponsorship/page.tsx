@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { withBasePath } from "@/lib/base-path";
 
 function PartnerCard({
   href,
@@ -29,7 +30,7 @@ export default function Sponsorship() {
     <main className="bg-black text-white">
       <section className="relative min-h-[540px] overflow-hidden bg-black text-white">
         <Image
-          src="/sponsorship-team.png"
+          src={withBasePath("/sponsorship-team.png")}
           alt="ULAS HiPR team gathered at the University of Limerick"
           fill
           priority
@@ -97,7 +98,7 @@ export default function Sponsorship() {
             >
               <div className="relative h-32 w-full max-w-xl">
                 <Image
-                  src="/ADI-AWP.png"
+                  src={withBasePath("/ADI-AWP.png")}
                   alt="Analog Devices"
                   fill
                   sizes="600px"
@@ -126,7 +127,7 @@ export default function Sponsorship() {
               label="Visit the University of Limerick Faculty of Science and Engineering"
             >
               <Image
-                src="/partners/university-of-limerick.png"
+                src={withBasePath("/partners/university-of-limerick.png")}
                 alt="University of Limerick"
                 width={640}
                 height={293}
@@ -140,7 +141,7 @@ export default function Sponsorship() {
               label="Visit Immersive Software Engineering"
             >
               <Image
-                src="/partners/ise.png"
+                src={withBasePath("/partners/ise.png")}
                 alt="Immersive Software Engineering"
                 width={440}
                 height={300}
@@ -151,7 +152,7 @@ export default function Sponsorship() {
 
             <PartnerCard href="https://purcell.ie/" label="Visit Purcell">
               <Image
-                src="/partners/purcell.png"
+                src={withBasePath("/partners/purcell.png")}
                 alt="Purcell"
                 width={555}
                 height={100}
@@ -162,7 +163,7 @@ export default function Sponsorship() {
 
             <PartnerCard href="https://easyeda.com/" label="Visit EasyEDA">
               <Image
-                src="/partners/easyeda.svg"
+                src={withBasePath("/partners/easyeda.svg")}
                 alt="EasyEDA"
                 width={300}
                 height={64}
@@ -173,7 +174,7 @@ export default function Sponsorship() {
 
             <PartnerCard href="https://www.onsemi.com/" label="Visit onsemi">
               <Image
-                src="/partners/onsemi.svg"
+                src={withBasePath("/partners/onsemi.svg")}
                 alt="onsemi"
                 width={346}
                 height={60}
@@ -187,7 +188,7 @@ export default function Sponsorship() {
               label="Visit Luxium Solutions"
             >
               <Image
-                src="/partners/luxium.svg"
+                src={withBasePath("/partners/luxium.svg")}
                 alt="Luxium Solutions"
                 width={300}
                 height={78}
@@ -202,7 +203,7 @@ export default function Sponsorship() {
             >
               <div className="relative h-28 w-full max-w-lg">
                 <Image
-                  src="/ansys.png"
+                  src={withBasePath("/ansys.png")}
                   alt="Ansys"
                   fill
                   sizes="500px"
@@ -216,7 +217,7 @@ export default function Sponsorship() {
               label="Visit Irish Manufacturing Research"
             >
               <Image
-                src="/partners/imr.svg"
+                src={withBasePath("/partners/imr.svg")}
                 alt="Irish Manufacturing Research"
                 width={335}
                 height={85}

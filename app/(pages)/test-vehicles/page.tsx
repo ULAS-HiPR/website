@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import RocketAnimation from "@/app/3d/rocket";
+import { withBasePath } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "Flight Test Vehicles | ULAS HiPR",
@@ -83,7 +84,7 @@ function SguabaSection() {
 
         <figure className="relative min-h-[620px] overflow-hidden bg-[#050505] lg:min-h-full">
           <Image
-            src="/test-vehicles/sguaba-launch.png"
+            src={withBasePath("/test-vehicles/sguaba-launch.png")}
             alt="Sguaba Tuinne climbing during a flight-test launch"
             fill
             priority
@@ -101,7 +102,7 @@ function SguabaSection() {
         <figure className="bg-[#050505] p-4 sm:p-6 lg:border-r lg:border-white/10">
           <div className="relative aspect-[4/3] overflow-hidden bg-black">
             <Image
-              src="/test-vehicles/sguaba-rail.png"
+              src={withBasePath("/test-vehicles/sguaba-rail.png")}
               alt="Sguaba Tuinne's canard-equipped nose on the launch rail"
               fill
               sizes="(min-width: 1024px) 33vw, 100vw"
@@ -116,7 +117,7 @@ function SguabaSection() {
         <figure className="bg-[#050505] p-4 sm:p-6 lg:border-r lg:border-white/10">
           <div className="relative aspect-[4/3] overflow-hidden bg-black">
             <Image
-              src="/test-vehicles/sguaba-wind-tunnel.png"
+              src={withBasePath("/test-vehicles/sguaba-wind-tunnel.png")}
               alt="Sguaba Tuinne test article in the University of Limerick wind tunnel"
               fill
               sizes="(min-width: 1024px) 33vw, 100vw"
@@ -131,7 +132,7 @@ function SguabaSection() {
         <figure className="bg-[#050505] p-4 sm:p-6">
           <div className="relative aspect-[4/3] overflow-hidden bg-black">
             <Image
-              src="/test-vehicles/sguaba-avionics.png"
+              src={withBasePath("/test-vehicles/sguaba-avionics.png")}
               alt="Electronics being integrated into the Sguaba Tuinne test vehicle"
               fill
               sizes="(min-width: 1024px) 33vw, 100vw"
@@ -153,7 +154,7 @@ function FethSection() {
       <div className="mx-auto grid min-h-[760px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[1.1fr_0.9fr]">
         <figure className="relative min-h-[560px] overflow-hidden bg-[#050505] lg:border-r lg:border-white/10">
           <Image
-            src="/test-vehicles/feth-fiada-launch.png"
+            src={withBasePath("/test-vehicles/feth-fiada-launch.png")}
             alt="Feth Fiada lifting from the pad during a CO2 recovery test flight"
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"

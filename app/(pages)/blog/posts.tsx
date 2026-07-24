@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Post, getSortedPostsData } from "@/lib/posts";
+import { withBasePath } from "@/lib/base-path";
 
 function postImage(content: string) {
   const match = content.match(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/);
@@ -35,7 +36,7 @@ function FeaturedPost({ post }: { post: Post }) {
     <article className="grid overflow-hidden bg-black text-white lg:grid-cols-[1.1fr_0.9fr]">
       <div className="relative min-h-[440px] lg:min-h-[570px]">
         <Image
-          src={postImage(post.content)}
+          src={withBasePath(postImage(post.content))}
           alt=""
           fill
           sizes="(min-width: 1024px) 58vw, 100vw"
@@ -73,7 +74,7 @@ function BlogPost({ post }: { post: Post }) {
       <Link href={`/blog/${post.filename}`} className="block">
         <div className="relative aspect-[16/10] overflow-hidden bg-[#090909]">
           <Image
-            src={postImage(post.content)}
+            src={withBasePath(postImage(post.content))}
             alt=""
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

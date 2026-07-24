@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Posts from "./posts";
+import { withBasePath } from "@/lib/base-path";
 
 export default function Blog() {
   return (
     <main className="bg-black text-white">
       <section className="relative min-h-[440px] overflow-hidden bg-[#020208] text-white">
         <Image
-          src="/mach25/IMG_9606_Original.jpg"
+          src={withBasePath("/mach25/IMG_9606_Original.jpg")}
           alt="HiPR students working on Macha"
           fill
           priority

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { withBasePath } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "About | ULAS HiPR",
@@ -63,7 +64,7 @@ export default function AboutPage() {
     <main className="relative isolate min-h-svh overflow-hidden bg-black text-white">
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0">
         <Image
-          src="/about-team-ulster.png"
+          src={withBasePath("/about-team-ulster.png")}
           alt=""
           fill
           priority

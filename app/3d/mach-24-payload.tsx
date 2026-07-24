@@ -1,9 +1,10 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
+import { withBasePath } from "@/lib/base-path";
 
 function Mach24Payload(props: any) {
-  const { scene } = useGLTF("/mach24-payload.glb");
+  const { scene } = useGLTF(withBasePath("/mach24-payload.glb"));
   return (
     <mesh
       position={[1.5, -1, 0.5]}

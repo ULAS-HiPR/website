@@ -1,6 +1,13 @@
-import { getPost } from "@/lib/posts";
+import { withBasePath } from "@/lib/base-path";
+import { getPost, getSortedPostsData } from "@/lib/posts";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+export function generateStaticParams() {
+  return getSortedPostsData().map((post) => ({ name: post.filename }));
+}
+
+export const dynamicParams = false;
 
 export default async function BlogPage({
   params,
@@ -30,7 +37,7 @@ export default async function BlogPage({
             const { src } = props;
             return (
               <img
-                src={src}
+                src={typeof src === "string" ? withBasePath(src) : src}
                 alt={props.alt ?? ""}
                 className="my-10 max-h-[760px] w-full object-cover"
               ></img>

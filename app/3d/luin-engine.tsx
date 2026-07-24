@@ -4,6 +4,7 @@ import { Bounds, Center, ContactShadows, Environment, Lightformer, useGLTF } fro
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import { withBasePath } from "@/lib/base-path";
 
 function StageFloor() {
   const lightPool = useMemo(() => {
@@ -63,7 +64,7 @@ function StageFloor() {
 }
 
 function EngineModel({ reduceMotion, sectioned }: { reduceMotion: boolean; sectioned: boolean }) {
-  const { scene } = useGLTF("/luin-engine.glb?v=4");
+  const { scene } = useGLTF(withBasePath("/luin-engine.glb?v=4"));
   const { engine, materials } = useMemo(() => {
     const clone = scene.clone(true);
     const materialClones = new Map<THREE.Material, THREE.Material>();
@@ -210,4 +211,4 @@ export default function LuinEngine({ className = "" }: { className?: string }) {
   );
 }
 
-useGLTF.preload("/luin-engine.glb?v=4");
+useGLTF.preload(withBasePath("/luin-engine.glb?v=4"));

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 import { useNavVisible } from "./use-at-top";
 
 type NavLink = { label: string; href: string };
@@ -103,7 +104,7 @@ export default function NavBar() {
           onClick={() => setOpenGroup(null)}
         >
           <Image
-            src="/logo.png"
+            src={withBasePath("/logo.png")}
             alt="ULAS HiPR"
             width={190}
             height={61}

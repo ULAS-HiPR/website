@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { withBasePath } from "@/lib/base-path";
 import HeroReel from "./hero-reel";
 
 const featuredSystems = [
@@ -49,7 +50,7 @@ export default function Home() {
             >
               {system.backdrop ? (
                 <Image
-                  src={system.image}
+                  src={withBasePath(system.image)}
                   alt=""
                   fill
                   aria-hidden="true"
@@ -58,7 +59,7 @@ export default function Home() {
                 />
               ) : null}
               <Image
-                src={system.image}
+                src={withBasePath(system.image)}
                 alt=""
                 fill
                 sizes="(min-width: 640px) 33vw, 100vw"
@@ -76,7 +77,7 @@ export default function Home() {
 
       <section id="ireland" className="relative mx-3 min-h-svh overflow-hidden border border-white/10 bg-black sm:mx-4">
         <Image
-          src="/hero-earth.png"
+          src={withBasePath("/hero-earth.png")}
           alt="Ireland seen from orbit at sunrise"
           fill
           priority

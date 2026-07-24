@@ -3,13 +3,14 @@ import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { LegacyRef, useEffect, useRef, useState } from "react";
+import { withBasePath } from "@/lib/base-path";
 
 function Moon(props: any) {
   const [rotationValue, setRotationValue] = useState(0);
   useFrame(() => {
     setRotationValue(rotationValue + 0.001);
   });
-  const { scene } = useGLTF("/moon.glb");
+  const { scene } = useGLTF(withBasePath("/moon.glb"));
   return (
     <mesh rotation={[-rotationValue, (Math.PI / 2) * rotationValue, 0]}>
       <primitive object={scene} {...props} />

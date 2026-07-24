@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ProjectItem } from "./projects";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { withBasePath } from "@/lib/base-path";
 
 export default function Sponsors() {
   return (
@@ -11,7 +12,7 @@ export default function Sponsors() {
         <a href="" target="_blank">
           <img
             className="w-full scale-95 object-cover p-4"
-            src={"/ADI-AWP.png"}
+            src={withBasePath("/ADI-AWP.png")}
             alt={"Sponsor Placeholder"}
           />
         </a>

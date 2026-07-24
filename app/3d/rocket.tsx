@@ -10,6 +10,7 @@ import {
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import { withBasePath } from "@/lib/base-path";
 
 const FLOOR_Y = -2.18;
 const WORLD_UNITS_PER_METRE = 1.6;
@@ -164,7 +165,7 @@ function RocketModel({
   modelAxis: "y" | "z";
   preserveMaterials: boolean;
 }) {
-  const { scene } = useGLTF(model);
+  const { scene } = useGLTF(withBasePath(model));
   const rocket = useMemo(() => {
     const clone = scene.clone(true);
 
@@ -480,7 +481,7 @@ export default function RocketAnimation({
             className="absolute bottom-[clamp(5.3rem,10.5svh,7.2rem)] left-1/2 h-[clamp(8px,1.5svh,16px)] w-[clamp(78px,17%,165px)] -translate-x-1/2 rounded-[50%] bg-black/95 blur-md"
           />
           <Image
-            src={displayedImage}
+            src={withBasePath(displayedImage)}
             alt={`${name} ${sectioned ? "Y–X section" : "exterior"} render`}
             fill
             priority

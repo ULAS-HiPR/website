@@ -3,6 +3,12 @@ import SionnaAnimation from "@/app/3d/rocket";
 import ModelAnimation from "@/app/3d/rocket";
 import RocketAnimation from "@/app/3d/rocket";
 
+export function generateStaticParams() {
+  return [{ name: "mach24-payload" }, { name: "sionna" }];
+}
+
+export const dynamicParams = false;
+
 export default function Model({ params }: { params: { name: string } }) {
   const name = params.name;
   const Model = () => {
