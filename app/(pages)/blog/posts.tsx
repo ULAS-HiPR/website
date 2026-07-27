@@ -107,7 +107,7 @@ export default async function Posts() {
   if (!latest) return null;
 
   return (
-    <section className="mx-auto max-w-[1500px] bg-black px-6 py-16 text-white sm:px-10 lg:px-12 lg:py-24">
+    <section className="mx-auto max-w-[1500px] 2xl:max-w-none bg-black px-6 py-16 text-white sm:px-10 lg:px-12 lg:py-24">
       <FeaturedPost post={latest} />
 
       {archive.length ? (

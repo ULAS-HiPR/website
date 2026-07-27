@@ -75,7 +75,7 @@ export default function ContactUs() {
       <Script src="https://s.pageclip.co/v1/pageclip.js" strategy="afterInteractive" />
 
       <header className="bg-black">
-        <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
+        <div className="mx-auto grid min-h-[360px] max-w-[1500px] 2xl:max-w-none gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
               Contact HiPR
@@ -92,7 +92,7 @@ export default function ContactUs() {
       </header>
 
       <section className="bg-black">
-        <div className="mx-auto grid max-w-[1500px] gap-14 px-6 py-16 sm:px-10 lg:grid-cols-[0.72fr_1.28fr] lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none gap-14 px-6 py-16 sm:px-10 lg:grid-cols-[0.72fr_1.28fr] lg:px-12 lg:py-24">
           <aside>
             <h2 className="text-3xl font-semibold">What can we help with?</h2>
             <div className="mt-9 divide-y divide-white/15 border-y border-white/15">

@@ -16,7 +16,7 @@ export default function Blog() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#020208_0%,rgba(2,2,8,0.93)_45%,rgba(2,2,8,0.3)_78%,rgba(2,2,8,0.5)_100%)]" />
 
-        <div className="relative mx-auto flex min-h-[440px] max-w-[1500px] flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-12">
+        <div className="relative mx-auto flex min-h-[440px] max-w-[1500px] 2xl:max-w-none flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-12">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
             From the workshop
           </p>

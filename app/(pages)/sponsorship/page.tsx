@@ -40,7 +40,7 @@ export default function Sponsorship() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/25" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35" />
 
-        <div className="relative mx-auto flex min-h-[540px] max-w-[1500px] flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-12">
+        <div className="relative mx-auto flex min-h-[540px] max-w-[1500px] 2xl:max-w-none flex-col justify-center px-6 pb-20 pt-32 sm:px-10 lg:px-12">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
             Support HiPR
           </p>
@@ -65,7 +65,7 @@ export default function Sponsorship() {
       </section>
 
       <section className="bg-[#050505]">
-        <div className="mx-auto max-w-[1500px] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto max-w-[1500px] 2xl:max-w-none px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-white/40">
@@ -111,7 +111,7 @@ export default function Sponsorship() {
       </section>
 
       <section className="bg-black">
-        <div className="mx-auto max-w-[1500px] px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
+        <div className="mx-auto max-w-[1500px] 2xl:max-w-none px-6 py-20 sm:px-10 lg:px-12 lg:py-24">
           <div className="grid gap-8 border-b border-white/15 pb-10 lg:grid-cols-2 lg:items-end">
             <h2 className="text-4xl font-semibold">Partners</h2>
             <p className="max-w-xl leading-8 text-white/62 lg:translate-y-4">
@@ -230,7 +230,7 @@ export default function Sponsorship() {
       </section>
 
       <section className="bg-black text-white">
-        <div className="mx-auto grid max-w-[1500px] gap-12 border-t border-white/15 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-24">
+        <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none gap-12 border-t border-white/15 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-24">
           <div>
             <h2 className="text-4xl font-semibold">Become a sponsor</h2>
             <p className="mt-5 max-w-2xl leading-8 text-white/62">

@@ -86,7 +86,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.22)_46%,rgba(0,0,0,0.88)_100%)]" />
 
-        <div className="relative mx-auto flex min-h-svh max-w-[1600px] items-end px-6 pb-16 pt-32 sm:px-10 sm:pb-20 xl:px-12 xl:pb-24">
+        <div className="relative mx-auto flex min-h-svh max-w-[1600px] 2xl:max-w-none items-end px-6 pb-16 pt-32 sm:px-10 sm:pb-20 xl:px-12 xl:pb-24">
           <div className="max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/62">
               University of Limerick

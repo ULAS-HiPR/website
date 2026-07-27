@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 export default function AboutUs() {
   return (
     <main className="min-h-svh bg-black px-6 pb-24 pt-36 text-white sm:px-10 lg:px-12">
-      <div className="mx-auto max-w-[1500px]">
+      <div className="mx-auto max-w-[1500px] 2xl:max-w-none">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/40">ULAS HiPR</p>
         <h1 className="mt-5 max-w-5xl text-5xl font-bold uppercase leading-[0.92] tracking-[-0.015em] sm:text-7xl lg:text-[88px]">
           Student engineering. Flight-proven hardware.

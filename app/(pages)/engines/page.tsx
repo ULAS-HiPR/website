@@ -19,7 +19,7 @@ function LuinSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[34%] bg-[radial-gradient(ellipse_at_72%_100%,rgba(103,108,116,0.34)_0%,rgba(54,57,62,0.22)_28%,rgba(17,18,20,0.08)_56%,transparent_74%),linear-gradient(180deg,transparent_0%,rgba(29,31,34,0.86)_100%)]"
       />
-      <div className="relative mx-auto grid min-h-[820px] max-w-[1500px] grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="relative mx-auto grid min-h-[820px] max-w-[1500px] 2xl:max-w-none grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="relative z-10 flex min-w-0 flex-col justify-center px-6 py-16 sm:px-10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/50">
             <span>Race2Space · 2026</span>
@@ -88,7 +88,7 @@ export default function EnginesPage() {
   return (
     <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <header className="bg-black">
-        <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
+        <div className="mx-auto grid min-h-[360px] max-w-[1500px] 2xl:max-w-none gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">Propulsion programme</p>
             <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Engines</h1>
@@ -102,7 +102,7 @@ export default function EnginesPage() {
       <LuinSection />
 
       <section className="bg-black">
-        <div className="mx-auto grid max-w-[1500px] gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
           <div>
             <h2 className="text-3xl font-semibold">Build the next engine</h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-white/60">

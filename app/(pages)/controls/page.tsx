@@ -46,7 +46,7 @@ function Specifications({ rows }: { rows: string[][] }) {
 function OgmaSection() {
   return (
     <section id="ogma" className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]">
-      <div className="mx-auto grid min-h-[790px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid min-h-[790px] max-w-[1500px] 2xl:max-w-none border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
             <span>EuRoC-26 · 2026</span>
@@ -82,7 +82,7 @@ function OgmaSection() {
         </div>
       </div>
 
-      <figure className="mx-auto max-w-[1500px] border-x border-white/10 bg-[#050505] p-4 sm:p-6">
+      <figure className="mx-auto max-w-[1500px] 2xl:max-w-none border-x border-white/10 bg-[#050505] p-4 sm:p-6">
         <div className="relative aspect-[4/3] overflow-hidden bg-black sm:aspect-[16/8]">
           <Image
             src={withBasePath("/controls/ogma/ogma-avbay.jpeg")}
@@ -104,7 +104,7 @@ function OgmaSection() {
 function AirbrakesSection() {
   return (
     <section id="airbrakes" className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]">
-      <div className="mx-auto grid min-h-[850px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid min-h-[850px] max-w-[1500px] 2xl:max-w-none border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
             <span>Mach-26 · 2026</span>
@@ -176,7 +176,7 @@ function AirbrakesSection() {
 function RecoverySection() {
   return (
     <section id="co2-deployment" className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]">
-      <div className="mx-auto grid min-h-[760px] max-w-[1500px] border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid min-h-[760px] max-w-[1500px] 2xl:max-w-none border-x border-white/10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:border-r lg:border-white/10 lg:px-12 lg:py-24 xl:px-16">
           <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.11em] text-white/45">
             <span>Mach-26 · 2026</span>
@@ -214,7 +214,7 @@ function RecoverySection() {
         </div>
       </div>
 
-      <figure className="mx-auto max-w-[1500px] border-x border-white/10 bg-[#050505] p-4 sm:p-6">
+      <figure className="mx-auto max-w-[1500px] 2xl:max-w-none border-x border-white/10 bg-[#050505] p-4 sm:p-6">
         <div className="relative aspect-[4/3] overflow-hidden bg-black sm:aspect-[16/8]">
           <Image
             src={withBasePath("/controls/co2/co2-deployment.jpg")}
@@ -237,7 +237,7 @@ export default function ControlsPage() {
   return (
     <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <header className="bg-black">
-        <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
+        <div className="mx-auto grid min-h-[360px] max-w-[1500px] 2xl:max-w-none gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
               Guidance and recovery
@@ -258,7 +258,7 @@ export default function ControlsPage() {
       <RecoverySection />
 
       <section className="bg-black">
-        <div className="mx-auto grid max-w-[1500px] gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
           <div>
             <h2 className="text-3xl font-semibold">Build the next control system</h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-white/60">

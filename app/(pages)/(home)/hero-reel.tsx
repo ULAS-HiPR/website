@@ -1,12 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { withBasePath } from "@/lib/base-path";
 
 type IntroPhase = "visible" | "glitching" | "hidden";
 
 export default function HeroReel() {
   const [phase, setPhase] = useState<IntroPhase>("visible");
+  const [playbackBlocked, setPlaybackBlocked] = useState(false);
+  const videoElement = useRef<HTMLVideoElement>(null);
+
+  const startPlayback = useCallback(() => {
+    const video = videoElement.current;
+    if (!video || document.visibilityState === "hidden") return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    void video
+      .play()
+      .then(() => setPlaybackBlocked(false))
+      .catch(() => setPlaybackBlocked(true));
+  }, []);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -22,6 +36,21 @@ export default function HeroReel() {
     };
   }, []);
 
+  useEffect(() => {
+    startPlayback();
+
+    const restartWhenVisible = () => {
+      if (document.visibilityState === "visible") startPlayback();
+    };
+    window.addEventListener("pageshow", startPlayback);
+    document.addEventListener("visibilitychange", restartWhenVisible);
+
+    return () => {
+      window.removeEventListener("pageshow", startPlayback);
+      document.removeEventListener("visibilitychange", restartWhenVisible);
+    };
+  }, [startPlayback]);
+
   const revealVideo = phase !== "visible";
 
   return (
@@ -32,11 +61,13 @@ export default function HeroReel() {
     >
       <div className="relative h-[calc(100svh-84px)] min-h-[520px] max-h-[980px] overflow-hidden border-x border-b border-white/10 bg-black min-[760px]:h-[calc(100svh-176px)]">
         <video
+          ref={videoElement}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
+          onCanPlay={startPlayback}
           onEnded={(event) => {
             event.currentTarget.currentTime = 0;
             void event.currentTarget.play();
@@ -46,8 +77,23 @@ export default function HeroReel() {
             revealVideo ? "brightness-100" : "brightness-[0.68]"
           }`}
         >
+          <source
+            src={withBasePath("/hipr-demo-reel.m4v")}
+            type="video/mp4"
+            media="(max-width: 759px)"
+          />
           <source src={withBasePath("/hipr-demo-reel.mp4")} type="video/mp4" />
         </video>
+
+        {playbackBlocked ? (
+          <button
+            type="button"
+            onClick={startPlayback}
+            className="absolute bottom-5 right-5 z-30 border border-white/60 bg-black/75 px-4 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm sm:bottom-7 sm:right-7"
+          >
+            Play video
+          </button>
+        ) : null}
 
         <div
           aria-hidden="true"

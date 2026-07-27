@@ -74,7 +74,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18)_0%,rgba(0,0,0,0.32)_48%,rgba(0,0,0,0.62)_100%)]" />
       </div>
 
-      <header className="relative z-10 mx-auto grid min-h-[78svh] max-w-[1500px] content-center gap-14 px-6 pb-20 pt-36 sm:px-10 lg:grid-cols-2 lg:gap-20 lg:px-12 lg:pt-40 xl:px-16">
+      <header className="relative z-10 mx-auto grid min-h-[78svh] max-w-[1500px] 2xl:max-w-none content-center gap-14 px-6 pb-20 pt-36 sm:px-10 lg:grid-cols-2 lg:gap-20 lg:px-12 lg:pt-40 xl:px-16">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/38">
             University of Limerick
@@ -92,7 +92,7 @@ export default function AboutPage() {
         </p>
       </header>
 
-      <article className="relative z-10 mx-auto max-w-[1500px] px-6 pb-28 sm:px-10 lg:px-12 xl:px-16">
+      <article className="relative z-10 mx-auto max-w-[1500px] 2xl:max-w-none px-6 pb-28 sm:px-10 lg:px-12 xl:px-16">
         {chapters.map((chapter) => (
           <section
             key={chapter.marker}

@@ -22,6 +22,7 @@ type Project = {
   blendBlackBackground?: boolean;
   sectionImage?: string;
   blendSectionBlackBackground?: boolean;
+  sectionImageScale?: number;
   defaultSectioned?: boolean;
 };
 
@@ -37,6 +38,7 @@ const projects: Project[] = [
     exteriorImage: "/rockets/morrigu-render.png",
     sectionImage: "/rockets/morrigu-section.png",
     blendSectionBlackBackground: true,
+    sectionImageScale: 0.85,
     defaultSectioned: false,
     height: 1.84,
     details: ["First competition flight", "Spring recovery", "Deployable payload"],
@@ -102,7 +104,7 @@ const badhbhAnnotations = [
     copy: "A 2.5-metre Category 3 vehicle built around a fully composite airframe, carrying HiPR's most tightly integrated flight architecture to date.",
     stat: "2.5 m vehicle",
     side: "left" as const,
-    placement: "middle" as const,
+    placement: 50,
   },
   {
     label: "Flight control",
@@ -110,7 +112,7 @@ const badhbhAnnotations = [
     copy: "A custom six-board flight computer links sensing, logging, communications and actuator control across the vehicle.",
     stat: "6-board stack",
     side: "right" as const,
-    placement: "threeFifths" as const,
+    placement: 45,
   },
   {
     label: "Altitude control",
@@ -118,7 +120,7 @@ const badhbhAnnotations = [
     copy: "Servo-driven airbrakes add controllable drag during ascent. CFD-derived force models feed the onboard controller in real time.",
     stat: "Closed-loop control",
     side: "left" as const,
-    placement: "oneThird" as const,
+    placement: 64.67,
   },
   {
     label: "Recovery",
@@ -126,7 +128,7 @@ const badhbhAnnotations = [
     copy: "A twin-cartridge pneumatic system pressurises the recovery bay on command and deploys the parachute through custom flight hardware.",
     stat: "Twin cartridges",
     side: "right" as const,
-    placement: "middle" as const,
+    placement: 60,
   },
   {
     label: "Payload bay",
@@ -134,7 +136,7 @@ const badhbhAnnotations = [
     copy: "The payload stack combined a deployable walking robot with a standalone cosmic-ray detector and its own flight logger.",
     stat: "Two experimental payloads",
     side: "left" as const,
-    placement: "threeFifths" as const,
+    placement: 37,
   },
 ];
 
@@ -146,11 +148,7 @@ function BadhbhAnnotation({
   const containerElement = useRef<HTMLDivElement>(null);
   const stickyElement = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const placementPoint = {
-    threeFifths: 0.4,
-    middle: 0.5,
-    oneThird: 2 / 3,
-  }[annotation.placement];
+  const placementPoint = annotation.placement / 100;
 
   useEffect(() => {
     const containerNode = containerElement.current;
@@ -188,26 +186,26 @@ function BadhbhAnnotation({
   }, [placementPoint]);
 
   const isLeft = annotation.side === "left";
-  const placementClass = {
-    threeFifths: "top-[40svh]",
-    middle: "top-[50svh]",
-    oneThird: "top-[66.666svh]",
-  }[annotation.placement];
+  const visibilityClass = visible
+    ? "min-[760px]:translate-x-0 min-[760px]:opacity-100"
+    : isLeft
+      ? "min-[760px]:-translate-x-4 min-[760px]:opacity-0"
+      : "min-[760px]:translate-x-4 min-[760px]:opacity-0";
 
   return (
     <div
       ref={containerElement}
       className="relative h-[170svh] px-5 sm:px-10 lg:px-16"
     >
-      <div ref={stickyElement} className={`sticky ${placementClass} ${isLeft ? "mr-auto" : "ml-auto"} w-[min(86vw,390px)]`}>
+      <div
+        ref={stickyElement}
+        style={{ top: `${annotation.placement}svh` }}
+        className={`sticky ${isLeft ? "mr-auto" : "ml-auto"} w-[min(86vw,390px)]`}
+      >
         <article
-          className={`relative -translate-y-1/2 border-white/16 bg-black/78 p-6 shadow-2xl backdrop-blur-md transition-all duration-700 sm:p-7 ${
+          className={`relative -translate-y-1/2 translate-x-0 border-white/16 bg-black/78 p-6 opacity-100 shadow-2xl backdrop-blur-md transition-all duration-700 sm:p-7 ${
             isLeft ? "border-l-2" : "border-r-2 text-right"
-          } ${
-            visible
-              ? "translate-x-0 opacity-100"
-              : `opacity-0 ${isLeft ? "-translate-x-4" : "translate-x-4"}`
-          }`}
+          } ${visibilityClass}`}
         >
           <span
             aria-hidden="true"
@@ -268,7 +266,7 @@ function BadhbhScrollSection({ project }: { project: Project }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20">
         <div className="h-[68svh]" aria-hidden="true" />
         <div className="sticky top-0 z-30 flex h-[88px] items-center bg-black/88 px-6 backdrop-blur-md sm:px-10 lg:px-16">
-          <div className="mx-auto grid w-full max-w-[1500px] grid-cols-[1fr_auto_1fr] items-center gap-6">
+          <div className="mx-auto grid w-full max-w-[1500px] 2xl:max-w-none grid-cols-[1fr_auto_1fr] items-center gap-6">
             <p className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-white/38 sm:block">
               {project.programme} · Vehicle {project.number}
             </p>
@@ -300,7 +298,7 @@ function ProjectSection({ project }: { project: Project }) {
       id={project.id}
       className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]"
     >
-      <div className="mx-auto grid min-h-[720px] max-w-[1500px] lg:grid-cols-2">
+      <div className="mx-auto grid min-h-[720px] max-w-[1500px] 2xl:max-w-none lg:grid-cols-2">
         <div className={`relative min-h-[520px] overflow-hidden border-white/10 ${project.imageFirst ? "lg:order-1 lg:border-r" : "lg:order-2 lg:border-l"}`}>
           <RocketAnimation
             model={project.model}
@@ -310,6 +308,7 @@ function ProjectSection({ project }: { project: Project }) {
             blendBlackBackground={project.blendBlackBackground}
             sectionImage={project.sectionImage}
             blendSectionBlackBackground={project.blendSectionBlackBackground}
+            sectionImageScale={project.sectionImageScale}
             defaultSectioned={project.defaultSectioned}
           />
         </div>
@@ -361,7 +360,7 @@ export default function Projects() {
   return (
     <main className="bg-black pt-[72px] text-white min-[760px]:pt-[88px]">
       <header className="bg-black">
-        <div className="mx-auto grid min-h-[360px] max-w-[1500px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
+        <div className="mx-auto grid min-h-[360px] max-w-[1500px] 2xl:max-w-none gap-10 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:items-center lg:px-12">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">Flight programme</p>
             <h1 className="mt-5 text-5xl font-semibold uppercase tracking-[-0.015em] sm:text-7xl">Competition rockets</h1>
@@ -379,7 +378,7 @@ export default function Projects() {
       ))}
 
       <section className="bg-black text-white">
-        <div className="mx-auto grid max-w-[1500px] gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
+        <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
           <div>
             <h2 className="text-3xl font-semibold">Build the next vehicle</h2>
             <p className="mt-4 max-w-2xl leading-relaxed text-white/62">

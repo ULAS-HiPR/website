@@ -407,6 +407,7 @@ export default function RocketAnimation({
   blendBlackBackground = false,
   sectionImage,
   blendSectionBlackBackground = false,
+  sectionImageScale = 1,
   defaultSectioned = true,
   paintScheme = "default",
 }: {
@@ -421,6 +422,7 @@ export default function RocketAnimation({
   blendBlackBackground?: boolean;
   sectionImage?: string;
   blendSectionBlackBackground?: boolean;
+  sectionImageScale?: number;
   defaultSectioned?: boolean;
   paintScheme?: PaintScheme;
 }) {
@@ -516,7 +518,10 @@ export default function RocketAnimation({
             fill
             priority
             sizes="100vw"
-            className={`z-10 object-contain object-center px-10 py-[clamp(6rem,13svh,8rem)] drop-shadow-[0_24px_18px_rgba(0,0,0,0.58)] sm:px-20 lg:px-28 ${
+            style={{
+              transform: sectioned ? `scale(${sectionImageScale})` : undefined,
+            }}
+            className={`z-10 object-contain object-center px-10 py-[clamp(6rem,13svh,8rem)] sm:px-20 sm:drop-shadow-[0_24px_18px_rgba(0,0,0,0.58)] lg:px-28 ${
               blendDisplayedImage ? "mix-blend-screen" : ""
             }`}
           />

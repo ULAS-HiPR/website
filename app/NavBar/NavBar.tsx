@@ -96,7 +96,7 @@ export default function NavBar() {
         className="pointer-events-none absolute inset-0 bg-black"
       />
 
-      <div className="relative z-10 mx-auto flex h-[88px] max-w-[1600px] items-center gap-5 px-4 lg:gap-8 lg:px-6 xl:gap-10 xl:px-10">
+      <div className="relative z-10 mx-auto flex h-[88px] max-w-[1600px] 2xl:max-w-none items-center gap-5 px-4 lg:gap-8 lg:px-6 xl:gap-10 xl:px-10">
         <Link
           href="/"
           aria-label="ULAS HiPR home"
