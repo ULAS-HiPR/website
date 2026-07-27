@@ -1,8 +1,37 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { withBasePath } from "@/lib/base-path";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/site";
 import HeroReel from "./hero-reel";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: SITE_TITLE,
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    images: [
+      {
+        url: "/hero-earth.png",
+        alt: "Ireland seen from orbit at sunrise",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/hero-earth.png"],
+  },
+};
 
 const featuredSystems = [
   {
