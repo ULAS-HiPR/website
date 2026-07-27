@@ -2,9 +2,44 @@
 
 import { Bounds, Center, ContactShadows, Environment, Lightformer, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Component, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import type { ErrorInfo, ReactNode } from "react";
 import * as THREE from "three";
 import { withBasePath } from "@/lib/base-path";
+
+function PreviewFallback() {
+  return (
+    <div className="flex h-full min-h-[600px] items-center justify-center px-8 text-center">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.13em] text-white/48">
+          Engine 3D preview
+        </p>
+        <p className="mt-3 max-w-xs text-sm leading-6 text-white/38">
+          Interactive preview unavailable on this device.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+class PreviewErrorBoundary extends Component<
+  { children: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error("Luin preview failed", error, info);
+  }
+
+  render() {
+    return this.state.failed ? <PreviewFallback /> : this.props.children;
+  }
+}
 
 function StageFloor() {
   const lightPool = useMemo(() => {
@@ -64,7 +99,7 @@ function StageFloor() {
 }
 
 function EngineModel({ reduceMotion, sectioned }: { reduceMotion: boolean; sectioned: boolean }) {
-  const { scene } = useGLTF(withBasePath("/luin-engine.glb?v=4"));
+  const { scene } = useGLTF(withBasePath("/luin-engine.glb?v=5"));
   const { engine, materials } = useMemo(() => {
     const clone = scene.clone(true);
     const materialClones = new Map<THREE.Material, THREE.Material>();
@@ -136,20 +171,29 @@ function EngineModel({ reduceMotion, sectioned }: { reduceMotion: boolean; secti
   );
 }
 
-export default function LuinEngine({ className = "" }: { className?: string }) {
+function LuinRenderer() {
   const [reduceMotion, setReduceMotion] = useState(false);
   const [sectioned, setSectioned] = useState(false);
+  const [rendererFailed, setRendererFailed] = useState(false);
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReduceMotion(query.matches);
     update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
+
+    if (typeof query.addEventListener === "function") {
+      query.addEventListener("change", update);
+      return () => query.removeEventListener("change", update);
+    }
+
+    query.addListener(update);
+    return () => query.removeListener(update);
   }, []);
 
+  if (rendererFailed) return <PreviewFallback />;
+
   return (
-    <div className={`relative bg-transparent ${className}`}>
+    <>
       <div className="absolute right-5 top-5 z-10 flex border border-white/18 bg-black/72 p-1 text-[10px] font-semibold uppercase tracking-[0.12em] backdrop-blur-sm sm:right-7 sm:top-7 lg:top-24">
         <button
           type="button"
@@ -173,12 +217,18 @@ export default function LuinEngine({ className = "" }: { className?: string }) {
         className="pointer-events-none"
         shadows
         camera={{ position: [0, 0.68, 5.05], fov: 31 }}
-        dpr={[1, 1.75]}
+        dpr={[1, 1.4]}
+        fallback={<PreviewFallback />}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
         onCreated={({ gl }) => {
           gl.setClearColor("#000000", 0);
           gl.outputColorSpace = THREE.SRGBColorSpace;
           gl.localClippingEnabled = true;
+          gl.domElement.addEventListener(
+            "webglcontextlost",
+            () => setRendererFailed(true),
+            { once: true }
+          );
         }}
       >
         <ambientLight intensity={0.24} />
@@ -207,8 +257,18 @@ export default function LuinEngine({ className = "" }: { className?: string }) {
         <StageFloor />
 
       </Canvas>
+    </>
+  );
+}
+
+export default function LuinEngine({ className = "" }: { className?: string }) {
+  return (
+    <div className={`relative bg-transparent ${className}`}>
+      <PreviewErrorBoundary>
+        <LuinRenderer />
+      </PreviewErrorBoundary>
     </div>
   );
 }
 
-useGLTF.preload(withBasePath("/luin-engine.glb?v=4"));
+useGLTF.preload(withBasePath("/luin-engine.glb?v=5"));
