@@ -112,7 +112,7 @@ const badhbhAnnotations = [
     copy: "A custom six-board flight computer links sensing, logging, communications and actuator control across the vehicle.",
     stat: "6-board stack",
     side: "right" as const,
-    placement: 45,
+    placement: 50,
   },
   {
     label: "Altitude control",
@@ -120,7 +120,7 @@ const badhbhAnnotations = [
     copy: "Servo-driven airbrakes add controllable drag during ascent. CFD-derived force models feed the onboard controller in real time.",
     stat: "Closed-loop control",
     side: "left" as const,
-    placement: 64.67,
+    placement: 66.17,
   },
   {
     label: "Recovery",
@@ -128,7 +128,7 @@ const badhbhAnnotations = [
     copy: "A twin-cartridge pneumatic system pressurises the recovery bay on command and deploys the parachute through custom flight hardware.",
     stat: "Twin cartridges",
     side: "right" as const,
-    placement: 60,
+    placement: 58,
   },
   {
     label: "Payload bay",
@@ -136,7 +136,7 @@ const badhbhAnnotations = [
     copy: "The payload stack combined a deployable walking robot with a standalone cosmic-ray detector and its own flight logger.",
     stat: "Two experimental payloads",
     side: "left" as const,
-    placement: 37,
+    placement: 38,
   },
 ];
 
