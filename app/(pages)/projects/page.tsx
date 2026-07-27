@@ -209,7 +209,7 @@ function BadhbhAnnotation({
         >
           <span
             aria-hidden="true"
-            className={`absolute top-1/2 hidden h-px w-[clamp(84px,13vw,205px)] bg-gradient-to-r transition-opacity duration-700 lg:block ${
+            className={`absolute top-1/2 hidden h-px w-[clamp(84px,calc(50vw-31.375rem),205px)] bg-gradient-to-r transition-opacity duration-700 xl:block ${
               isLeft
                 ? "left-full from-[#e12e2d] to-transparent"
                 : "right-full rotate-180 from-[#e12e2d] to-transparent"
@@ -217,10 +217,10 @@ function BadhbhAnnotation({
           />
           <span
             aria-hidden="true"
-            className={`absolute top-[calc(50%-3px)] hidden h-1.5 w-1.5 rounded-full bg-[#e12e2d] shadow-[0_0_14px_#e12e2d] transition-opacity duration-700 lg:block ${
+            className={`absolute top-[calc(50%-3px)] hidden h-1.5 w-1.5 rounded-full bg-[#e12e2d] shadow-[0_0_14px_#e12e2d] transition-opacity duration-700 xl:block ${
               isLeft
-                ? "left-[calc(100%+clamp(84px,13vw,205px)-3px)]"
-                : "right-[calc(100%+clamp(84px,13vw,205px)-3px)]"
+                ? "left-[calc(100%+clamp(84px,calc(50vw-31.375rem),205px)-3px)]"
+                : "right-[calc(100%+clamp(84px,calc(50vw-31.375rem),205px)-3px)]"
             } ${visible ? "opacity-100" : "opacity-0"}`}
           />
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#e12e2d]">
