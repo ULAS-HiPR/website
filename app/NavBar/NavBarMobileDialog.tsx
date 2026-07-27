@@ -94,9 +94,6 @@ export default function NavBarMobileDialog() {
                 className="flex min-h-12 items-center justify-between border-b border-white/10 py-3 pr-4 text-base font-semibold uppercase tracking-[0.04em] odd:border-r odd:pr-5 even:pl-5"
               >
                 {label}
-                <span aria-hidden="true" className="text-white/35">
-                  ↗
-                </span>
               </Link>
             </DrawerClose>
           ))}

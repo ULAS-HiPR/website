@@ -73,7 +73,7 @@ export default function HeroReel() {
             void event.currentTarget.play();
           }}
           aria-label="ULAS HiPR project demo reel"
-          className={`absolute inset-0 h-full w-full object-cover transition-[filter] duration-1000 ease-out ${
+          className={`absolute inset-0 h-full w-full object-cover object-[12%_center] transition-[filter] duration-1000 ease-out min-[760px]:object-center ${
             revealVideo ? "brightness-100" : "brightness-[0.68]"
           }`}
         >

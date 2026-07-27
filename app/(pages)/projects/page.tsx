@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import RocketAnimation from "@/app/3d/rocket";
+import { useNavVisible } from "@/app/NavBar/use-at-top";
 
 type Project = {
   id: string;
@@ -242,6 +243,8 @@ function BadhbhAnnotation({
 }
 
 function BadhbhScrollSection({ project }: { project: Project }) {
+  const navVisible = useNavVisible();
+
   return (
     <section
       id={project.id}
@@ -265,7 +268,11 @@ function BadhbhScrollSection({ project }: { project: Project }) {
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20">
         <div className="h-[68svh]" aria-hidden="true" />
-        <div className="sticky top-0 z-30 flex h-[88px] items-center bg-black/88 px-6 backdrop-blur-md sm:px-10 lg:px-16">
+        <div
+          className={`sticky top-0 z-30 flex h-[88px] items-center bg-black/88 px-6 backdrop-blur-md transition-opacity duration-300 sm:px-10 lg:px-16 ${
+            navVisible ? "opacity-0" : "opacity-100"
+          }`}
+        >
           <div className="mx-auto grid w-full max-w-[1500px] 2xl:max-w-none grid-cols-[1fr_auto_1fr] items-center gap-6">
             <p className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-white/38 sm:block">
               {project.programme} · Vehicle {project.number}
