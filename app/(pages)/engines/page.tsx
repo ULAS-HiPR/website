@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useEffect } from "react";
 import LuinEngine from "@/app/3d/luin-engine";
+import LuinAssemblyScroll from "./luin-assembly-scroll";
 
 const specifications = [
   ["Thrust", "2 kN nominal"],
@@ -100,6 +101,8 @@ export default function EnginesPage() {
       </header>
 
       <LuinSection />
+
+      <LuinAssemblyScroll />
 
       <section className="bg-black">
         <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none gap-8 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-20">
