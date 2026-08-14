@@ -59,6 +59,21 @@ export default async function BlogPage({
       >
         {post?.content}
       </Markdown>
+      {post?.video ? (
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          poster={
+            post.videoPoster ? withBasePath(post.videoPoster) : undefined
+          }
+          aria-label={`${post.title} video`}
+          className="mx-auto my-10 max-h-[80vh] w-auto max-w-full bg-black object-cover"
+        >
+          <source src={withBasePath(post.video)} type="video/mp4" />
+          Your browser does not support embedded video.
+        </video>
+      ) : null}
       </article>
     </main>
   );

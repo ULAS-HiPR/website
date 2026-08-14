@@ -12,6 +12,8 @@ export type Post = {
   author: string;
   coverImage?: string;
   coverPosition?: string;
+  video?: string;
+  videoPoster?: string;
 };
 
 export function getSortedPostsData() {
@@ -42,6 +44,8 @@ export function getSortedPostsData() {
       author: matterResult.data["author"],
       coverImage: matterResult.data["coverImage"],
       coverPosition: matterResult.data["coverPosition"],
+      video: matterResult.data["video"],
+      videoPoster: matterResult.data["videoPoster"],
       content: matterResult.content,
       date: date,
     };
@@ -72,6 +76,8 @@ export function getPost(fileName: string) {
     fileName,
     title: matterResult.data["title"],
     author: matterResult.data["author"],
+    video: matterResult.data["video"],
+    videoPoster: matterResult.data["videoPoster"],
     content: matterResult.content,
     date: date,
   };
