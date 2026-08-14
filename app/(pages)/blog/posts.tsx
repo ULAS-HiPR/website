@@ -9,6 +9,10 @@ function postImage(content: string) {
   return match?.[1] ?? "/hero-earth.png";
 }
 
+function postCoverImage(post: Post) {
+  return post.coverImage ?? postImage(post.content);
+}
+
 function postExcerpt(content: string) {
   return content
     .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
@@ -36,11 +40,12 @@ function FeaturedPost({ post }: { post: Post }) {
     <article className="grid overflow-hidden bg-black text-white lg:grid-cols-[1.1fr_0.9fr]">
       <div className="relative min-h-[440px] lg:min-h-[570px]">
         <Image
-          src={withBasePath(postImage(post.content))}
+          src={withBasePath(postCoverImage(post))}
           alt=""
           fill
           sizes="(min-width: 1024px) 58vw, 100vw"
           className="object-cover"
+          style={{ objectPosition: post.coverPosition ?? "center" }}
         />
       </div>
       <div className="flex flex-col justify-center px-7 py-14 sm:px-12 lg:px-14">
@@ -74,11 +79,12 @@ function BlogPost({ post }: { post: Post }) {
       <Link href={`/blog/${post.filename}`} className="block">
         <div className="relative aspect-[16/10] overflow-hidden bg-[#090909]">
           <Image
-            src={withBasePath(postImage(post.content))}
+            src={withBasePath(postCoverImage(post))}
             alt=""
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+            style={{ objectPosition: post.coverPosition ?? "center" }}
           />
         </div>
         <p className="mt-5 text-xs font-medium uppercase tracking-[0.08em] text-white/40">

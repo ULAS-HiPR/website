@@ -10,6 +10,8 @@ export type Post = {
   content: string;
   date: Date;
   author: string;
+  coverImage?: string;
+  coverPosition?: string;
 };
 
 export function getSortedPostsData() {
@@ -38,6 +40,8 @@ export function getSortedPostsData() {
       filename,
       title: matterResult.data["title"],
       author: matterResult.data["author"],
+      coverImage: matterResult.data["coverImage"],
+      coverPosition: matterResult.data["coverPosition"],
       content: matterResult.content,
       date: date,
     };

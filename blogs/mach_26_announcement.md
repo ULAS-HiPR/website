@@ -2,6 +2,8 @@
 title: 'Mach-26: Meet Badhbh'
 date: '2026-01-05'
 author: ''
+coverImage: '/mach26/badhbh-launch.jpeg'
+coverPosition: 'center 48%'
 ---
 
 ULAS HiPR has been accepted into Mach-26, run by Exotopic. After competing in each of the previous two years, the team is returning with its biggest vehicle yet.

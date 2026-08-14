@@ -2,6 +2,7 @@
 title: 'And So It Begins'
 date: '2025-11-20'
 author: ''
+coverPosition: 'center top'
 ---
 
 Our latest all-hands meeting marked the start of the rest of our projects for the year.
