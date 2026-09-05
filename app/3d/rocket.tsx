@@ -409,6 +409,7 @@ export default function RocketAnimation({
   blendSectionBlackBackground = false,
   sectionImageScale = 1,
   defaultSectioned = true,
+  autoSectioned,
   paintScheme = "default",
 }: {
   model?: string;
@@ -424,13 +425,15 @@ export default function RocketAnimation({
   blendSectionBlackBackground?: boolean;
   sectionImageScale?: number;
   defaultSectioned?: boolean;
+  autoSectioned?: boolean;
   paintScheme?: PaintScheme;
 }) {
   const host = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [active, setActive] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [sectioned, setSectioned] = useState(defaultSectioned);
+  const [manualSectioned, setSectioned] = useState<boolean>();
+  const sectioned = manualSectioned ?? autoSectioned ?? defaultSectioned;
   const displayedImage = sectioned ? sectionImage : exteriorImage;
   const blendDisplayedImage = sectioned
     ? blendSectionBlackBackground

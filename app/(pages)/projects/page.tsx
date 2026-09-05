@@ -143,8 +143,10 @@ const badhbhAnnotations = [
 
 function BadhbhAnnotation({
   annotation,
+  onReached,
 }: {
   annotation: (typeof badhbhAnnotations)[number];
+  onReached?: (reached: boolean) => void;
 }) {
   const containerElement = useRef<HTMLDivElement>(null);
   const stickyElement = useRef<HTMLDivElement>(null);
@@ -165,6 +167,7 @@ function BadhbhAnnotation({
       const containerBounds = containerNode.getBoundingClientRect();
       const stickyBounds = stickyNode.getBoundingClientRect();
       const pinLine = window.innerHeight * placementPoint;
+      onReached?.(containerBounds.top <= pinLine);
       const exitRunway = window.innerHeight * 0.45;
       const isPinned = Math.abs(stickyBounds.top - pinLine) < 2;
       const hasExitRunway =
@@ -184,7 +187,7 @@ function BadhbhAnnotation({
       window.removeEventListener("resize", schedule);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [placementPoint]);
+  }, [placementPoint, onReached]);
 
   const isLeft = annotation.side === "left";
   const visibilityClass = visible
@@ -244,6 +247,7 @@ function BadhbhAnnotation({
 
 function BadhbhScrollSection({ project }: { project: Project }) {
   const navVisible = useNavVisible();
+  const [autoSectioned, setAutoSectioned] = useState(false);
 
   return (
     <section
@@ -263,6 +267,7 @@ function BadhbhScrollSection({ project }: { project: Project }) {
           sectionImage="/rockets/badhbh-section.png"
           blendSectionBlackBackground
           defaultSectioned={false}
+          autoSectioned={autoSectioned}
         />
       </div>
 
@@ -291,8 +296,12 @@ function BadhbhScrollSection({ project }: { project: Project }) {
           </div>
         </div>
         <div className="h-[40svh]" aria-hidden="true" />
-        {badhbhAnnotations.map((annotation) => (
-          <BadhbhAnnotation key={annotation.title} annotation={annotation} />
+        {badhbhAnnotations.map((annotation, index) => (
+          <BadhbhAnnotation
+            key={annotation.title}
+            annotation={annotation}
+            onReached={index === 1 ? setAutoSectioned : undefined}
+          />
         ))}
       </div>
     </section>
