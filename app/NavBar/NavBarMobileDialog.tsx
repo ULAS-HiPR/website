@@ -34,6 +34,7 @@ const groups: MobileGroup[] = [
         label: "Flight test",
         href: "/test-vehicles",
         links: [
+          ["Dullahan", "/test-vehicles#dullahan"],
           ["Sguaba Tuinne", "/test-vehicles#sguaba-tuinne"],
           ["Feth Fiada", "/test-vehicles#feth-fiada"],
           ["Sionna", "/test-vehicles#sionna"],

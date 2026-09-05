@@ -4,11 +4,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import RocketAnimation from "@/app/3d/rocket";
 import { withBasePath } from "@/lib/base-path";
+import DullahanScroll from "./dullahan-scroll";
 
 export const metadata: Metadata = {
   title: "Flight Test Vehicles | ULAS HiPR",
   description:
-    "The rockets ULAS HiPR builds to test active control, recovery and new flight technology.",
+    "Explore Dullahan, HiPR's two-stage altitude-attempt rocket, alongside flight-test vehicles for active control, recovery and new flight technology.",
 };
 
 const sguabaSpecifications = [
@@ -262,6 +263,7 @@ export default function TestVehiclesPage() {
         </div>
       </header>
 
+      <DullahanScroll />
       <SguabaSection />
       <FethSection />
       <SionnaSection />

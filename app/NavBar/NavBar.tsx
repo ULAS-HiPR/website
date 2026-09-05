@@ -33,6 +33,7 @@ const groups: NavGroup[] = [
         label: "Flight test",
         href: "/test-vehicles",
         links: [
+          { label: "Dullahan", href: "/test-vehicles#dullahan" },
           { label: "Sguaba Tuinne", href: "/test-vehicles#sguaba-tuinne" },
           { label: "Feth Fiada", href: "/test-vehicles#feth-fiada" },
           { label: "Sionna", href: "/test-vehicles#sionna" },
