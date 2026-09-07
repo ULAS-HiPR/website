@@ -49,6 +49,32 @@ function Specifications({ rows }: { rows: string[][] }) {
   );
 }
 
+function VehicleGallery({ photos, portrait = false }: {
+  photos: { src: string; alt: string; caption: string }[];
+  portrait?: boolean;
+}) {
+  return (
+    <div className={`mx-auto grid max-w-[1500px] border-x border-white/10 2xl:max-w-none ${photos.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
+      {photos.map((photo) => (
+        <figure key={photo.src} className="bg-[#050505] p-4 sm:p-6 md:border-r md:border-white/10 md:last:border-r-0">
+          <div className={`relative overflow-hidden bg-black ${portrait ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
+            <Image
+              src={withBasePath(photo.src)}
+              alt={photo.alt}
+              fill
+              sizes={`(min-width: 768px) ${photos.length === 2 ? "50vw" : "33vw"}, 100vw`}
+              className="object-cover object-center brightness-[0.85]"
+            />
+          </div>
+          <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
+            {photo.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function SguabaSection() {
   return (
     <section id="sguaba-tuinne" className="scroll-mt-[72px] bg-black text-white min-[760px]:scroll-mt-[88px]">
@@ -99,52 +125,23 @@ function SguabaSection() {
         </figure>
       </div>
 
-      <div className="mx-auto grid max-w-[1500px] 2xl:max-w-none border-x border-white/10 lg:grid-cols-3">
-        <figure className="bg-[#050505] p-4 sm:p-6 lg:border-r lg:border-white/10">
-          <div className="relative aspect-[4/3] overflow-hidden bg-black">
-            <Image
-              src={withBasePath("/test-vehicles/sguaba-rail.png")}
-              alt="Sguaba Tuinne's canard-equipped nose on the launch rail"
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="object-cover object-center brightness-[0.82]"
-            />
-          </div>
-          <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
-            Nose-mounted canards
-          </figcaption>
-        </figure>
-
-        <figure className="bg-[#050505] p-4 sm:p-6 lg:border-r lg:border-white/10">
-          <div className="relative aspect-[4/3] overflow-hidden bg-black">
-            <Image
-              src={withBasePath("/test-vehicles/sguaba-wind-tunnel.png")}
-              alt="Sguaba Tuinne test article in the University of Limerick wind tunnel"
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="object-cover object-center brightness-[0.78]"
-            />
-          </div>
-          <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
-            Wind-tunnel validation
-          </figcaption>
-        </figure>
-
-        <figure className="bg-[#050505] p-4 sm:p-6">
-          <div className="relative aspect-[4/3] overflow-hidden bg-black">
-            <Image
-              src={withBasePath("/test-vehicles/sguaba-avionics.png")}
-              alt="Electronics being integrated into the Sguaba Tuinne test vehicle"
-              fill
-              sizes="(min-width: 1024px) 33vw, 100vw"
-              className="object-cover object-center brightness-[0.8]"
-            />
-          </div>
-          <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
-            Flight-system integration
-          </figcaption>
-        </figure>
-      </div>
+      <VehicleGallery photos={[
+        {
+          src: "/test-vehicles/sguaba-rail.png",
+          alt: "Sguaba Tuinne's canard-equipped nose on the launch rail",
+          caption: "Nose-mounted canards",
+        },
+        {
+          src: "/test-vehicles/sguaba-wind-tunnel.png",
+          alt: "Sguaba Tuinne test article in the University of Limerick wind tunnel",
+          caption: "Wind-tunnel validation",
+        },
+        {
+          src: "/feth_fiada_and_sguaba_tuinne_flight_tests/08.jpg",
+          alt: "HiPR team members beside Sguaba Tuinne on the launch rail",
+          caption: "Sguaba Tuinne · Launch day",
+        },
+      ]} />
     </section>
   );
 }
@@ -196,6 +193,18 @@ function FethSection() {
           <Specifications rows={fethSpecifications} />
         </div>
       </div>
+      <VehicleGallery photos={[
+        {
+          src: "/feth_fiada_and_sguaba_tuinne_flight_tests/03.jpg",
+          alt: "Electronics being integrated into the Feth Fiada test vehicle",
+          caption: "Flight-system integration",
+        },
+        {
+          src: "/feth_fiada_and_sguaba_tuinne_flight_tests/07.jpg",
+          alt: "Feth Fiada climbing under power during a recovery test flight",
+          caption: "Feth Fiada · In flight",
+        },
+      ]} />
     </section>
   );
 }
@@ -239,6 +248,23 @@ function SionnaSection() {
           />
         </div>
       </div>
+      <VehicleGallery portrait photos={[
+        {
+          src: "/sionna.jpg",
+          alt: "The assembled blue Sionna rocket with its white nosecone",
+          caption: "Sionna · Assembled vehicle",
+        },
+        {
+          src: "/sionna_construction_in_full_swing/1.jpeg",
+          alt: "Sionna's blue 3D-printed nosecone beside the printer",
+          caption: "3D-printed nosecone",
+        },
+        {
+          src: "/sionna_construction_in_full_swing/3.jpeg",
+          alt: "Sionna's Bluetube airframe sections on the workshop bench",
+          caption: "Airframe construction",
+        },
+      ]} />
     </section>
   );
 }

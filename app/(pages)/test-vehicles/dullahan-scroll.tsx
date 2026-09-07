@@ -63,6 +63,7 @@ export default function DullahanScroll() {
   const callout = useRef<HTMLElement>(null);
   const [cardHeight, setCardHeight] = useState(280);
   const [active, setActive] = useState(0);
+  const [showCallout, setShowCallout] = useState(false);
   const [view, setView] = useState<"auto" | "exterior" | "section">("auto");
   const navVisible = useNavVisible();
   const sectioned = view === "section" || (view === "auto" && active > 0);
@@ -102,8 +103,10 @@ export default function DullahanScroll() {
     const update = () => {
       frame = 0;
       const bounds = runwayNode.getBoundingClientRect();
-      const scrollDistance = bounds.height - stageNode.clientHeight;
-      const progress = Math.max(0, Math.min(1, -bounds.top / Math.max(1, scrollDistance)));
+      const introDistance = stageNode.clientHeight * 0.68 + 88;
+      const scrollDistance = bounds.height - stageNode.clientHeight - introDistance;
+      const progress = Math.max(0, Math.min(1, (-bounds.top - introDistance) / Math.max(1, scrollDistance)));
+      setShowCallout(-bounds.top >= introDistance);
       setActive(Math.min(annotations.length - 1, Math.floor(progress * annotations.length)));
     };
     const schedule = () => {
@@ -125,30 +128,8 @@ export default function DullahanScroll() {
 
   return (
     <section id="dullahan" className={styles.section} aria-labelledby="dullahan-title">
-      <header className={styles.intro}>
-        <div>
-          <p className={styles.eyebrow}>Experimental flight · Vehicle 04</p>
-          <h2 id="dullahan-title">Dullahan</h2>
-          <p className={styles.description}>
-            HiPR&apos;s two-stage altitude-attempt rocket. Built to explore staged
-            flight, with a target apogee of 6.4 kilometres.
-          </p>
-        </div>
-        <div className={styles.status}>
-          <p className={styles.eyebrow}>Next launch planned</p>
-          <p className={styles.date}><time dateTime="2026-09-29">29 September 2026</time></p>
-          <p>The first launch attempt was scrubbed due to weather.</p>
-        </div>
-      </header>
-
       <div ref={runway} className={styles.runway}>
         <div ref={stage} className={styles.stage}>
-          <div className={`${styles.stageHeading} ${navVisible ? styles.navVisible : ""}`}>
-            <p className={styles.eyebrow}>Experimental flight · 2026</p>
-            <div><p className={styles.stageName}>Dullahan</p><p className={styles.eyebrow}>Scroll to explore</p></div>
-            <p className={styles.eyebrow}>Two stages · 6.4 km target</p>
-          </div>
-
           <div className={styles.viewControls} role="group" aria-label="Dullahan render view">
             <button type="button" aria-pressed={!sectioned} onClick={() => setView("exterior")}>Exterior</button>
             <button type="button" aria-pressed={sectioned} onClick={() => setView("section")}>Y–X section</button>
@@ -162,7 +143,7 @@ export default function DullahanScroll() {
             </svg>
           </div>
 
-          <svg className={styles.leaders} viewBox={`0 0 ${geometry.width} ${geometry.height}`} aria-hidden="true">
+          <svg className={styles.leaders} style={{ visibility: showCallout ? "visible" : "hidden" }} viewBox={`0 0 ${geometry.width} ${geometry.height}`} aria-hidden="true">
               {annotation.points.map((position) => {
                 const y = rocketTop + rocketHeight * position;
                 const elbowX = lineX + (annotation.side === "left" ? 36 : -36);
@@ -175,23 +156,40 @@ export default function DullahanScroll() {
               })}
           </svg>
 
-          <article ref={callout} key={active} aria-hidden="true" className={`${styles.callout} ${annotation.side === "right" ? styles.right : ""}`} style={mobile ? { top: rocketTop + rocketHeight + 12 } : { left: cardX, top: cardY, width: cardWidth }}>
+          <article ref={callout} key={active} aria-hidden="true" className={`${styles.callout} ${annotation.side === "right" ? styles.right : ""}`} style={{ visibility: showCallout ? "visible" : "hidden", ...(mobile ? { top: rocketTop + rocketHeight + 12 } : { left: cardX, top: cardY, width: cardWidth }) }}>
             <p className={styles.eyebrow}>{annotation.label}</p>
             <h3>{annotation.title}</h3>
             <p className={styles.copy}>{annotation.copy}</p>
             <p className={styles.stat}>{annotation.stat}</p>
           </article>
 
-          <div className={styles.progress} aria-hidden="true">
+          <div className={styles.progress} style={{ visibility: showCallout ? "visible" : "hidden" }} aria-hidden="true">
             <span>{String(active + 1).padStart(2, "0")} / 06</span>
             <div>{annotations.map((item, index) => <span key={item.title} className={active === index ? styles.current : ""} />)}</div>
           </div>
+        </div>
+        <div className={styles.headingTrack}>
+          <header className={`${styles.stageHeading} ${navVisible ? styles.navVisible : ""}`}>
+            <p className={styles.eyebrow}>Experimental flight · 2026 · Vehicle 04</p>
+            <div>
+              <h2 id="dullahan-title" className={styles.stageName}>Dullahan</h2>
+              <p className={styles.eyebrow}>Scroll to see more</p>
+            </div>
+            <p className={styles.eyebrow}>Two stages · 6.4 km target</p>
+          </header>
         </div>
       </div>
 
       <ol className={`sr-only ${styles.transcript}`}>
         {annotations.map((item) => <li key={item.title}><h3>{item.title}</h3><p>{item.copy}</p><p>{item.stat}</p></li>)}
       </ol>
+      <div className={styles.status}>
+        <div>
+          <p className={styles.eyebrow}>Dullahan · Next launch planned</p>
+          <p className={styles.date}><time dateTime="2026-09-29">29 September 2026</time></p>
+        </div>
+        <p>The first launch attempt was scrubbed due to weather.</p>
+      </div>
     </section>
   );
 }

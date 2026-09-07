@@ -1,19 +1,17 @@
 .section { scroll-margin-top: 88px; background: #000; color: #fff; }
-.intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: end; padding: 76px 64px; border-top: 1px solid #ffffff24; }
 .eyebrow { font-size: 10px; font-weight: 600; line-height: 1.6; letter-spacing: .16em; text-transform: uppercase; color: #ffffff66; }
-.intro h2 { margin-top: 24px; font-size: clamp(56px, 7vw, 104px); font-weight: 600; line-height: .95; text-transform: uppercase; }
-.description { margin-top: 28px; max-width: 570px; font-size: 16px; line-height: 2; color: #ffffffad; }
-.status { border-left: 2px solid #e12e2d; padding-left: 28px; }
+.status { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 48px 64px; border-block: 1px solid #ffffff24; }
 .status .eyebrow { color: #e12e2d; }
-.date { margin: 14px 0; font-size: clamp(22px, 2.5vw, 34px); font-weight: 600; text-transform: uppercase; }
+.date { margin-top: 14px; font-size: clamp(22px, 2.5vw, 34px); font-weight: 600; text-transform: uppercase; }
 .status > p:last-child { font-size: 14px; line-height: 1.8; color: #ffffff99; }
 .runway { position: relative; height: 880svh; }
 .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 50% 45%, #1a2025 0%, #080a0c 30%, #000 65%); }
 .stage::after { content: ""; position: absolute; inset: 72% 0 0; z-index: -1; background: radial-gradient(ellipse at 50% 100%, #555b64 0%, #1b1e23 35%, transparent 72%); opacity: .6; }
-.stageHeading { position: absolute; inset: 0 0 auto; height: 88px; padding: 16px 64px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; transition: opacity 300ms; }
+.headingTrack { position: absolute; inset: 68svh 0 0; z-index: 20; pointer-events: none; }
+.stageHeading { position: sticky; top: 0; height: 88px; padding: 16px 64px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; background: #000000e0; backdrop-filter: blur(12px); transition: opacity 300ms; }
 .stageHeading > div { text-align: center; }
 .stageHeading > p:last-child { text-align: right; }
-.stageName { font-size: 30px; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; }
+.stageName { font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 8px; }
 .navVisible { opacity: 0; }
 .viewControls { position: absolute; top: 104px; right: 28px; z-index: 5; display: flex; padding: 4px; border: 1px solid #ffffff2e; background: #000b; }
 .viewControls button { padding: 9px 12px; color: #ffffff85; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
@@ -37,14 +35,13 @@
 .progress > div > .current { background: #e12e2d; }
 @keyframes reveal { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
 @media (max-width: 1099px) {
-  .intro { padding: 56px 32px; gap: 36px; }
+  .status { padding: 40px 32px; }
   .stageHeading { padding-inline: 24px; }
   .callout { padding: 20px; }
 }
 @media (max-width: 759px) {
   .section { scroll-margin-top: 72px; }
-  .intro { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
-  .intro h2 { font-size: clamp(48px, 12vw, 78px); }
+  .status { flex-direction: column; align-items: start; padding: 32px 24px; gap: 20px; }
   .runway { height: 880svh; }
   .stageHeading { height: 80px; display: flex; justify-content: center; padding: 10px 20px; }
   .stageHeading > p { display: none; }
@@ -59,6 +56,7 @@
 @media (max-width: 759px) and (max-height: 599px) {
   .runway { height: auto; }
   .stage { position: relative; height: 520px; }
+  .headingTrack { top: 0; }
   .callout, .progress, .leaders { display: none; }
   .transcript { position: static; width: auto; height: auto; margin: 0; padding: 24px; overflow: visible; clip: auto; white-space: normal; }
   .transcript li { padding: 24px 0; border-top: 1px solid #ffffff24; }
