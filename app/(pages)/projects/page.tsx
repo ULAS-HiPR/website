@@ -268,6 +268,7 @@ function BadhbhScrollSection({ project }: { project: Project }) {
           blendSectionBlackBackground
           defaultSectioned={false}
           autoSectioned={autoSectioned}
+          fadeImages
         />
       </div>
 

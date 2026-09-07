@@ -11,6 +11,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { withBasePath } from "@/lib/base-path";
+import styles from "./rocket.module.css";
 
 const FLOOR_Y = -2.18;
 const WORLD_UNITS_PER_METRE = 1.6;
@@ -408,6 +409,7 @@ export default function RocketAnimation({
   sectionImage,
   blendSectionBlackBackground = false,
   sectionImageScale = 1,
+  fadeImages = false,
   defaultSectioned = true,
   autoSectioned,
   paintScheme = "default",
@@ -424,6 +426,7 @@ export default function RocketAnimation({
   sectionImage?: string;
   blendSectionBlackBackground?: boolean;
   sectionImageScale?: number;
+  fadeImages?: boolean;
   defaultSectioned?: boolean;
   autoSectioned?: boolean;
   paintScheme?: PaintScheme;
@@ -435,6 +438,14 @@ export default function RocketAnimation({
   const [manualSectioned, setSectioned] = useState<boolean>();
   const sectioned = manualSectioned ?? autoSectioned ?? defaultSectioned;
   const displayedImage = sectioned ? sectionImage : exteriorImage;
+  const renderImages = fadeImages && exteriorImage && sectionImage
+    ? [
+        { src: exteriorImage, isSection: false },
+        { src: sectionImage, isSection: true },
+      ]
+    : displayedImage
+      ? [{ src: displayedImage, isSection: sectioned }]
+      : [];
   const blendDisplayedImage = sectioned
     ? blendSectionBlackBackground
     : blendBlackBackground;
@@ -505,7 +516,9 @@ export default function RocketAnimation({
             aria-hidden="true"
             className={`absolute inset-x-0 bottom-0 ${
               blendDisplayedImage ? "h-[22%]" : "h-[34%]"
-            } bg-[radial-gradient(ellipse_at_50%_100%,rgba(109,118,132,0.72)_0%,rgba(48,53,61,0.74)_34%,rgba(16,18,22,0.78)_61%,transparent_82%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_48%)]`}
+            } bg-[radial-gradient(ellipse_at_50%_100%,rgba(109,118,132,0.72)_0%,rgba(48,53,61,0.74)_34%,rgba(16,18,22,0.78)_61%,transparent_82%)] [mask-image:linear-gradient(to_bottom,transparent_0%,black_48%)] ${
+              fadeImages ? styles.fadeFloor : ""
+            }`}
           />
           <div
             aria-hidden="true"
@@ -515,19 +528,24 @@ export default function RocketAnimation({
             aria-hidden="true"
             className="absolute bottom-[clamp(5.3rem,10.5svh,7.2rem)] left-1/2 h-[clamp(8px,1.5svh,16px)] w-[clamp(78px,17%,165px)] -translate-x-1/2 rounded-[50%] bg-black/95 blur-md"
           />
-          <Image
-            src={withBasePath(displayedImage)}
-            alt={`${name} ${sectioned ? "Y–X section" : "exterior"} render`}
-            fill
-            priority
-            sizes="100vw"
-            style={{
-              transform: sectioned ? `scale(${sectionImageScale})` : undefined,
-            }}
-            className={`z-10 object-contain object-center px-10 py-[clamp(6rem,13svh,8rem)] sm:px-20 sm:drop-shadow-[0_24px_18px_rgba(0,0,0,0.58)] lg:px-28 ${
-              blendDisplayedImage ? "mix-blend-screen" : ""
-            }`}
-          />
+          {renderImages.map(({ src, isSection }) => (
+            <Image
+              key={src}
+              src={withBasePath(src)}
+              alt={`${name} ${isSection ? "Y–X section" : "exterior"} render`}
+              aria-hidden={isSection !== sectioned}
+              fill
+              priority
+              sizes="100vw"
+              style={{
+                opacity: isSection === sectioned ? 1 : 0,
+                transform: isSection ? `scale(${sectionImageScale})` : undefined,
+              }}
+              className={`z-10 object-contain object-center px-10 py-[clamp(6rem,13svh,8rem)] sm:px-20 sm:drop-shadow-[0_24px_18px_rgba(0,0,0,0.58)] lg:px-28 ${
+                (isSection ? blendSectionBlackBackground : blendBlackBackground) ? "mix-blend-screen" : ""
+              } ${fadeImages ? styles.fadeImage : ""}`}
+            />
+          ))}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(112deg,transparent_28%,rgba(205,225,245,0.055)_46%,transparent_61%)] mix-blend-screen"

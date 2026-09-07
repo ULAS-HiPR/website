@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import RocketAnimation from "@/app/3d/rocket";
 import { withBasePath } from "@/lib/base-path";
 import DullahanScroll from "./dullahan-scroll";
 
@@ -239,20 +238,25 @@ function SionnaSection() {
           <Specifications rows={sionnaSpecifications} />
         </div>
 
-        <div className="relative min-h-[620px] overflow-hidden bg-black lg:min-h-full">
-          <RocketAnimation
-            model="/rockets/sionna.glb"
-            name="Sionna"
-            height={1.34}
-            paintScheme="sionna"
+        <figure className="flex flex-col justify-center bg-[#050505] p-6 sm:p-10">
+          <Image
+            src={withBasePath("/test-vehicles/sionna-launch-day.png")}
+            alt="Two HiPR team members holding Sionna at the launch site"
+            width={1200}
+            height={900}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="h-auto w-full"
           />
-        </div>
+          <figcaption className="pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
+            Sionna · Launch day
+          </figcaption>
+        </figure>
       </div>
       <VehicleGallery portrait photos={[
         {
-          src: "/sionna.jpg",
-          alt: "The assembled blue Sionna rocket with its white nosecone",
-          caption: "Sionna · Assembled vehicle",
+          src: "/sionna_construction_in_full_swing/2.jpeg",
+          alt: "Sionna's airframe and blue nosecone being assembled in the workshop",
+          caption: "Airframe assembly",
         },
         {
           src: "/sionna_construction_in_full_swing/1.jpeg",
