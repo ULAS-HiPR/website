@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { withBasePath } from "@/lib/base-path";
 import DullahanScroll from "./dullahan-scroll";
+import RocketAnimation from "@/app/3d/rocket";
 
 export const metadata: Metadata = {
   title: "Flight Test Vehicles | ULAS HiPR",
@@ -49,11 +50,11 @@ function Specifications({ rows }: { rows: string[][] }) {
 }
 
 function VehicleGallery({ photos, portrait = false }: {
-  photos: { src: string; alt: string; caption: string }[];
+  photos: { src: string; alt: string; caption: string; contain?: boolean }[];
   portrait?: boolean;
 }) {
   return (
-    <div className={`mx-auto grid max-w-[1500px] border-x border-white/10 2xl:max-w-none ${photos.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
+    <div className={`mx-auto grid max-w-[1500px] border-x border-white/10 2xl:max-w-none ${photos.length === 2 || photos.length === 4 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
       {photos.map((photo) => (
         <figure key={photo.src} className="bg-[#050505] p-4 sm:p-6 md:border-r md:border-white/10 md:last:border-r-0">
           <div className={`relative overflow-hidden bg-black ${portrait ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
@@ -61,8 +62,8 @@ function VehicleGallery({ photos, portrait = false }: {
               src={withBasePath(photo.src)}
               alt={photo.alt}
               fill
-              sizes={`(min-width: 768px) ${photos.length === 2 ? "50vw" : "33vw"}, 100vw`}
-              className="object-cover object-center brightness-[0.85]"
+              sizes={`(min-width: 768px) ${photos.length === 2 || photos.length === 4 ? "50vw" : "33vw"}, 100vw`}
+              className={`${photo.contain ? "object-contain" : "object-cover"} object-center brightness-[0.85]`}
             />
           </div>
           <figcaption className="px-1 pb-2 pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
@@ -238,21 +239,22 @@ function SionnaSection() {
           <Specifications rows={sionnaSpecifications} />
         </div>
 
-        <figure className="flex flex-col justify-center bg-[#050505] p-6 sm:p-10">
-          <Image
-            src={withBasePath("/test-vehicles/sionna-launch-day.png")}
-            alt="Two HiPR team members holding Sionna at the launch site"
-            width={1200}
-            height={900}
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="h-auto w-full"
+        <div className="relative min-h-[620px] overflow-hidden bg-black lg:min-h-full">
+          <RocketAnimation
+            model="/rockets/sionna.glb"
+            name="Sionna"
+            height={1.34}
+            paintScheme="sionna"
           />
-          <figcaption className="pt-5 text-xs uppercase tracking-[0.11em] text-white/42">
-            Sionna · Launch day
-          </figcaption>
-        </figure>
+        </div>
       </div>
       <VehicleGallery portrait photos={[
+        {
+          src: "/test-vehicles/sionna-launch-day.png",
+          alt: "Two HiPR team members holding Sionna at the launch site",
+          caption: "Sionna · Launch day",
+          contain: true,
+        },
         {
           src: "/sionna_construction_in_full_swing/2.jpeg",
           alt: "Sionna's airframe and blue nosecone being assembled in the workshop",
