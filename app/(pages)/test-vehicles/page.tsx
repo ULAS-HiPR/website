@@ -54,7 +54,7 @@ function VehicleGallery({ photos, portrait = false }: {
   portrait?: boolean;
 }) {
   return (
-    <div className={`mx-auto grid max-w-[1500px] border-x border-white/10 2xl:max-w-none ${photos.length === 2 || photos.length === 4 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
+    <div className={`mx-auto grid max-w-[1500px] border-x border-white/10 2xl:max-w-none ${photos.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
       {photos.map((photo) => (
         <figure key={photo.src} className="bg-[#050505] p-4 sm:p-6 md:border-r md:border-white/10 md:last:border-r-0">
           <div className={`relative overflow-hidden bg-black ${portrait ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
@@ -62,7 +62,7 @@ function VehicleGallery({ photos, portrait = false }: {
               src={withBasePath(photo.src)}
               alt={photo.alt}
               fill
-              sizes={`(min-width: 768px) ${photos.length === 2 || photos.length === 4 ? "50vw" : "33vw"}, 100vw`}
+              sizes={`(min-width: 768px) ${photos.length === 2 ? "50vw" : "33vw"}, 100vw`}
               className={`${photo.contain ? "object-contain" : "object-cover"} object-center brightness-[0.85]`}
             />
           </div>
@@ -250,12 +250,6 @@ function SionnaSection() {
       </div>
       <VehicleGallery portrait photos={[
         {
-          src: "/test-vehicles/sionna-launch-day.png",
-          alt: "Two HiPR team members holding Sionna at the launch site",
-          caption: "Sionna · Launch day",
-          contain: true,
-        },
-        {
           src: "/sionna_construction_in_full_swing/2.jpeg",
           alt: "Sionna's airframe and blue nosecone being assembled in the workshop",
           caption: "Airframe assembly",
@@ -266,9 +260,10 @@ function SionnaSection() {
           caption: "3D-printed nosecone",
         },
         {
-          src: "/sionna_construction_in_full_swing/3.jpeg",
-          alt: "Sionna's Bluetube airframe sections on the workshop bench",
-          caption: "Airframe construction",
+          src: "/test-vehicles/sionna-launch-day.png",
+          alt: "Two HiPR team members holding Sionna at the launch site",
+          caption: "Sionna · Launch day",
+          contain: true,
         },
       ]} />
     </section>
